@@ -40,7 +40,7 @@ public class Lab1 {
         //System.out.println(n);
         this.modifyN();
         //System.out.println(n);
-        System.out.println(this.digitN());
+        //System.out.println(this.digitN());
         System.out.println("Willy-nilly, this semester I will earn " + languages[this.digitN()]);
     }
 
