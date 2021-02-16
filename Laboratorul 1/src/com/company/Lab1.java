@@ -16,6 +16,22 @@ public class Lab1 {
         n += 0xFF;
         n *= 6;
     }
+    private int digitN()
+    {
+        int sum=n, aux, digit;
+        while(sum > 9)
+        {
+            aux = sum;
+            sum = 0;
+            while(aux != 0)
+            {
+                digit = aux % 10;
+                aux /= 10;
+                sum += digit;
+            }
+        }
+        return sum;
+    }
     public void compulsory()
     {
         System.out.println("Hello world!");
@@ -24,6 +40,7 @@ public class Lab1 {
         System.out.println(n);
         this.modifyN();
         System.out.println(n);
+        System.out.println(this.digitN());
     }
 
 }
