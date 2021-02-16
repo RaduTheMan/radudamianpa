@@ -37,9 +37,9 @@ public class Lab1 {
         System.out.println("Hello world!");
         languages = new String[] {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"};
         n = (int) (Math.random() * 1_000_000);
-        System.out.println(n);
+        //System.out.println(n);
         this.modifyN();
-        System.out.println(n);
+        //System.out.println(n);
         System.out.println(this.digitN());
         System.out.println("Willy-nilly, this semester I will earn " + languages[this.digitN()]);
     }
