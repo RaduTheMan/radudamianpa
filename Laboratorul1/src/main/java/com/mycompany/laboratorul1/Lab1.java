@@ -175,14 +175,27 @@ public class Lab1 {
     public void optional(int nr)
     {
         dimension = nr;
+        long startTime = System.nanoTime();
+        long endTime;
         this.buildMatrix();
-        this.printMatrix(graf);
+        if(nr<=15)
+          this.printMatrix(graf);
         if( this.isConnected() == true )
         {
             this.buildPartialTree();
-            System.out.print("Partial tree - ");
-            this.printMatrix(partialTree);
+            if(nr<=15)
+            {
+               System.out.print("Partial tree - ");
+               this.printMatrix(partialTree);
+            }
+            endTime = System.nanoTime();
         }
+        else
+        {
+            endTime=System.nanoTime();
+        }
+        long timeElapsed = endTime - startTime;
+        System.out.println("Execution time in nanoseconds: "+timeElapsed);
     }    
 
 }
