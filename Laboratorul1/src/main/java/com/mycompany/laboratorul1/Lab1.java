@@ -13,6 +13,7 @@ public class Lab1 {
 //Damian Radu
     private String languages[];
     private int n;
+    private boolean [][] graf;
     public static void main(String[] args) {
 
         Lab1 obj = new Lab1();
@@ -63,6 +64,64 @@ public class Lab1 {
         }
         return sum;
     }
+    private void buildMatrix(int nr)
+    {
+        graf = new boolean[nr][nr];
+        for(int i=0;i<nr;++i)
+            for(int j=i;j<nr;++j)
+                if(i==j)
+                    graf[i][j] = false;
+                else
+                {
+                    int esteMuchie=(int)(Math.random()*2);
+                    if(esteMuchie==1)
+                    {
+                       graf[i][j] = true;
+                       graf[j][i] = true;
+                    }
+                    else
+                    {
+                        graf[i][j] = false;
+                        graf[j][i] = false;
+                    }
+                }
+    }
+    private void printMatrix(int nr)
+    {
+        char x ='\u25A0';
+        char y = '\u25A1';
+        System.out.println("Matrix size: "+nr+"x"+nr);
+        for(int i=0;i<nr;++i)
+        {
+           for(int j=0;j<nr;++j)
+                if(graf[i][j] == true)
+                  System.out.print(x);
+                else
+                  System.out.print(y);
+            System.out.println("");
+        }
+    }
+    private boolean isConnected(int nr)
+    {
+        int queue[] = new int[nr], cntr=1;
+        int ic=0, sc=0, aux;
+        boolean viz[] = new boolean[nr];
+        viz[0] = true;
+        while(ic<=sc)
+        {
+            aux = queue[ic++];
+            for(int j=0;j<nr;++j)
+                if(graf[aux][j] == true && viz[j] == false)
+                {
+                    viz[j] = true;
+                    queue[++sc] = j;
+                    cntr++;
+                }
+        }
+        if(cntr==nr)
+            return true;
+        return false;
+    }
     public void compulsory()
     {
         System.out.println("Hello world!");
@@ -73,31 +132,12 @@ public class Lab1 {
     }
     public void optional(int nr)
     {
-        boolean [][] graf = new boolean[nr][nr];
-        for(int i=0;i<nr;++i)
-            for(int j=0;j<nr;++j)
-                if(i==j)
-                    graf[i][j] = false;
-                else
-                {
-                    int esteMuchie=(int)(Math.random()*2);
-                    if(esteMuchie==1)
-                        graf[i][j] = true;
-                    else
-                        graf[i][j] = false;
-                }
-        
-        char x ='\u25A0';
-        char y = '\u25A1';
-        for(int i=0;i<nr;++i)
-        {
-           for(int j=0;j<nr;++j)
-                if(graf[i][j] == true)
-                  System.out.print(x);
-                else
-                  System.out.print(y);
-            System.out.println("");
-        }
+        this.buildMatrix(nr);
+        this.printMatrix(nr);
+        if( this.isConnected(nr) == true )
+            System.out.println("This graph is connected");
+        else
+            System.out.println("This graph is not connected");
     }    
 
 }
