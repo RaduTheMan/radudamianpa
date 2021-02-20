@@ -13,7 +13,9 @@ public class Lab1 {
 //Damian Radu
     private String languages[];
     private int n;
+    private int dimension;
     private boolean [][] graf;
+    private boolean [][] partialTree;
     public static void main(String[] args) {
 
         Lab1 obj = new Lab1();
@@ -64,11 +66,11 @@ public class Lab1 {
         }
         return sum;
     }
-    private void buildMatrix(int nr)
+    private void buildMatrix()
     {
-        graf = new boolean[nr][nr];
-        for(int i=0;i<nr;++i)
-            for(int j=i;j<nr;++j)
+        graf = new boolean[dimension][dimension];
+        for(int i=0;i<dimension;++i)
+            for(int j=i;j<dimension;++j)
                 if(i==j)
                     graf[i][j] = false;
                 else
@@ -86,14 +88,35 @@ public class Lab1 {
                     }
                 }
     }
-    private void printMatrix(int nr)
+    private void buildPartialTree()
+    {
+        partialTree = new boolean[dimension][dimension];
+        int cntr=1, nodes[] = new int[dimension];
+        boolean viz[] = new boolean[dimension];
+        nodes[0] = 0;
+        viz[0] = true;
+        while(cntr < dimension)
+        {
+            for(int i=0;i<cntr;++i)
+                for(int j=0;j<dimension;++j)
+                    if(graf[nodes[i]][j] == true && viz[j] == false)
+                    {
+                        viz[j] = true;
+                        nodes[cntr++] = j;
+                        partialTree [nodes[i]][j] = true;
+                        partialTree [j][nodes[i]] = true;
+                        break;
+                    }
+        }
+    }
+    private void printMatrix(boolean [][] graf)
     {
         char x ='\u25A0';
         char y = '\u25A1';
-        System.out.println("Matrix size: "+nr+"x"+nr);
-        for(int i=0;i<nr;++i)
+        System.out.println("Matrix size: "+dimension+"x"+dimension);
+        for(int i=0;i<dimension;++i)
         {
-           for(int j=0;j<nr;++j)
+           for(int j=0;j<dimension;++j)
                 if(graf[i][j] == true)
                   System.out.print(x);
                 else
@@ -101,12 +124,12 @@ public class Lab1 {
             System.out.println("");
         }
     }
-    private boolean isConnected(int nr)
+    private boolean isConnected()
     {
-        int queue[] = new int[nr], cntr=1;
+        int queue[] = new int[dimension], cntr=1;
         int ic=0, sc=0, aux;
-        boolean viz[] = new boolean[nr], ok = false;
-        for(int i=0;i<nr;++i)
+        boolean viz[] = new boolean[dimension], ok = false;
+        for(int i=0;i<dimension;++i)
         {
         if(viz[i] == false)
         {
@@ -116,7 +139,7 @@ public class Lab1 {
         while(ic<=sc)
         {
             aux = queue[ic++];
-            for(int j=0;j<nr;++j)
+            for(int j=0;j<dimension;++j)
                 if(graf[aux][j] == true && viz[j] == false)
                 {
                     viz[j] = true;
@@ -124,7 +147,7 @@ public class Lab1 {
                     cntr++;
                 }
         }
-        if(cntr==nr)
+        if(cntr==dimension)
         {
             System.out.println("This graph is connected");
             return true;
@@ -151,9 +174,15 @@ public class Lab1 {
     }
     public void optional(int nr)
     {
-        this.buildMatrix(nr);
-        this.printMatrix(nr);
-        this.isConnected(nr);
+        dimension = nr;
+        this.buildMatrix();
+        this.printMatrix(graf);
+        if( this.isConnected() == true )
+        {
+            this.buildPartialTree();
+            System.out.print("Partial tree - ");
+            this.printMatrix(partialTree);
+        }
     }    
 
 }
