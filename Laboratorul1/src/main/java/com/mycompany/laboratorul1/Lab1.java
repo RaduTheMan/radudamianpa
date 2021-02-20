@@ -76,7 +76,16 @@ public class Lab1 {
         boolean [][] graf = new boolean[nr][nr];
         for(int i=0;i<nr;++i)
             for(int j=0;j<nr;++j)
-                System.out.println((int)Math.random());
+                if(i==j)
+                    graf[i][j] = false;
+                else
+                {
+                    int esteMuchie=(int)(Math.random()*2);
+                    if(esteMuchie==1)
+                        graf[i][j] = true;
+                    else
+                        graf[i][j] = false;
+                }
     }
 
 }
