@@ -17,6 +17,28 @@ public class Lab1 {
 
         Lab1 obj = new Lab1();
         obj.compulsory();
+        if(args.length>=1)
+        {
+          String numar=args[0];
+          int nr;
+          if(obj.esteNumar(numar))
+          {
+              nr=Integer.parseInt(numar);
+              obj.optional(nr);
+          }
+        }
+            
+    }
+    public boolean esteNumar(String numar)
+    {
+        try{
+        Integer.parseInt(numar);
+        }
+        catch(NumberFormatException aux)
+        {
+            return false;
+        }
+        return true;
     }
     private void modifyN()
     {
@@ -46,11 +68,15 @@ public class Lab1 {
         System.out.println("Hello world!");
         languages = new String[] {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"};
         n = (int) (Math.random() * 1_000_000);
-        //System.out.println(n);
         this.modifyN();
-        //System.out.println(n);
-        //System.out.println(this.digitN());
         System.out.println("Willy-nilly, this semester I will earn " + languages[this.digitN()]);
+    }
+    public void optional(int nr)
+    {
+        boolean [][] graf = new boolean[nr][nr];
+        for(int i=0;i<nr;++i)
+            for(int j=0;j<nr;++j)
+                System.out.println((int)Math.random());
     }
 
 }
