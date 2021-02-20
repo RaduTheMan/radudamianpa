@@ -86,10 +86,18 @@ public class Lab1 {
                     else
                         graf[i][j] = false;
                 }
-        char x ='\u25D0';
-        System.out.println(x);
-        x = '\u25A6';
-        System.out.println(x);
-     }
+        
+        char x ='\u25A0';
+        char y = '\u25A1';
+        for(int i=0;i<nr;++i)
+        {
+           for(int j=0;j<nr;++j)
+                if(graf[i][j] == true)
+                  System.out.print(x);
+                else
+                  System.out.print(y);
+            System.out.println("");
+        }
+    }    
 
 }
