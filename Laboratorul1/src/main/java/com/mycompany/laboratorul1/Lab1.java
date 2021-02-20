@@ -105,8 +105,14 @@ public class Lab1 {
     {
         int queue[] = new int[nr], cntr=1;
         int ic=0, sc=0, aux;
-        boolean viz[] = new boolean[nr];
-        viz[0] = true;
+        boolean viz[] = new boolean[nr], ok = false;
+        for(int i=0;i<nr;++i)
+        {
+        if(viz[i] == false)
+        {
+        viz[i] = true;
+        ic = sc = 0; cntr=1;
+        queue[ic] = i;
         while(ic<=sc)
         {
             aux = queue[ic++];
@@ -119,7 +125,20 @@ public class Lab1 {
                 }
         }
         if(cntr==nr)
+        {
+            System.out.println("This graph is connected");
             return true;
+        }
+        if(ok == false)
+        {
+            System.out.println("This graph is not connected. The connected components are:");
+            ok = true;
+        }
+        for(int j=0;j<=sc;++j)
+                System.out.print(queue[j]+" ");
+            System.out.println("");
+        }
+        }
         return false;
     }
     public void compulsory()
@@ -134,10 +153,7 @@ public class Lab1 {
     {
         this.buildMatrix(nr);
         this.printMatrix(nr);
-        if( this.isConnected(nr) == true )
-            System.out.println("This graph is connected");
-        else
-            System.out.println("This graph is not connected");
+        this.isConnected(nr);
     }    
 
 }
