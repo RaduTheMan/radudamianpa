@@ -86,6 +86,10 @@ public class Lab1 {
                     else
                         graf[i][j] = false;
                 }
-    }
+        char x ='\u25D0';
+        System.out.println(x);
+        x = '\u25A6';
+        System.out.println(x);
+     }
 
 }
