@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.laboratorul1;
+import java.util.*;
 
 
 /**
@@ -201,7 +202,9 @@ public class Lab1 {
     }    
     public void bonus(int nr)
     {
-        int rootedTree[] = new int[nr], currentParent = 0, nodesLeft = nr - 1, nextNode = 1, childs;
+        int rootedTree[] = new int[nr], currentParent = 0, nodesLeft = nr - 1, nextNode = 1, childs, indice;
+        Set <Integer> availableParents = new HashSet<Integer>();
+        availableParents.add(0);
         rootedTree[0] = -1;
         while(nodesLeft > 0)
         {
@@ -209,7 +212,11 @@ public class Lab1 {
             for(int i=nextNode; i<=nextNode+childs-1; ++i)
                 rootedTree[i] = currentParent;
             nodesLeft -= childs;
-            currentParent++;
+            availableParents.remove(currentParent);
+            for(int i=nextNode; i<=nextNode+childs-1;++i)
+                availableParents.add(i);
+            indice = (int) (Math.random() * availableParents.size());
+            currentParent = Integer.parseInt(availableParents.toArray()[indice].toString());
             nextNode += childs;
         }
         currentParent = 0;
@@ -221,7 +228,7 @@ public class Lab1 {
                 System.out.print(currentParent + "node"+i+" ");
             else
             {
-                currentParent++;
+                currentParent = rootedTree[i];
                 System.out.println("");
                 System.out.print(currentParent + "node"+i+" ");
             }
