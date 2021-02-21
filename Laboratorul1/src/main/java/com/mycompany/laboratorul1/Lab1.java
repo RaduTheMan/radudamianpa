@@ -5,6 +5,7 @@
  */
 package com.mycompany.laboratorul1;
 
+
 /**
  *
  * @author Radu
@@ -27,7 +28,8 @@ public class Lab1 {
           if(obj.esteNumar(numar))
           {
               nr=Integer.parseInt(numar);
-              obj.optional(nr);
+              //obj.optional(nr);
+              obj.bonus(nr);
           }
         }
             
@@ -197,5 +199,34 @@ public class Lab1 {
         long timeElapsed = endTime - startTime;
         System.out.println("Execution time in nanoseconds: "+timeElapsed);
     }    
+    public void bonus(int nr)
+    {
+        int rootedTree[] = new int[nr], currentParent = 0, nodesLeft = nr - 1, nextNode = 1, childs;
+        rootedTree[0] = -1;
+        while(nodesLeft > 0)
+        {
+            childs = (int) (Math.random() * nodesLeft) + 1;
+            for(int i=nextNode; i<=nextNode+childs-1; ++i)
+                rootedTree[i] = currentParent;
+            nodesLeft -= childs;
+            currentParent++;
+            nextNode += childs;
+        }
+        currentParent = 0;
+        System.out.println("Random rooted tree with "+nr+" nodes");
+        System.out.println("node0");
+        for(int i=1;i<nr;++i)
+        {
+            if(rootedTree[i] == currentParent)
+                System.out.print(currentParent + "node"+i+" ");
+            else
+            {
+                currentParent++;
+                System.out.println("");
+                System.out.print(currentParent + "node"+i+" ");
+            }
+        }
+        
+    }
 
 }
