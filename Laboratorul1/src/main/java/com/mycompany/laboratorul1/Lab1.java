@@ -29,7 +29,7 @@ public class Lab1 {
           if(obj.esteNumar(numar))
           {
               nr=Integer.parseInt(numar);
-              //obj.optional(nr);
+              obj.optional(nr);
               obj.bonus(nr);
           }
         }
