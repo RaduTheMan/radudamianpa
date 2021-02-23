@@ -11,3 +11,5 @@ Pentru partea de bonus am utilizat un array pentru a reprezenta un rooted tree, 
 de noduri ale arborelui). Dupa aceea am pus nodurile copii in set, acestea avand proprietatea de a fi noduri disponibile ca parinte pentru urmatoarea randomizare
 (din acest Set voi alege in mod random un parinte caruia ii voi aloca un numar random de copii). Procedeul continua pana cand nu mai sunt noduri ramase.
 
+
+Laboratorul 2(in progress)
