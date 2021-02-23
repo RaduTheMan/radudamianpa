@@ -3,7 +3,7 @@ Radu Damian 2A3 Programare Avansata
 
 Laboratorul 1
 
-Pentru partea de optional am declarat matricea de adiacenta de tip boolean corespunzatoare grafului random. 
+Pentru partea de optional am utilizat matricea de adiacenta de tip boolean corespunzatoare grafului random.
 Pentru a verifica conexitatea grafului, am implementat un algoritm BFS. 
 
 Pentru partea de bonus am utilizat un array pentru a reprezenta un rooted tree, iar pentru a genera un random rooted tree am utilizat un set(acesta avand initial un singur nod, nodul radacina indexat cu 0)
