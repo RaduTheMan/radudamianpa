@@ -18,7 +18,7 @@ public class Lab1 {
     private int dimension;
     private boolean [][] graf;
     private boolean [][] partialTree;
-    public static void main(String[] args) {
+    public static void main(String[] args) { //in aceasta functie testez functionalitatile cerute
 
         Lab1 obj = new Lab1();
         obj.compulsory();
@@ -26,7 +26,7 @@ public class Lab1 {
         {
           String numar=args[0];
           int nr;
-          if(obj.esteNumar(numar))
+          if(obj.esteNumar(numar)) //validez daca argumentul dat la linia de comanda este numar
           {
               nr=Integer.parseInt(numar);
               obj.optional(nr);
@@ -35,7 +35,7 @@ public class Lab1 {
         }
             
     }
-    public boolean esteNumar(String numar)
+    public boolean esteNumar(String numar) //metoda prin care validez argumentul de la linia de comanda
     {
         try{
         Integer.parseInt(numar);
@@ -69,7 +69,7 @@ public class Lab1 {
         }
         return sum;
     }
-    private void buildMatrix()
+    private void buildMatrix() //functie privata utilizata in cadrul metodei publice 'optional' in care imi construiesc un graf random
     {
         graf = new boolean[dimension][dimension];
         for(int i=0;i<dimension;++i)
@@ -91,7 +91,7 @@ public class Lab1 {
                     }
                 }
     }
-    private void buildPartialTree()
+    private void buildPartialTree() //functie privata in care imi construiesc un arbore partial, algoritm inspirat de la cursul 5 slide 27 Algoritmica grafurilor
     {
         partialTree = new boolean[dimension][dimension];
         int cntr=1, nodes[] = new int[dimension];
@@ -112,9 +112,9 @@ public class Lab1 {
                     }
         }
     }
-    private void printMatrix(boolean [][] graf)
+    private void printMatrix(boolean [][] graf) //afisrea matricii de adiacenta a unui 'graf' dat ca parametru
     {
-        char x ='\u25A0';
+        char x ='\u25A0'; //caractere unicode(au fost necesare niste setari in IDE pentru afisarea acestora corepsunzatoare pe ecran)
         char y = '\u25A1';
         System.out.println("Matrix size: "+dimension+"x"+dimension);
         for(int i=0;i<dimension;++i)
@@ -127,7 +127,7 @@ public class Lab1 {
             System.out.println("");
         }
     }
-    private boolean isConnected()
+    private boolean isConnected() //verific printr-un algoritm BFS daca graful este conex. In caz contrar, afisez componentele conexe ale acestuia.
     {
         int queue[] = new int[dimension], cntr=1;
         int ic=0, sc=0, aux;
@@ -175,7 +175,7 @@ public class Lab1 {
         this.modifyN();
         System.out.println("Willy-nilly, this semester I will earn " + languages[this.digitN()]);
     }
-    public void optional(int nr)
+    public void optional(int nr) //in aceasta metoda rezolv cerintele de la 'Optional'
     {
         dimension = nr;
         long startTime = System.nanoTime();
@@ -200,9 +200,10 @@ public class Lab1 {
         long timeElapsed = endTime - startTime;
         System.out.println("Execution time in nanoseconds: "+timeElapsed);
     }    
-    public void bonus(int nr)
+    public void bonus(int nr) //in aceasta metoda rezolv cerintele de la 'Bonus' compus in doua parti(construirea unui random rooted tree si afisarea acestuia)
     {
         int rootedTree[] = new int[nr], currentParent = 0, nodesLeft = nr - 1, nextNode = 1, childs, indice;
+        //Prima parte:construirea unui random rooted tree(algoritm explicat in fisierul README din git)
         Set <Integer> availableParents = new HashSet<Integer>();
         availableParents.add(0);
         rootedTree[0] = -1;
@@ -219,6 +220,11 @@ public class Lab1 {
             currentParent = Integer.parseInt(availableParents.toArray()[indice].toString());
             nextNode += childs;
         }
+        
+        //a doua parte:afisarea acestuia
+        //exemplu afisare:(un arbore cu trei noduri, 'node0' fiind nodul radacina. 0node1 semnifica ca nodul indexat cu 1 are ca parinte nodul indexat cu 0
+        //node0
+        //0node1 0node2
         currentParent = 0;
         System.out.println("Random rooted tree with "+nr+" nodes");
         System.out.println("node0");
