@@ -23,6 +23,13 @@ public class Destination {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Destination{" + "name=" + name + '}';
+    }
+    
+    
     
     
     

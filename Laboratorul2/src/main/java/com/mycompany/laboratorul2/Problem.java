@@ -11,4 +11,11 @@ package com.mycompany.laboratorul2;
  */
 public class Problem {
     
+    private Source[] sources;
+    private Destination[] destinations;
+    
+    private int supply[];
+    private int demand[];
+    private int cost[];
+    
 }
