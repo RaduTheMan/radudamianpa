@@ -16,6 +16,6 @@ public class Problem {
     
     private int supply[];
     private int demand[];
-    private int cost[];
+    private int cost[][];
     
 }
