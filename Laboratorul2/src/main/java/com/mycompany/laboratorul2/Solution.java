@@ -29,6 +29,17 @@ public class Solution {
 
     @Override
     public String toString() {
-        return "Solution{" + '}';
+        var s = new StringBuilder();
+        for(int i=0; i<pb.getNrSources(); ++i)
+            for(int j=0; j<pb.getNrDestinations(); ++j)
+            {
+                if(x[i][j] != 0)
+                {
+                    s.append(pb.getSources()[i] + " -> " + pb.getDestinations()[j] + ":");
+                    s.append(" " + x[i][j] + " units * cost " + pb.getCost()[i][j] + " =  " + x[i][j] * pb.getCost()[i][j] + "\n");
+                }
+            }
+        s.append("Total cost: "+this.computeCost());
+        return s.toString();
     }
 }
