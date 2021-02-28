@@ -28,6 +28,36 @@ public class Problem {
         nrDestinations = 0;
     }
 
+    public Source[] getSources() {
+        return sources;
+    }
+
+    public Destination[] getDestinations() {
+        return destinations;
+    }
+
+    public int[] getSupply() {
+        return supply;
+    }
+
+    public int[] getDemand() {
+        return demand;
+    }
+
+    public int[][] getCost() {
+        return cost;
+    }
+
+    public int getNrSources() {
+        return nrSources;
+    }
+
+    public int getNrDestinations() {
+        return nrDestinations;
+    }
+    
+    
+
     public void addSource(Source source) {
         if (nrSources + 1 <= sources.length) {
             boolean ok = false;

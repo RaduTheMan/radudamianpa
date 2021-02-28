@@ -32,6 +32,10 @@ public class Lab2 {
         pb.setSupply(supply);
         pb.setCost(cost);
         System.out.println(pb);
+        
+        Algorithm simple = new SimpleAlgorithm(pb);
+        Solution sol = simple.solve();
+        System.out.println(sol);
 
     }
 
