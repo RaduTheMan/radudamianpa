@@ -26,12 +26,14 @@ public class Destination {
 
     @Override
     public String toString() {
-        return "Destination{" + "name=" + name + '}';
+        return name;
     }
     
-    
-    
-    
-    
-    
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof Destination))
+            return false;
+        Destination other = (Destination) obj;
+        return name.equals(other.name);
+    }
 }

@@ -83,6 +83,57 @@ public class Problem {
             System.out.println("The cost matrix doesn't have the coresponding number of sources/destinations of the problem");
         
     }
+
+    @Override
+    public String toString() {
+        if(nrSources == supply.length && nrDestinations == demand.length)
+        {
+            if(cost.length == nrSources)
+            {
+                if(cost.length == 0)
+                    return null;
+                if(cost[0].length == nrDestinations)
+                {
+                    //returning corresponding string
+                    var s = new StringBuilder();
+                    s.append("Sources: ");
+                    for(int i=0; i<nrSources; ++i)
+                        s.append(sources[i]+" ");
+                    s.append("\n");
+                    
+                    s.append("Supply: ");
+                    for(int i=0; i<nrSources; ++i)
+                        s.append(supply[i]+" ");
+                    s.append("\n");
+                    
+                    s.append("Destinations: ");
+                    for(int i=0; i<nrDestinations; ++i)
+                        s.append(destinations[i]+" ");
+                    s.append("\n");
+                    
+                    s.append("Demand: ");
+                    for(int i=0; i<nrDestinations; ++i)
+                        s.append(demand[i]+" ");
+                    s.append("\n");
+                    
+                    s.append("Cost matrix:\n");
+                    for(int i=0; i<nrSources; ++i)
+                    {
+                       for(int j=0; j<nrDestinations; ++j)
+                           s.append(cost[i][j]+" ");
+                       s.append("\n");
+                    }
+                            
+                    return s.toString();
+                }
+            }
+        }
+        return null;
+    }
+
+    
+    
+    
     
     
 

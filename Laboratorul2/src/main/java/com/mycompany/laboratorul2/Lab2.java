@@ -30,6 +30,7 @@ public class Lab2 {
         pb.setDemand(demand);
         pb.setSupply(supply);
         pb.setCost(cost);
+        System.out.println(pb);
         
         
         

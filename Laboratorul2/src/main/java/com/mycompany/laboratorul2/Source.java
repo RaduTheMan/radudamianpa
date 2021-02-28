@@ -36,7 +36,15 @@ public class Source {
 
     @Override
     public String toString() {
-        return "Source{" + "name=" + name + '}';
+        return name;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !(obj instanceof Source))
+            return false;
+        Source other = (Source) obj;
+        return name.equals(other.name);
     }
     
     
