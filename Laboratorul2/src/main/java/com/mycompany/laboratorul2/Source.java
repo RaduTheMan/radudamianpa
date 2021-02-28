@@ -9,36 +9,20 @@ package com.mycompany.laboratorul2;
  *
  * @author Radu
  */
-public class Source {
+public abstract class Source {
 
-    private String name;
-    private SourceType type;
+    protected String name;
 
-    public Source(String name, SourceType type) {
-        this.name = name;
-        this.type = type;
-    }
+    //public  Source(String name) {
+        //this.name = name;
+    //}
 
-    public String getName() {
-        return name;
-    }
+    public abstract String getName();
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public SourceType getType() {
-        return type;
-    }
-
-    public void setType(SourceType type) {
-        this.type = type;
-    }
-
+    public abstract void setName(String name);
+    
     @Override
-    public String toString() {
-        return name;
-    }
+    public abstract String toString();
 
     @Override
     public boolean equals(Object obj) {

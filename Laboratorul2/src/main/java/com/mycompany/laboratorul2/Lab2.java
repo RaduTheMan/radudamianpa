@@ -16,9 +16,9 @@ public class Lab2 {
         int supply[] = new int[]{10, 35, 25};
         int demand[] = new int[]{20, 25, 25};
         int cost[][] = new int[][]{{2, 3, 1}, {5, 4, 8}, {5, 6, 8}};
-        Source source1 = new Source("S1", SourceType.FACTORY);
-        Source source2 = new Source("S2", SourceType.WAREHOUSE);
-        Source source3 = new Source("S3", SourceType.WAREHOUSE);
+        Source source1 = new Factory("S1");
+        Source source2 = new Warehouse("S2");
+        Source source3 = new Warehouse("S3");
         Destination destination1 = new Destination("D1");
         Destination destination2 = new Destination("D2");
         Destination destination3 = new Destination("D3");
