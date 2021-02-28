@@ -13,6 +13,11 @@ public class Destination {
 
     private String name;
 
+    /**
+     * Constructor pentru a initializa o destinatie
+     *
+     * @param name numele destinatiei
+     */
     public Destination(String name) {
         this.name = name;
     }
@@ -30,6 +35,13 @@ public class Destination {
         return name;
     }
 
+    /**
+     * equals verifica daca instanta curenta(Destination) este egala cu instanta
+     * data ca argument
+     *
+     * @param obj instanta
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof Destination)) {

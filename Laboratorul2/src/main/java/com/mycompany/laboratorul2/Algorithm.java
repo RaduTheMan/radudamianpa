@@ -10,12 +10,12 @@ package com.mycompany.laboratorul2;
  * @author Radu
  */
 public abstract class Algorithm {
-    
+
     protected Problem pb;
     protected int supplyTemp[];
     protected int demandTemp[];
     protected int x[][];
+
     public abstract Solution solve();
-    
-    
+
 }

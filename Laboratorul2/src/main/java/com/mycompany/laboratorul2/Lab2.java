@@ -10,6 +10,10 @@ package com.mycompany.laboratorul2;
  * @author Radu
  */
 public class Lab2 {
+    
+    /**
+     * @param args argumente de la linia de comanda
+     */
 
     public static void main(String[] args) {
         Problem pb = new Problem(5, 5);
@@ -32,7 +36,7 @@ public class Lab2 {
         pb.setSupply(supply);
         pb.setCost(cost);
         System.out.println(pb);
-        
+
         Algorithm simple = new SimpleAlgorithm(pb);
         Solution sol = simple.solve();
         System.out.println(sol);

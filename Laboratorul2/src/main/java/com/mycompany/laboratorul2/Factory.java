@@ -10,22 +10,21 @@ package com.mycompany.laboratorul2;
  * @author Radu
  */
 public class Factory extends Source {
-    
-    public Factory(String name)
-    {
+
+    public Factory(String name) {
         this.name = name;
     }
-    
+
     @Override
-    public  String getName() {
+    public String getName() {
         return name;
     }
-    
+
     @Override
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
     public String toString() {
         return name;

@@ -11,6 +11,12 @@ package com.mycompany.laboratorul2;
  */
 public class SimpleAlgorithm extends Algorithm {
 
+    /**
+     * solve indica implementarea concreta a algoritmului pentru a rezolva
+     * problema
+     * 
+     * @return Solution
+     */
     @Override
     public Solution solve() {
         for (int j = 0; j < demandTemp.length; ++j) {
@@ -35,6 +41,11 @@ public class SimpleAlgorithm extends Algorithm {
         return solution;
     }
 
+    /**
+     * Constructor pentru a initializa input-ul necesar algoritmului
+     * 
+     * @param pb problema ce se doreste a fi rezolvata
+     */
     public SimpleAlgorithm(Problem pb) {
         this.pb = pb;
         this.supplyTemp = pb.getSupply();

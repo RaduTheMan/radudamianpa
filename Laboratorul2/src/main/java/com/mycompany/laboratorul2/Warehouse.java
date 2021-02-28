@@ -10,25 +10,24 @@ package com.mycompany.laboratorul2;
  * @author Radu
  */
 public class Warehouse extends Source {
-    
-    public Warehouse(String name)
-    {
+
+    public Warehouse(String name) {
         this.name = name;
     }
-    
+
     @Override
-    public  String getName() {
+    public String getName() {
         return name;
     }
-    
+
     @Override
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
     public String toString() {
         return name;
     }
-    
+
 }
