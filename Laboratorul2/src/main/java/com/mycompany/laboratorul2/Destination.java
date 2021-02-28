@@ -10,6 +10,7 @@ package com.mycompany.laboratorul2;
  * @author Radu
  */
 public class Destination {
+
     private String name;
 
     public Destination(String name) {
@@ -28,11 +29,12 @@ public class Destination {
     public String toString() {
         return name;
     }
-    
+
     @Override
-    public boolean equals(Object obj){
-        if(obj == null || !(obj instanceof Destination))
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Destination)) {
             return false;
+        }
         Destination other = (Destination) obj;
         return name.equals(other.name);
     }

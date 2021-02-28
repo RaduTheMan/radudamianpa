@@ -10,6 +10,7 @@ package com.mycompany.laboratorul2;
  * @author Radu
  */
 public class Source {
+
     private String name;
     private SourceType type;
 
@@ -38,15 +39,14 @@ public class Source {
     public String toString() {
         return name;
     }
-    
+
     @Override
-    public boolean equals(Object obj){
-        if(obj == null || !(obj instanceof Source))
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Source)) {
             return false;
+        }
         Source other = (Source) obj;
         return name.equals(other.name);
     }
-    
-    
-    
+
 }
