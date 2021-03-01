@@ -10,11 +10,10 @@ package com.mycompany.laboratorul2;
  * @author Radu
  */
 public class Lab2 {
-    
+
     /**
      * @param args argumente de la linia de comanda
      */
-
     public static void main(String[] args) {
         Problem pb = new Problem(5, 5);
         int supply[] = new int[]{10, 35, 25};
@@ -40,6 +39,10 @@ public class Lab2 {
         Algorithm simple = new SimpleAlgorithm(pb);
         Solution sol = simple.solve();
         System.out.println(sol);
+
+        Algorithm vogel = new VogelAlgorithm(pb);
+        Solution sol2 = vogel.solve();
+        System.out.println(sol2);
 
     }
 

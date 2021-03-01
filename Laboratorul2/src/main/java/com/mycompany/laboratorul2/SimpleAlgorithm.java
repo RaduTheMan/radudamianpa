@@ -48,8 +48,14 @@ public class SimpleAlgorithm extends Algorithm {
      */
     public SimpleAlgorithm(Problem pb) {
         this.pb = pb;
-        this.supplyTemp = pb.getSupply();
-        this.demandTemp = pb.getDemand();
+        this.supplyTemp = new int[pb.getNrSources()];
+        this.demandTemp = new int[pb.getNrDestinations()];
+        
+        for(int i=0; i<supplyTemp.length; ++i)
+            supplyTemp[i] = pb.getSupply()[i];
+        for(int i=0; i<demandTemp.length; ++i)
+            demandTemp[i] = pb.getDemand()[i];
+       
         this.x = new int[pb.getNrSources()][pb.getNrDestinations()];
     }
 

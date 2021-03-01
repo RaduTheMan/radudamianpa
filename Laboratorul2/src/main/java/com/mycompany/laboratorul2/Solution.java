@@ -58,7 +58,7 @@ public class Solution {
                 }
             }
         }
-        s.append("Total cost: " + this.computeCost());
+        s.append("Total cost: " + this.computeCost() + "\n");
         return s.toString();
     }
 }
