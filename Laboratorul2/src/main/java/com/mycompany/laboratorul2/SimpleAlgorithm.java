@@ -14,7 +14,7 @@ public class SimpleAlgorithm extends Algorithm {
     /**
      * solve indica implementarea concreta a algoritmului pentru a rezolva
      * problema
-     * 
+     *
      * @return Solution
      */
     @Override
@@ -43,19 +43,21 @@ public class SimpleAlgorithm extends Algorithm {
 
     /**
      * Constructor pentru a initializa input-ul necesar algoritmului
-     * 
+     *
      * @param pb problema ce se doreste a fi rezolvata
      */
     public SimpleAlgorithm(Problem pb) {
         this.pb = pb;
         this.supplyTemp = new int[pb.getNrSources()];
         this.demandTemp = new int[pb.getNrDestinations()];
-        
-        for(int i=0; i<supplyTemp.length; ++i)
+
+        for (int i = 0; i < supplyTemp.length; ++i) {
             supplyTemp[i] = pb.getSupply()[i];
-        for(int i=0; i<demandTemp.length; ++i)
+        }
+        for (int i = 0; i < demandTemp.length; ++i) {
             demandTemp[i] = pb.getDemand()[i];
-       
+        }
+
         this.x = new int[pb.getNrSources()][pb.getNrDestinations()];
     }
 

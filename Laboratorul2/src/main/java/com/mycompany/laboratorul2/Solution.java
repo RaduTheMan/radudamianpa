@@ -16,7 +16,7 @@ public class Solution {
 
     /**
      * computeCost calculeaza costul aferent solutiei
-     * 
+     *
      * @return int
      */
     public int computeCost() {
@@ -33,7 +33,7 @@ public class Solution {
 
     /**
      * Constructor pentru a initializa solutia
-     * 
+     *
      * @param x matricea de unitati
      * @param pb problema pentru care exista solutie
      */
@@ -44,7 +44,7 @@ public class Solution {
 
     /**
      * toString genereaza o reprezentare a solutiei
-     * 
+     *
      * @return String
      */
     @Override
