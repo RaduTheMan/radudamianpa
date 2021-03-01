@@ -174,7 +174,8 @@ public class VogelAlgorithm extends Algorithm {
                     ok = true;
                 }
             }
-
+            
+            //se verifica daca conditia de oprire este satisfacuta(daca nu mai exista linii/coloane disponibile)
             if (!ok) {
                 satisfied = true;
             }
