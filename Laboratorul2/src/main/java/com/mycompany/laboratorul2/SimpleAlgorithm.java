@@ -12,8 +12,8 @@ package com.mycompany.laboratorul2;
 public class SimpleAlgorithm extends Algorithm {
 
     /**
-     * solve indica implementarea concreta a algoritmului pentru a rezolva
-     * problema
+     * solve indica implementarea concreta a algoritmului de tip Greedy pentru a
+     * rezolva problema
      *
      * @return Solution
      */
@@ -42,7 +42,8 @@ public class SimpleAlgorithm extends Algorithm {
     }
 
     /**
-     * Constructor pentru a initializa input-ul necesar algoritmului
+     * Constructor pentru a initializa input-ul necesar algoritmului de tip
+     * Greedy
      *
      * @param pb problema ce se doreste a fi rezolvata
      */

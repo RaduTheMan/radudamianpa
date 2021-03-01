@@ -15,6 +15,16 @@ public class VogelAlgorithm extends Algorithm {
     int rowDiff[];
     int colDiff[];
 
+    /**
+     *
+     * @param diff vectorul care retine pentru fiecare linie/coloana diferenta
+     * in modul intre cel mai mic cost si al doilea cel mai mic cost pe
+     * linia/coloana respectiva
+     * @param n numarul de surse/destinatii in functie de parametrul type
+     * @param m idem.
+     * @param type caracter ce indica unde se calculeaza vectorul diff ( linie
+     * sau coloana)
+     */
     private void computeDiff(int diff[], int n, int m, char type) {
         for (int i = 0; i < n; ++i) {
             if (diff[i] != -1) {
@@ -60,6 +70,15 @@ public class VogelAlgorithm extends Algorithm {
         }
     }
 
+    /**
+     *
+     * @param diff vectorul care retine pentru fiecare linie/coloana diferenta
+     * in modul intre cel mai mic cost si al doilea cel mai mic cost pe
+     * linia/coloana respectiva
+     * @param nr numarul de surse/destinatii
+     * @param vMax un vector cu un element care retine diferenta maxima
+     * @return int indicele liniei/coloanei unde se afla diferenta maxima
+     */
     private int computeMaxDiff(int diff[], int nr, int vMax[]) {
         int index = -1;
         for (int i = 0; i < nr; ++i) {
@@ -71,19 +90,26 @@ public class VogelAlgorithm extends Algorithm {
         return index;
     }
 
+    /**
+     * solve indica implementarea concreta a algoritmului lui Vogel pentru a
+     * rezolva problema
+     *
+     * @return Solution
+     */
     @Override
     public Solution solve() {
         boolean satisfied = false;
         while (!satisfied) {
-            computeDiff(rowDiff, pb.getNrSources(), pb.getNrDestinations(), 'L');
+            computeDiff(rowDiff, pb.getNrSources(), pb.getNrDestinations(), 'L'); //se calculeaza diferentele parcurgand liniile, apoi coloanele
             computeDiff(colDiff, pb.getNrDestinations(), pb.getNrSources(), 'C');
             int indexLine, indexCol;
             int vMax[] = new int[1];
             vMax[0] = -1;
 
-            indexLine = computeMaxDiff(rowDiff, pb.getNrSources(), vMax);
+            indexLine = computeMaxDiff(rowDiff, pb.getNrSources(), vMax); //se calculeaza indicele liniei/coloanei unde se afla diferenta maxima
             indexCol = computeMaxDiff(colDiff, pb.getNrDestinations(), vMax);
 
+            //se determina cea mai mica diferenta de pe linia/coloana calculata anterior  si se va retina pozitia in matrice a acestei valori
             if (indexCol == -1) {
                 int min = -1;
                 for (int j = 0; j < pb.getNrDestinations(); ++j) {
@@ -113,6 +139,7 @@ public class VogelAlgorithm extends Algorithm {
 
             }
 
+            //se actualizeaza demand, supply si matricea solutie x
             if (demandTemp[indexCol] >= supplyTemp[indexLine]) {
                 x[indexLine][indexCol] = supplyTemp[indexLine];
                 demandTemp[indexCol] -= supplyTemp[indexLine];
@@ -135,6 +162,7 @@ public class VogelAlgorithm extends Algorithm {
                 colDiff[indexCol] = -1;
             }
 
+            //se "blocheaza" liniile/coloanele care au demand/supply epuizat(egal cu 0)
             boolean ok = false;
             for (int i = 0; i < pb.getNrSources() && !ok; ++i) {
                 if (rowDiff[i] != -1) {
@@ -155,6 +183,11 @@ public class VogelAlgorithm extends Algorithm {
         return solution;
     }
 
+    /**
+     * Constructor pentru a initializa input-ul necesar algoritmului lui Vogel
+     *
+     * @param pb problema ce se doreste a fi rezolvata
+     */
     public VogelAlgorithm(Problem pb) {
         this.pb = pb;
         this.supplyTemp = new int[pb.getNrSources()];
