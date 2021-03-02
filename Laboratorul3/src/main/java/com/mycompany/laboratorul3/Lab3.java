@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.laboratorul3;
+import java.time.LocalTime;
 
 /**
  *
@@ -13,7 +14,16 @@ public class Lab3 {
     
     public static void main(String args[])
     {
-        System.out.println("Hello world!!");
+        Museum m = new Museum();
+        m.setOpeningTime(LocalTime.of(9, 30));
+        m.setClosingTime(LocalTime.parse("17:00"));
+        m.setTicketPrice(30);
+        
+        Church c = new Church();
+        c.setOpeningTime(LocalTime.of(7,0));
+        //c.setClosingTime(LocalTime.MIN);
+        
+        Visitable[] arr = {m};
     }
     
 }
