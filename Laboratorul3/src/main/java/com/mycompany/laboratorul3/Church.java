@@ -10,9 +10,20 @@ import java.time.LocalTime;
  *
  * @author Radu
  */
-public class Church implements Visitable {
-    private String name;
+public class Church extends Location implements Visitable {
     private LocalTime openingTime, closingTime;
+    
+    public Church(String name, LocalTime openingTime, LocalTime closingTime)
+    {
+        this.name = name;
+        this.openingTime = openingTime;
+        this.closingTime = closingTime;
+    }
+    
+    public Church()
+    {
+        
+    }
     
     @Override
     public LocalTime getOpeningTime()
@@ -36,11 +47,12 @@ public class Church implements Visitable {
     }
     
     
-
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

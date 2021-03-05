@@ -4,13 +4,16 @@
  * and open the template in the editor.
  */
 package com.mycompany.laboratorul3;
-
+import java.util.*;
 /**
  *
  * @author Radu
  */
 public class City {
     private String name;
+    private List<Location> nodes = new ArrayList<>();
+    
+    //constructors, getters, setters
 
     public String getName() {
         return name;
@@ -19,6 +22,13 @@ public class City {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public void addLocation(Location node)
+    {
+        nodes.add(node);
+    }
+    
+    //toString, etc
     
     
 }

@@ -9,10 +9,21 @@ import java.time.LocalTime;
  *
  * @author Radu
  */
-public class Museum implements Visitable, Payable {
-    private String name;
+public class Museum extends Location implements Visitable, Payable {
     private LocalTime openingTime, closingTime;
     private double ticketPrice;
+    
+    public Museum(String name, double ticketPrice, LocalTime openingTime, LocalTime closingTime)
+    {
+        this.name = name;
+        this.ticketPrice = ticketPrice;
+        this.openingTime = openingTime;
+        this.closingTime = closingTime;
+    }
+    public Museum()
+    {
+        
+    }
     
     @Override
     public LocalTime getOpeningTime()
@@ -45,11 +56,12 @@ public class Museum implements Visitable, Payable {
         this.ticketPrice = ticketPrice;
     }
 
-    
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

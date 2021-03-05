@@ -9,9 +9,19 @@ package com.mycompany.laboratorul3;
  *
  * @author Radu
  */
-public class Restaurant implements Classifiable {
-    private String name;
+public class Restaurant extends Location implements Classifiable {
     private int rank;
+    
+    public Restaurant(String name, int rank)
+    {
+        this.name = name;
+        this.rank = rank;
+    }
+    
+    public Restaurant()
+    {
+        
+    }
     
     @Override
     public int getRank()
@@ -23,10 +33,12 @@ public class Restaurant implements Classifiable {
         this.rank = rank;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
