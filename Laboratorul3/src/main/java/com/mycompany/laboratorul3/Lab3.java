@@ -29,13 +29,15 @@ public class Lab3 {
         churchObj1.setClosingTime(LocalTime.MIDNIGHT);
         churchObj1.setName("Trei Ierarhi");
         
-        Church churchObj2 = new Church("Inaltarea Domnului", LocalTime.of(6, 0), LocalTime.MIDNIGHT);
+        Church churchObj2 = new Church("Inaltarea Domnului", LocalTime.of(9, 0), LocalTime.MIDNIGHT);
+        
+        Church churchObj3 = new Church("AA", LocalTime.of(8, 0), LocalTime.MIDNIGHT);
         
         Restaurant restObj1 = new Restaurant("Mamma-mia", 4);
         Hotel hotelObj1 = new Hotel("Moldova", 3);
         
         Visitable[] arr = {museumObj1,churchObj1};
-        Location[] locations = {museumObj1,churchObj1,hotelObj1,restObj1,churchObj2};
+        Location[] locations = {museumObj1,churchObj1,hotelObj1,churchObj3,restObj1,churchObj2};
         
         System.out.println("Visitable:");
         
