@@ -28,7 +28,21 @@ public class City {
         nodes.add(node);
     }
     
+    public void displayOnlyVisible()
+    {
+        for(int i=0;i<nodes.size();++i)
+            if(nodes.get(i).isOnlyVisitable() == true)
+                System.out.println(nodes.get(i));
+    }
+    
+    
+    
     //toString, etc
+
+    @Override
+    public String toString() {
+        return name;
+    }
     
     
 }

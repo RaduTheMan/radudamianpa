@@ -24,6 +24,12 @@ public class Restaurant extends Location implements Classifiable {
     }
     
     @Override
+    public boolean isOnlyVisitable()
+    {
+        return false;
+    }
+    
+    @Override
     public int getRank()
     {
         return rank;

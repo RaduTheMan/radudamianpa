@@ -27,6 +27,12 @@ public class Hotel extends Location implements Classifiable {
     {
         return rank;
     }
+    
+    @Override
+    public boolean isOnlyVisitable()
+    {
+        return false;
+    }
 
     public void setRank(int rank) {
         this.rank = rank;

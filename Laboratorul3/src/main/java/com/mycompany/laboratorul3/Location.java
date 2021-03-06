@@ -16,6 +16,7 @@ public abstract class Location implements Comparable<Location> {
     //constructors, getters, setters
     public abstract void setName(String name);
     public abstract String getName();
+    public abstract boolean isOnlyVisitable();
     
     public void setCost(Location node, int value)
     {

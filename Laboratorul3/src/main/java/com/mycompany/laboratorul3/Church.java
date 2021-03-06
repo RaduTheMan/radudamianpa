@@ -26,6 +26,12 @@ public class Church extends Location implements Visitable {
     }
     
     @Override
+    public boolean isOnlyVisitable()
+    {
+        return true;
+    }
+    
+    @Override
     public LocalTime getOpeningTime()
     {
         return openingTime;

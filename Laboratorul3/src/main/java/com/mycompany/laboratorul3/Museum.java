@@ -25,6 +25,12 @@ public class Museum extends Location implements Visitable, Payable {
         
     }
     
+     @Override
+    public boolean isOnlyVisitable()
+    {
+        return false;
+    }
+    
     @Override
     public LocalTime getOpeningTime()
     {
