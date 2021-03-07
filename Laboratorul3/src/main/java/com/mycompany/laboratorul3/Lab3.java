@@ -33,11 +33,13 @@ public class Lab3 {
         
         Church churchObj3 = new Church("AA", LocalTime.of(8, 0), LocalTime.MIDNIGHT);
         
+        Church churchObj4 = new Church("AAB", LocalTime.of(3, 0), LocalTime.MIDNIGHT);
+        
         Restaurant restObj1 = new Restaurant("Mamma-mia", 4);
         Hotel hotelObj1 = new Hotel("Moldova", 3);
         
         Visitable[] arr = {museumObj1,churchObj1};
-        Location[] locations = {museumObj1,churchObj1,hotelObj1,churchObj3,restObj1,churchObj2};
+        Location[] locations = {museumObj1,churchObj1,hotelObj1,churchObj3,restObj1,churchObj2,churchObj4};
         
         System.out.println("Visitable:");
         

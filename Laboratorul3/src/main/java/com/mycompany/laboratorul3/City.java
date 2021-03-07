@@ -30,17 +30,17 @@ public class City {
     
     public void displayOnlyVisible()
     {
-        List<Church> onlyVisitableTemp = new ArrayList<>();
+        List<Visitable> onlyVisitableTemp = new ArrayList<>();
         for(int i=0;i<nodes.size();++i)
             if(nodes.get(i).isOnlyVisitable() == true)
             {
                Location x=nodes.get(i);
-               Church y = (Church) x;
+               Visitable y = (Visitable) x;
                onlyVisitableTemp.add(y);
             }
         
         //sortare dupa openingTime
-        Collections.sort(onlyVisitableTemp, new Comparator<Church> () {public int compare(Church c1, Church c2) 
+        Collections.sort(onlyVisitableTemp, new Comparator<Visitable> () {public int compare(Visitable c1, Visitable c2) 
                 {
                    return c1.getOpeningTime().compareTo(c2.getOpeningTime());
                 }
