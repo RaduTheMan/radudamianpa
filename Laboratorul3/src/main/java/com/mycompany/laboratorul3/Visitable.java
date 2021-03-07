@@ -16,11 +16,14 @@ public interface Visitable {
     public LocalTime getClosingTime();
     public void setOpeningTime(LocalTime openingTime);
     public void setClosingTime(LocalTime closingTime);
-    public default void setDefaultHours()
+    public default void setDefaultOpeningTime()
     {
         LocalTime defaultOpeningTime = LocalTime.of(9,30);
-        LocalTime defaultClosingTime = LocalTime.of(20, 0);
         setOpeningTime(defaultOpeningTime);
+    }
+    public default void setDefaultClosingTime()
+    {
+        LocalTime defaultClosingTime = LocalTime.of(20, 0);
         setClosingTime(defaultClosingTime);
     }
     

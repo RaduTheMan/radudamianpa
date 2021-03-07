@@ -40,7 +40,7 @@ public class Lab3 {
         
         Visitable[] arr = {museumObj1,churchObj1};
         Location[] locations = {museumObj1,churchObj1,hotelObj1,churchObj3,restObj1,churchObj2,churchObj4};
-        churchObj2.setDefaultHours();
+        churchObj2.setDefaultOpeningTime();
         
         System.out.println("Visitable:");
         
