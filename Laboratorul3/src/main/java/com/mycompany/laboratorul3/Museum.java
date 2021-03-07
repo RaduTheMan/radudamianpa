@@ -37,6 +37,7 @@ public class Museum extends Location implements Visitable, Payable {
         return openingTime;
     }
 
+    @Override
     public void setOpeningTime(LocalTime openingTime) {
         this.openingTime = openingTime;
     }

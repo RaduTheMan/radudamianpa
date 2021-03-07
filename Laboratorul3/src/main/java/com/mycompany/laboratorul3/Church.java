@@ -37,6 +37,7 @@ public class Church extends Location implements Visitable {
         return openingTime;
     }
 
+    @Override
     public void setOpeningTime(LocalTime openingTime) {
         this.openingTime = openingTime;
     }
