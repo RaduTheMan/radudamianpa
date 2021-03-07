@@ -41,6 +41,7 @@ public class Lab3 {
         Visitable[] arr = {museumObj1,churchObj1};
         Location[] locations = {museumObj1,churchObj1,hotelObj1,churchObj3,restObj1,churchObj2,churchObj4};
         churchObj2.setDefaultOpeningTime();
+        churchObj2.setDefaultClosingTime();
         
         System.out.println("Visitable:");
         
@@ -73,6 +74,8 @@ public class Lab3 {
         System.out.println("Only visitable locations:");
         
         cityObj1.displayOnlyVisible();
+        
+        System.out.println(Visitable.getDuration(churchObj2));
       }
         
     

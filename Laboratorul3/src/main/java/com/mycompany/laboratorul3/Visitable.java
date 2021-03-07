@@ -5,6 +5,7 @@
  */
 package com.mycompany.laboratorul3;
 import java.time.LocalTime;
+import java.time.Duration;
 
 /**
  *
@@ -16,6 +17,10 @@ public interface Visitable {
     public LocalTime getClosingTime();
     public void setOpeningTime(LocalTime openingTime);
     public void setClosingTime(LocalTime closingTime);
+    static Duration getDuration(Visitable location)
+    {
+        return Duration.between(location.getOpeningTime(), location.getClosingTime());
+    }
     public default void setDefaultOpeningTime()
     {
         LocalTime defaultOpeningTime = LocalTime.of(9,30);

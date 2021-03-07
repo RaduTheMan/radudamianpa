@@ -47,7 +47,7 @@ public class City {
         });
         
         for(int i=0;i<onlyVisitableTemp.size();++i)
-            System.out.println(onlyVisitableTemp.get(i) +" "+ onlyVisitableTemp.get(i).getOpeningTime().toString());
+            System.out.println(onlyVisitableTemp.get(i) +" "+ onlyVisitableTemp.get(i).getOpeningTime().toString() +" " + onlyVisitableTemp.get(i).getClosingTime().toString() );
     }
     
     
