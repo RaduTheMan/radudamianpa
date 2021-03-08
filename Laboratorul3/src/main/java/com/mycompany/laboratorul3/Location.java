@@ -23,6 +23,11 @@ public abstract class Location implements Comparable<Location> {
         cost.put(node,value);
     }
     
+    public Map<Location,Integer> getCost()
+    {
+        return new HashMap<>(cost);
+    }
+    
     // toString, etc.
 
     @Override

@@ -18,9 +18,15 @@ public class City {
     public String getName() {
         return name;
     }
+   
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public List<Location> getListLocations()
+    {
+        return new ArrayList<>(nodes);
     }
     
     public void addLocation(Location node)
