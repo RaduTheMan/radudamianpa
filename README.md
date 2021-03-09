@@ -17,6 +17,10 @@ Laboratorul 2
 Algoritmul implementat pentru partea de optional este unul de tip Greedy, in care pentru fiecare depozit se iau cat mai multe unitati din fiecare supply pana cand se satisface demand-ul depozitului respectiv. In acest fel, se obtine o solutie fezabila, dar nu neaparat si optima.
 In ceea ce priveste partea de bonus, algoritmul implementat este cel al lui Vogel, urmand indicatiile din link-ul anexat pe pagina laboratorului. ( https://www.geeksforgeeks.org/transportation-problem-set-4-vogels-approximation-method/ )
 
-Laboratorul 3 (in progress)
+Laboratorul 3 
+
+In cadrul partii de optional, pentru a afisa locatiile ce sunt doar Visitable, am adaugat fiecarei locatii o metoda publica de tip boolean isOnlyVisitable(), iar in cadrul clasei City, am parcurs fiecare locatie din lista. In cazul in care metoda mentionata anterior returneaza favoarea true, atunci stim sigur ca locatia respectiva este Visitable si putem face un upcast la Visitable. Sortarea dupa openingTime s-a realizat prin intermediul unui comparator temporar.
+Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una statica).
+In cadrul implementarii clasei TravelPlan, pentru ca o instanta a acesteia sa contina un obiect de tipul City, am declarat un membru privat de tip City. Pentru a determina cel mai scurt drum intre doua locatii date, am implementat algoritmul lui Dijkstra.
 
 
