@@ -16,7 +16,6 @@ public abstract class Location implements Comparable<Location> {
     protected String name;
     protected Map<Location, Integer> cost = new HashMap<>();
 
-    //constructors, getters, setters
     public abstract void setName(String name);
 
     public abstract String getName();
@@ -31,7 +30,7 @@ public abstract class Location implements Comparable<Location> {
         return new HashMap<>(cost);
     }
 
-    // toString, etc.
+    
     @Override
     public String toString() {
         return name;

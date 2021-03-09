@@ -16,7 +16,6 @@ public class City {
     private String name;
     private List<Location> nodes = new ArrayList<>();
 
-    //constructors, getters, setters
     public String getName() {
         return name;
     }
