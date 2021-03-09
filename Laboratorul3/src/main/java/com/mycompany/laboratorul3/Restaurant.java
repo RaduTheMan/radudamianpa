@@ -10,28 +10,25 @@ package com.mycompany.laboratorul3;
  * @author Radu
  */
 public class Restaurant extends Location implements Classifiable {
+
     private int rank;
-    
-    public Restaurant(String name, int rank)
-    {
+
+    public Restaurant(String name, int rank) {
         this.name = name;
         this.rank = rank;
     }
-    
-    public Restaurant()
-    {
-        
+
+    public Restaurant() {
+
     }
-    
+
     @Override
-    public boolean isOnlyVisitable()
-    {
+    public boolean isOnlyVisitable() {
         return false;
     }
-    
+
     @Override
-    public int getRank()
-    {
+    public int getRank() {
         return rank;
     }
 
@@ -48,6 +45,5 @@ public class Restaurant extends Location implements Classifiable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

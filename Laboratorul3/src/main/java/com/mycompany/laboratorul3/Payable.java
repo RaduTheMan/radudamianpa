@@ -10,5 +10,6 @@ package com.mycompany.laboratorul3;
  * @author Radu
  */
 public interface Payable {
+
     public double getTicketPrice();
 }

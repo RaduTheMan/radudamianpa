@@ -10,27 +10,25 @@ package com.mycompany.laboratorul3;
  * @author Radu
  */
 public class Hotel extends Location implements Classifiable {
+
     private int rank;
-    
-    public Hotel(String name, int rank)
-    {
+
+    public Hotel(String name, int rank) {
         this.name = name;
         this.rank = rank;
     }
-    
-    public Hotel()
-    {
-        
+
+    public Hotel() {
+
     }
+
     @Override
-    public int getRank()
-    {
+    public int getRank() {
         return rank;
     }
-    
+
     @Override
-    public boolean isOnlyVisitable()
-    {
+    public boolean isOnlyVisitable() {
         return false;
     }
 
@@ -47,6 +45,5 @@ public class Hotel extends Location implements Classifiable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

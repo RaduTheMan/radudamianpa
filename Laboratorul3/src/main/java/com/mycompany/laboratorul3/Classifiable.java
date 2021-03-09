@@ -10,6 +10,7 @@ package com.mycompany.laboratorul3;
  * @author Radu
  */
 public interface Classifiable {
+
     public int getRank();
-    
+
 }

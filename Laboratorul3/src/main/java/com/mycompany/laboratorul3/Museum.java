@@ -4,36 +4,36 @@
  * and open the template in the editor.
  */
 package com.mycompany.laboratorul3;
+
 import java.time.LocalTime;
+
 /**
  *
  * @author Radu
  */
 public class Museum extends Location implements Visitable, Payable {
+
     private LocalTime openingTime, closingTime;
     private double ticketPrice;
-    
-    public Museum(String name, double ticketPrice, LocalTime openingTime, LocalTime closingTime)
-    {
+
+    public Museum(String name, double ticketPrice, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
         this.ticketPrice = ticketPrice;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
     }
-    public Museum()
-    {
-        
+
+    public Museum() {
+
     }
-    
-     @Override
-    public boolean isOnlyVisitable()
-    {
+
+    @Override
+    public boolean isOnlyVisitable() {
         return false;
     }
-    
+
     @Override
-    public LocalTime getOpeningTime()
-    {
+    public LocalTime getOpeningTime() {
         return openingTime;
     }
 
@@ -41,21 +41,18 @@ public class Museum extends Location implements Visitable, Payable {
     public void setOpeningTime(LocalTime openingTime) {
         this.openingTime = openingTime;
     }
-    
-    
+
     @Override
-    public LocalTime getClosingTime()
-    {
+    public LocalTime getClosingTime() {
         return closingTime;
     }
 
     public void setClosingTime(LocalTime closingTime) {
         this.closingTime = closingTime;
     }
-    
+
     @Override
-    public double getTicketPrice()
-    {
+    public double getTicketPrice() {
         return ticketPrice;
     }
 
@@ -72,5 +69,5 @@ public class Museum extends Location implements Visitable, Payable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }
