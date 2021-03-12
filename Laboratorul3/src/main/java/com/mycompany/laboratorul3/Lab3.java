@@ -108,7 +108,7 @@ public class Lab3 {
                 System.out.println("Shortest distance from " + locations[i] + " to " + locations[j] + " is: " + plan.getShortestPath(locations[i], locations[j]));
             }
         }
-        System.out.println(plan.getShortestPath(restObj1, hotelObj1));
+        System.out.println(plan.getShortestPath(hotelObj1, restObj1));
     }
 
 }
