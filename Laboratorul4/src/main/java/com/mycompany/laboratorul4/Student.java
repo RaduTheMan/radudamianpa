@@ -15,6 +15,11 @@ public class Student {
     public Student(String name) {
         this.name = name;
     }
+    
+    public static int compareByName(Student a, Student b)
+    {
+        return a.name.compareTo(b.name);
+    }
 
     public String getName() {
         return name;
@@ -23,6 +28,13 @@ public class Student {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+    
+    
     
     
     

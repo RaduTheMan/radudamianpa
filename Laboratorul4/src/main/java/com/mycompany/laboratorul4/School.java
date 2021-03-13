@@ -9,7 +9,7 @@ package com.mycompany.laboratorul4;
  *
  * @author Radu
  */
-public class School {
+public class School implements Comparable<School> {
     private String name;
 
     public School(String name) {
@@ -23,7 +23,18 @@ public class School {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
     
-    
+    @Override
+    public int compareTo(School other)
+    {
+        if(other.name == null)
+            throw new NullPointerException();
+        return this.name.compareTo(other.name);
+    }
     
 }
