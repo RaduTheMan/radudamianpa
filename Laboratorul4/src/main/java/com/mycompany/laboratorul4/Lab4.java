@@ -46,6 +46,15 @@ public class Lab4 {
         
         System.out.println(stdPrefMap);
         System.out.println(schPrefMap);
+        
+        //test querry1
+        EasyProblem pb1 = new EasyProblem(stdPrefMap, Arrays.asList(schools[0],schools[1],schools[2]));
+        System.out.println(pb1.querry1(Arrays.asList(schools[0],schools[2])));
+        
+        //test querry2
+        HardProblem pb2 = new HardProblem(stdPrefMap, schPrefMap);
+        System.out.println(pb2.querry2(studentsList.get(3)));
+        
     }
 
 }

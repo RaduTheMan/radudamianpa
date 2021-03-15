@@ -11,6 +11,7 @@ package com.mycompany.laboratorul4;
  */
 public class Student {
     private String name;
+    private double grade;
 
     public Student(String name) {
         this.name = name;
@@ -33,6 +34,8 @@ public class Student {
     public String toString() {
         return name;
     }
+    
+    
     
     
     
