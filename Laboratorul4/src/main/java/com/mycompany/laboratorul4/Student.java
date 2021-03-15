@@ -5,6 +5,8 @@
  */
 package com.mycompany.laboratorul4;
 
+import java.util.Objects;
+
 /**
  *
  * @author Radu
@@ -34,6 +36,25 @@ public class Student {
     public String toString() {
         return name;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Student other = (Student) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
     

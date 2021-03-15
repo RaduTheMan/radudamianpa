@@ -7,6 +7,7 @@ package com.mycompany.laboratorul4;
 
 import java.util.stream.IntStream;
 import java.util.*;
+import com.github.javafaker.Faker;
 
 /**
  *
@@ -18,9 +19,13 @@ public class Lab4 {
         var students = IntStream.rangeClosed(0, 3).mapToObj(i -> new Student("S" + i)).toArray(Student[]::new);
         var schools = IntStream.rangeClosed(0, 2).mapToObj(i -> new School("H" + i)).toArray(School[]::new);
 
+        Faker faker = new Faker();
+        
         List<Student> studentsList = new LinkedList<>();
         for(Student s : students)
         {
+            String name= faker.name().fullName();
+            s.setName(name);
             studentsList.add(s);
         }
         
@@ -29,6 +34,8 @@ public class Lab4 {
         Set<School> schoolsSet = new TreeSet<>();
         for(School h : schools)
         {
+            String schoolName = faker.university().name();
+            h.setName(schoolName);
             schoolsSet.add(h);
         }
         
@@ -46,15 +53,18 @@ public class Lab4 {
         
         System.out.println(stdPrefMap);
         System.out.println(schPrefMap);
+        System.out.println("");
         
         //test querry1
         EasyProblem pb1 = new EasyProblem(stdPrefMap, Arrays.asList(schools[0],schools[1],schools[2]));
+        System.out.println("querry1: " + schools[0]+ " - " + schools[2]);
         System.out.println(pb1.querry1(Arrays.asList(schools[0],schools[2])));
+        System.out.println("");
         
         //test querry2
         HardProblem pb2 = new HardProblem(stdPrefMap, schPrefMap);
-        System.out.println(pb2.querry2(studentsList.get(3)));
-        
-    }
+        System.out.println("querry2: " + students[3]);
+        System.out.println(pb2.querry2(students[3]));
+        }
 
 }
