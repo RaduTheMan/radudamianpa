@@ -11,4 +11,15 @@ import java.util.*;
  */
 public class Solution {
     private Map<Student, School> solution;
+    public Solution(Map<Student, School> solution)
+    {
+        this.solution = solution;
+    }
+
+    @Override
+    public String toString() {
+        return solution.toString();
+    }
+    
+    
 }

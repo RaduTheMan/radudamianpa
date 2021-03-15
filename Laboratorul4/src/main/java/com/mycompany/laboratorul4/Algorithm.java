@@ -10,6 +10,5 @@ package com.mycompany.laboratorul4;
  * @author Radu
  */
 public abstract class Algorithm {
-    protected Problem pb;
     public abstract Solution solve();
 }

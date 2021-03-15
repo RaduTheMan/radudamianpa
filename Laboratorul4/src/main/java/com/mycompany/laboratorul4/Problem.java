@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
  */
 public abstract class Problem {
     protected Map<Student,List<School>> stdPrefMap;
-    public Map<Student,List<School>> getStudentsPreferences()
+    public Map<Student,List<School>> getStdPrefMap()
     {
-        return stdPrefMap;
+        return new HashMap<>(stdPrefMap);
     }
     public Set<Student> querry1(List<School> schools)
     {

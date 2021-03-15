@@ -24,6 +24,13 @@ public class Student {
     {
         return a.name.compareTo(b.name);
     }
+    
+    public static int compareByGrade(Student a, Student b)
+    {
+        Double aObj = a.grade;
+        Double bObj = b.grade;
+        return bObj.compareTo(aObj);
+    }
 
     public String getName() {
         return name;

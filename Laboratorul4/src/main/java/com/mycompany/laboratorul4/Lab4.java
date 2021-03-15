@@ -29,7 +29,7 @@ public class Lab4 {
         {
             String name= faker.name().fullName();
             
-            double tempGrade = 1 + Math.random() * MAX_GRADE;
+            double tempGrade = 1 + Math.random() * (MAX_GRADE - 1);
             int auxGrade;
             double finalGrade;
             tempGrade *= 100;
@@ -80,6 +80,11 @@ public class Lab4 {
         HardProblem pb2 = new HardProblem(stdPrefMap, schPrefMap);
         System.out.println("querry2: " + students[3]);
         System.out.println(pb2.querry2(students[3]));
+        System.out.println("");
+        
+        Algorithm alg1 = new EasyAlgorithm(pb1);
+        Solution s1 = alg1.solve();
+        System.out.println(s1);
         }
 
 }

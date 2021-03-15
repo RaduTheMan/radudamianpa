@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class HardProblem extends Problem {
     
     private Map<School,List<Student>> schPrefMap;
+    private HardProblem pb;
     public HardProblem(Map<Student,List<School>> stdPrefMap, Map<School,List<Student>> schPrefMap )
     {
         this.stdPrefMap = stdPrefMap;
@@ -25,6 +26,12 @@ public class HardProblem extends Problem {
         return x;
         
     }
+
+    public Map<School, List<Student>> getSchPrefMap() {
+        return new TreeMap<>(this.schPrefMap);
+    }
+    
+    
     
     
 
