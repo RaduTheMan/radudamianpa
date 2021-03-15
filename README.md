@@ -23,4 +23,8 @@ In ceea ce priveste partea de bonus, algoritmul implementat este cel al lui Voge
 Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una statica).</p>
 <p>In cadrul implementarii clasei TravelPlan, pentru ca o instanta a acesteia sa contina un obiect de tipul City, am declarat un membru privat de tip City. Pentru a determina cel mai scurt drum intre doua locatii date, am implementat algoritmul lui Dijkstra.</p>
 
+<h2>Laboratorul 4 </h2> 
+
+<p> in progress </p>
+
 
