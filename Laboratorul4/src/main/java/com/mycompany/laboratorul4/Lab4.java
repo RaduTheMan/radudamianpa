@@ -15,6 +15,9 @@ import com.github.javafaker.Faker;
  */
 public class Lab4 {
 
+    private static final int  MAX_GRADE = 10;
+    private static final int MAX_CAPACITY = 3;
+    
     public static void main(String[] args) {
         var students = IntStream.rangeClosed(0, 3).mapToObj(i -> new Student("S" + i)).toArray(Student[]::new);
         var schools = IntStream.rangeClosed(0, 2).mapToObj(i -> new School("H" + i)).toArray(School[]::new);
@@ -26,7 +29,7 @@ public class Lab4 {
         {
             String name= faker.name().fullName();
             
-            double tempGrade = 1 + Math.random()*10;
+            double tempGrade = 1 + Math.random() * MAX_GRADE;
             int auxGrade;
             double finalGrade;
             tempGrade *= 100;
@@ -44,7 +47,10 @@ public class Lab4 {
         for(School h : schools)
         {
             String schoolName = faker.university().name();
+            int capacity = (int)(1 + Math.random() * MAX_CAPACITY);
+                    
             h.setName(schoolName);
+            h.setCapacity(capacity);
             schoolsSet.add(h);
         }
         
