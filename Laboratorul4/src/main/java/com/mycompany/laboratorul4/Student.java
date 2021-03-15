@@ -17,6 +17,7 @@ public class Student {
 
     public Student(String name) {
         this.name = name;
+        this.grade = 1.0;
     }
     
     public static int compareByName(Student a, Student b)
@@ -31,6 +32,16 @@ public class Student {
     public void setName(String name) {
         this.name = name;
     }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
+    }
+    
+    
 
     @Override
     public String toString() {

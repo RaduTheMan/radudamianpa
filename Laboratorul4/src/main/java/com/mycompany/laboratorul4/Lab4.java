@@ -25,7 +25,16 @@ public class Lab4 {
         for(Student s : students)
         {
             String name= faker.name().fullName();
+            
+            double tempGrade = 1 + Math.random()*10;
+            int auxGrade;
+            double finalGrade;
+            tempGrade *= 100;
+            auxGrade = (int) tempGrade;
+            finalGrade = auxGrade / 100.0;
+            
             s.setName(name);
+            s.setGrade(finalGrade); //medie random intre 1 si 10 cu 2 zecimale
             studentsList.add(s);
         }
         
