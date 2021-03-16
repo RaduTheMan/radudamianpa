@@ -9,11 +9,9 @@ package com.mycompany.laboratorul5;
  *
  * @author Radu
  */
-public class Lab5 {
-    
-    public static void main(String[] args)
-    {
-        System.out.println("hello from lab 5!");
-    }
+public abstract class Item {
+    protected String name;
+    protected String path;
+    protected String id;
     
 }
