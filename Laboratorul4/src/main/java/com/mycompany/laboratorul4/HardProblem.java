@@ -20,11 +20,9 @@ public class HardProblem extends Problem {
         this.schPrefMap = schPrefMap;
     }
     
-    public Set<School> querry2(Student student)
+    public void querry2(Student student)
     {
-        var x = schPrefMap.entrySet().stream().filter(map -> map.getValue().get(0).equals(student)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())).keySet();
-        return x;
-        
+        schPrefMap.entrySet().stream().filter(map -> map.getValue().get(0).equals(student)).forEach(System.out::println); 
     }
 
     public Map<School, List<Student>> getSchPrefMap() {

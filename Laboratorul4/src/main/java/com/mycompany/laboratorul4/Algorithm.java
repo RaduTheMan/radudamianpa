@@ -9,6 +9,6 @@ package com.mycompany.laboratorul4;
  *
  * @author Radu
  */
-public abstract class Algorithm {
+public interface Algorithm {
     public abstract Solution solve();
 }

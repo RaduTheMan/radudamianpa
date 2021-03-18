@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author Radu
  */
-public class EasyAlgorithm extends Algorithm {
+public class EasyAlgorithm implements Algorithm {
     
     private EasyProblem pb;
     

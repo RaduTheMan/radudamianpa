@@ -18,10 +18,9 @@ public abstract class Problem {
     {
         return new HashMap<>(stdPrefMap);
     }
-    public Set<Student> querry1(List<School> schools)
+    public void querry1(List<School> schools)
     {
-        var x = stdPrefMap.entrySet().stream().filter(map -> schools.equals(map.getValue())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())).keySet();
-        return x;
+        stdPrefMap.entrySet().stream().filter(map -> map.getValue().containsAll(schools)).forEach(System.out::println);
     }
     
 }
