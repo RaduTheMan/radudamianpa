@@ -3,11 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul4;
+package com.mycompany.laboratorul4.main;
 
 import java.util.stream.IntStream;
 import java.util.*;
 import com.github.javafaker.Faker;
+import com.mycompany.laboratorul4.algorithms.Algorithm;
+import com.mycompany.laboratorul4.algorithms.EasyAlgorithm;
+import com.mycompany.laboratorul4.problems.EasyProblem;
+import com.mycompany.laboratorul4.problems.HardProblem;
+import com.mycompany.laboratorul4.domain.School;
+import com.mycompany.laboratorul4.problems.Solution;
+import com.mycompany.laboratorul4.domain.Student;
 
 /**
  *
