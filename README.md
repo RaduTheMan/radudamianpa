@@ -36,12 +36,27 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
   </li>
   <li>
     com.mycompany.laboratorul4.domain
+    <ul>
+      <li>School.java</li>
+      <li>Student.java</li>
+    </ul>
   </li>
   <li>
     com.mycompany.laboratorul4.problems
+    <ul>
+      <li>EasyProblem.java</li>
+      <li>HardProblem.java</li>
+      <li>Problem.java</li>
+      <li>Solution.java</li>
+    </ul>
   </li>
   <li>
     com.mycompany.laboratorul4.algorithms
+    <ul>
+      <li>Algorithm.java</li>
+      <li>EasyAlgorithm.java</li>
+      <li>GaleShapley.java</li>
+    </ul>
   </li>
 </ul>
 
