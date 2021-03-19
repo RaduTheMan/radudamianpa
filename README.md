@@ -63,3 +63,5 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 <p>Clasele le-am conceput in felul urmator: in ceea ce priveste reprezentarea <b>problemei</b>, am creat trei clase, si anume o clasa abstracta <em>Problem</em>, care este extinsa de clasele <em>EasyProblem</em> si <em>HardProblem</em>, corespunzatoare celor doua tipuri de instante de probleme aferente partilor de optional, respectiv bonus.</p>
 
 <p>Pe de alta parte, in cadrul reprezentarii <b>algoritmului</b> am creat trei clase, si anume o interfata functionala <em>Algorithm</em> , care este implementata de clasele <em>EasyAlgorithm</em> si <em>GaleShapley</em>, asociate in mod similar ca in paragraful anterior(i.e. asocierea facandu-se partilor de optional, respectiv bonus)</p>
+
+<p>Pentru rezolvarea partii de <b>optional</b>, primul querry se gaseste in clasa abstracta <em>Problem</em>, iar al doilea querry se gaseste in clasa <em>HardProblem</em </p>
