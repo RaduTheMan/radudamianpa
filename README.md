@@ -28,9 +28,20 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 <p> Organizarea codurilor sursa am facut-o in felul urmator: </p>
 
 <ul>
-  <li>com.mycompany.laboratorul4.main</li>
-  <li>com.mycompany.laboratorul4.domain</li>
-  <li>com.mycompany.laboratorul4.problems</li>
-  <li>com.mycompany.laboratorul4.algorithms</li>
+  <li>
+    com.mycompany.laboratorul4.main 
+    <ul>
+      <li>Lab4.java</li>
+    </ul>
+  </li>
+  <li>
+    com.mycompany.laboratorul4.domain
+  </li>
+  <li>
+    com.mycompany.laboratorul4.problems
+  </li>
+  <li>
+    com.mycompany.laboratorul4.algorithms
+  </li>
 </ul>
 
