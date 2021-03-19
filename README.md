@@ -68,4 +68,4 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 
 <p>Pentru rezolvarea partii de <b>optional</b>, primul querry se gaseste in clasa abstracta <em>Problem</em>, iar al doilea querry se gaseste in clasa <em>HardProblem</em>. Implementarea algoritmului pentru aceasta parte se regaseste in clasa <em>EasyAlgorithm</em> in cadrul metodei <em>solve()</em>. De mentionat faptul ca am randomizat mediile studentilor, cat si capacitatile scolilor(acestea din urma intr-un interval de la 1 la 4) </p>
 
-<p>Pentru rezolvarea partii de bonus, implementarea algoritmului s-a realizat in clasa <em>GaleShapley</em> in cadrul aceleiasi metode <em>solve()</em>.</p>
+<p>Pentru rezolvarea partii de <b>bonus</b>, implementarea algoritmului s-a realizat in clasa <em>GaleShapley</em> in cadrul aceleiasi metode <em>solve()</em>.</p>
