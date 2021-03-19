@@ -44,7 +44,7 @@ public class Lab4 {
             auxGrade = (int) tempGrade;
             finalGrade = auxGrade / 100.0;
             
-            //s.setName(name);
+            s.setName(name);
             s.setGrade(finalGrade); //medie random intre 1 si 10 cu 2 zecimale
             studentsList.add(s);
         }
@@ -55,9 +55,9 @@ public class Lab4 {
         for(School h : schools)
         {
             String schoolName = faker.university().name();
-            int capacity = (int)(1 + Math.random() * (MAX_CAPACITY - 1));
+            int capacity = (int)(1 + Math.random() * MAX_CAPACITY);
                     
-            //h.setName(schoolName);
+            h.setName(schoolName);
             h.setCapacity(capacity);
             schoolsSet.add(h);
         }
