@@ -25,6 +25,12 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 
 <h2>Laboratorul 4 </h2> 
 
-<p> in progress </p>
+<p> Organizarea codurilor sursa am facut-o in felul urmator: </p>
 
+<ul>
+  <li>com.mycompany.laboratorul4.main</li>
+  <li>com.mycompany.laboratorul4.domain</li>
+  <li>com.mycompany.laboratorul4.problems</li>
+  <li>com.mycompany.laboratorul4.algorithms</li>
+</ul>
 
