@@ -14,10 +14,10 @@ import java.util.*;
  * @author Radu
  */
 public class EasyProblem extends Problem {
-    
+
     private List<School> schools;
-    public EasyProblem(Map<Student,List<School>> stdPrefMap, List<School> schools)
-    {
+
+    public EasyProblem(Map<Student, List<School>> stdPrefMap, List<School> schools) {
         this.stdPrefMap = stdPrefMap;
         this.schools = schools;
     }
@@ -25,6 +25,5 @@ public class EasyProblem extends Problem {
     public List<School> getSchools() {
         return new ArrayList<>(schools);
     }
-    
-    
+
 }

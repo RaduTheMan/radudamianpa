@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Radu
  */
 public class Student {
+
     private String name;
     private double grade;
 
@@ -19,14 +20,12 @@ public class Student {
         this.name = name;
         this.grade = 1.0;
     }
-    
-    public static int compareByName(Student a, Student b)
-    {
+
+    public static int compareByName(Student a, Student b) {
         return a.name.compareTo(b.name);
     }
-    
-    public static int compareByGrade(Student a, Student b)
-    {
+
+    public static int compareByGrade(Student a, Student b) {
         Double aObj = a.grade;
         Double bObj = b.grade;
         return bObj.compareTo(aObj);
@@ -47,14 +46,12 @@ public class Student {
     public void setGrade(double grade) {
         this.grade = grade;
     }
-    
-    
 
     @Override
     public String toString() {
         return name;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -72,12 +69,5 @@ public class Student {
         }
         return true;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

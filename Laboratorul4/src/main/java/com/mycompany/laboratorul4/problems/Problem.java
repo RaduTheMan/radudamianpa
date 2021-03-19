@@ -14,14 +14,15 @@ import java.util.*;
  * @author Radu
  */
 public abstract class Problem {
-    protected Map<Student,List<School>> stdPrefMap;
-    public Map<Student,List<School>> getStdPrefMap()
-    {
+
+    protected Map<Student, List<School>> stdPrefMap;
+
+    public Map<Student, List<School>> getStdPrefMap() {
         return new HashMap<>(stdPrefMap);
     }
-    public void querry1(List<School> schools)
-    {
+
+    public void querry1(List<School> schools) {
         stdPrefMap.entrySet().stream().filter(map -> map.getValue().containsAll(schools)).forEach(System.out::println);
     }
-    
+
 }

@@ -12,5 +12,6 @@ import com.mycompany.laboratorul4.problems.Solution;
  * @author Radu
  */
 public interface Algorithm {
+
     public abstract Solution solve();
 }

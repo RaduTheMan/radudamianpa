@@ -10,12 +10,13 @@ package com.mycompany.laboratorul4.domain;
  * @author Radu
  */
 public class School implements Comparable<School> {
+
     private String name;
     private int capacity;
 
     public School(String name) {
         this.name = name;
-        this.capacity=1;
+        this.capacity = 1;
     }
 
     public String getName() {
@@ -33,20 +34,18 @@ public class School implements Comparable<School> {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-    
-    
 
     @Override
     public String toString() {
         return name;
     }
-    
+
     @Override
-    public int compareTo(School other)
-    {
-        if(other.name == null)
+    public int compareTo(School other) {
+        if (other.name == null) {
             throw new NullPointerException();
+        }
         return this.name.compareTo(other.name);
     }
-    
+
 }
