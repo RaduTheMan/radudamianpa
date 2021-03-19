@@ -60,3 +60,5 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
   </li>
 </ul>
 
+<p>Clasele le-am conceput in felul urmator: in ceea ce priveste reprezentarea <b>Problemei</b>, am creat trei clase, si anume o clasa abstracta <em>Problem</em>, care este implementata de clasele <em>EasyProblem</em> si <em>HardProblem</em>, corespunzatoare celor doua tipuri de instante de probleme aferente partilor de optional, respectiv bonus.</p>
+
