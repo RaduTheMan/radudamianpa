@@ -14,7 +14,6 @@ import java.util.*;
 public class HardProblem extends Problem {
     
     private Map<School,List<Student>> schPrefMap;
-    private HardProblem pb;
     public HardProblem(Map<Student,List<School>> stdPrefMap, Map<School,List<Student>> schPrefMap )
     {
         this.stdPrefMap = stdPrefMap;

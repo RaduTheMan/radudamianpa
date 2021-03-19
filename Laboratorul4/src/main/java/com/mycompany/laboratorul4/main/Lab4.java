@@ -10,6 +10,7 @@ import java.util.*;
 import com.github.javafaker.Faker;
 import com.mycompany.laboratorul4.algorithms.Algorithm;
 import com.mycompany.laboratorul4.algorithms.EasyAlgorithm;
+import com.mycompany.laboratorul4.algorithms.GaleShapley;
 import com.mycompany.laboratorul4.problems.EasyProblem;
 import com.mycompany.laboratorul4.problems.HardProblem;
 import com.mycompany.laboratorul4.domain.School;
@@ -23,7 +24,7 @@ import com.mycompany.laboratorul4.domain.Student;
 public class Lab4 {
 
     private static final int  MAX_GRADE = 10;
-    private static final int MAX_CAPACITY = 3;
+    private static final int MAX_CAPACITY = 4;
     
     public static void main(String[] args) {
         var students = IntStream.rangeClosed(0, 3).mapToObj(i -> new Student("S" + i)).toArray(Student[]::new);
@@ -43,7 +44,7 @@ public class Lab4 {
             auxGrade = (int) tempGrade;
             finalGrade = auxGrade / 100.0;
             
-            s.setName(name);
+            //s.setName(name);
             s.setGrade(finalGrade); //medie random intre 1 si 10 cu 2 zecimale
             studentsList.add(s);
         }
@@ -54,9 +55,9 @@ public class Lab4 {
         for(School h : schools)
         {
             String schoolName = faker.university().name();
-            int capacity = (int)(1 + Math.random() * MAX_CAPACITY);
+            int capacity = (int)(1 + Math.random() * (MAX_CAPACITY - 1));
                     
-            h.setName(schoolName);
+            //h.setName(schoolName);
             h.setCapacity(capacity);
             schoolsSet.add(h);
         }
@@ -89,9 +90,21 @@ public class Lab4 {
         pb2.querry2(students[3]);
         System.out.println("");
         
+        System.out.println("Solving with easy algorithm:");
         Algorithm alg1 = new EasyAlgorithm(pb1);
         Solution s1 = alg1.solve();
         System.out.println(s1);
+        
+        System.out.println("");
+        System.out.println("Solving with Gale Shapley:");
+        
+        Algorithm alg2 = new GaleShapley(pb2);
+        Solution s2 = alg2.solve();
+        System.out.println(s2);
+        
+        
         }
+    
+    
 
 }

@@ -35,11 +35,11 @@ public class EasyAlgorithm implements Algorithm {
         
         for(School h : this.pb.getSchools())
         {
-            System.out.println(h + " " + h.getCapacity());
+            System.out.println("School: "+ h + "; Capacity: " + h.getCapacity());
         }
         for(Student s : studentsList)
         {
-            System.out.println(s+ " " + s.getGrade());
+            System.out.println("Student name: " + s+ "; Grade: " + s.getGrade());
             
             List <School> preferences = this.pb.getStdPrefMap().get(s);
            var tempSchools = tempSolution.values();
@@ -53,7 +53,7 @@ public class EasyAlgorithm implements Algorithm {
                }
            }
         }
-        
+      
         Solution solution = new Solution(tempSolution);
         return solution;
         
