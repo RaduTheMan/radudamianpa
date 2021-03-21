@@ -28,12 +28,13 @@ public class Main {
         catalog.list();
         //CatalogUtil.view(song);
         //CatalogUtil.view(movie);
-        CatalogUtil.save(catalog);
+        CatalogUtilBinary.save(catalog);
+        CatalogUtilBinary.view(song);
     }
     
     private void testLoadView()
     {
-        Catalog catalog = CatalogUtil.load("e:/Catalogs/catalog1.ser");
+        Catalog catalog = CatalogUtilBinary.load("e:/Catalogs/catalog1.ser");
         CatalogUtil.view(catalog.findByName("Airplane"));
     }
     
