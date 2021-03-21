@@ -14,18 +14,27 @@ public class Main {
     public static void main(String[] args)
     {
         Main app = new Main();
-        app.testCreate();
+        app.testCreateViewSave();
+        app.testLoadView();
     }
     
-    private void testCreate()
+    private void testCreateViewSave()
     {
         Catalog catalog = new Catalog("My entertainment hub","e:/Catalogs/catalog1.ser");
-        var song = new Song("Haken #1","e:/Muzica/Veil.mp3", "progressive metal",9,"1");
-        var movie = new Movie("12 angry men","e:/Filme/12.Angry.Men.1957.1080p.BluRay.x264-CiNEFiLE/12.Angry.Men.1957.1080p.BluRay.x264-CiNEFiLE.mkv", "drama",1957,"2");
+        var song = new Song("Haken #1","e:/Muzica/Veil.mp3", "progressive metal",9);
+        var movie = new Movie("Airplane","e:/Filme/Airplane.1980.720p.BluRay.DTS.x264.RoSubbed-AMIABLE/Airplane.1980.720p.BluRay.DTS.x264.RoSubbed-AMIABLE.mkv", "comedy",1980);
         catalog.add(song);
         catalog.add(movie);
         catalog.list();
-        
+        //CatalogUtil.view(song);
+        //CatalogUtil.view(movie);
+        CatalogUtil.save(catalog);
+    }
+    
+    private void testLoadView()
+    {
+        Catalog catalog = CatalogUtil.load("e:/Catalogs/catalog1.ser");
+        CatalogUtil.view(catalog.findByName("Airplane"));
     }
     
 }

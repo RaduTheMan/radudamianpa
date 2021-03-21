@@ -5,6 +5,8 @@
  */
 package com.mycompany.laboratorul5;
 
+import java.nio.file.Path;
+import java.nio.file.Files;
 /**
  *
  * @author Radu
@@ -13,18 +15,18 @@ public class Movie extends Item{
     private String genre;
     private int releaseYear;
     
-    public Movie(String name, String path, String genre, int releaseYear, String id)
+    public Movie(String name, String path, String genre, int releaseYear)
     {
         this.name = name;
-        this.path = path;
+        this.pathStr = path;
         this.genre = genre;
         this.releaseYear = releaseYear;
-        this.id = id;
     }
+    
 
     @Override
     public String toString() {
-        return "Movie:\nid="+ id+ "\nname=" + name + "\npath=" + path + "\ngenre=" + genre + ",\nreleaseYear=" + releaseYear + '}';
+        return "Movie:\n" + "\nname=" + name + "\npath=" + pathStr + "\ngenre=" + genre + ",\nreleaseYear=" + releaseYear + '}';
     }
     
     

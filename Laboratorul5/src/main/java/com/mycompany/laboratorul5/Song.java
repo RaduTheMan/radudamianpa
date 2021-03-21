@@ -5,6 +5,8 @@
  */
 package com.mycompany.laboratorul5;
 
+import java.nio.file.Path;
+import java.nio.file.Files;
 /**
  *
  * @author Radu
@@ -13,18 +15,18 @@ public class Song extends Item{
     private String genre;
     private int rating;
     
-    public Song(String name, String path, String genre, int rating, String id)
+    public Song(String name, String path, String genre, int rating)
     {
         this.name = name;
-        this.path = path;
+        this.pathStr = path;
         this.genre = genre;
         this.rating = rating;
-        this.id = id;
     }
+    
 
     @Override
     public String toString() {
-        return "Song:\nid="+ id+ "\nname=" + name + "\npath=" + path + "\ngenre=" + genre + ",\nrating=" + rating + '}';
+        return "Song:\n" + "\nname=" + name + "\npath=" + pathStr + "\ngenre=" + genre + ",\nrating=" + rating + '}';
     }
     
     

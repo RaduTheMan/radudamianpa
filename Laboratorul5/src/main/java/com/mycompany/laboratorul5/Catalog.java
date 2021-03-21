@@ -7,16 +7,16 @@ package com.mycompany.laboratorul5;
 import java.nio.file.Files;
 import java.util.*;
 import java.nio.file.Path;
-import java.io.IOException;
+    import java.io.IOException;
+import java.io.Serializable;
 /**
  *
  * @author Radu
  */
-public class Catalog {
+public class Catalog implements Serializable {
     
     private String name;
     private String path;
-    Path newFile;
     private List<Item> items = new ArrayList<>();
 
     public Catalog(String name, String path) {
@@ -26,7 +26,7 @@ public class Catalog {
         try
         {
             Path aux = Path.of(path);
-            this.newFile = Files.createFile(aux);
+            Files.createFile(aux);
         }
         catch(IOException e)
         {
@@ -34,6 +34,21 @@ public class Catalog {
             System.err.println(e);
         }
     }
+
+    public List<Item> getItems() {
+        return new ArrayList<>(items);
+    }
+
+    
+    
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+    
     
     
     public void add(Item item)
@@ -47,5 +62,15 @@ public class Catalog {
         {
             System.out.println(i);
         }
+    }
+    
+    public Item findByName(String name)
+    {
+        for(Item item : items)
+        {
+            if(item.getName().equals(name))
+                return item;
+        }
+        return null;
     }
 }

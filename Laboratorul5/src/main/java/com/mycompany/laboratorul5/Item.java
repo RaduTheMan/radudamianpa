@@ -5,13 +5,28 @@
  */
 package com.mycompany.laboratorul5;
 
+import java.nio.file.Path;
+import java.io.File;
+import java.io.Serializable;
 /**
  *
  * @author Radu
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
     protected String name;
-    protected String path;
-    protected String id;
+    protected String pathStr;
+    public File getFile()
+    {
+        return Path.of(pathStr).toFile();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     
 }
