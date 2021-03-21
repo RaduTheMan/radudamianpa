@@ -5,8 +5,9 @@
  */
 package com.mycompany.laboratorul5;
 
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
-import java.nio.file.Files;
+
 /**
  *
  * @author Radu
@@ -18,9 +19,21 @@ public class Song extends Item{
     public Song(String name, String path, String genre, int rating)
     {
         this.name = name;
-        this.pathStr = path;
+        try
+        {
+            Path.of(path);
+            this.pathStr = path;
+            
+        }
+        catch(InvalidPathException e)
+        {
+            System.err.println(e);
+        }
         this.genre = genre;
+        if(rating < 1 || rating > 10)
+            throw new InvalidRatingException(rating);
         this.rating = rating;
+        
     }
     
 

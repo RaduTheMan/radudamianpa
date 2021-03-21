@@ -5,8 +5,8 @@
  */
 package com.mycompany.laboratorul5;
 
-import java.nio.file.Path;
-import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+
 /**
  *
  * @author Radu
@@ -18,8 +18,17 @@ public class Movie extends Item{
     public Movie(String name, String path, String genre, int releaseYear)
     {
         this.name = name;
+        try
+        {
         this.pathStr = path;
+        }
+        catch(InvalidPathException e)
+        {
+            System.err.println(e);
+        }
         this.genre = genre;
+        if(releaseYear < 0)
+            throw new InvalidYearException(releaseYear);
         this.releaseYear = releaseYear;
     }
     
