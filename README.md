@@ -72,4 +72,4 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 
 <h2>Laboratorul 5</h2>
 
-<p>in progress..</p>
+<p><em>in progress...</em></p>
