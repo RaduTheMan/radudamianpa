@@ -10,8 +10,6 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -137,6 +135,41 @@ public class CatalogUtil {
         return null;
     }
     
+    private static void addItems(Node items, Catalog catalog)
+    {
+        NodeList itemsNodeList = items.getChildNodes();
+        int listLength = itemsNodeList.getLength();
+        for(int i=0; i<listLength; ++i)
+        {
+            Node item = itemsNodeList.item(i);
+            if(item.getNodeType() == Node.ELEMENT_NODE)
+            {
+                List<String> values = new ArrayList<>();
+                NodeList valuesList = item.getChildNodes();
+                int valuesListLength = valuesList.getLength();
+                for(int j=0; j<valuesListLength; ++j)
+                {
+                    Node value = valuesList.item(j);
+                    if(value.getNodeType() == Node.ELEMENT_NODE)
+                    {
+                        values.add(value.getFirstChild().getNodeValue());
+                    }
+                }
+               if(item.getNodeName().equals("song") == true)
+               {
+                   var song = new Song(values.get(0),values.get(1),values.get(2),Integer.parseInt(values.get(3)));
+                   catalog.add(song);
+               }
+               else
+               {
+                   var movie = new Movie(values.get(0),values.get(1),values.get(2),Integer.parseInt(values.get(3)));
+                   catalog.add(movie);
+               }
+            }
+        }
+        
+    }
+    
     public static Catalog loadWithXML(String path)
     {
         try
@@ -150,6 +183,7 @@ public class CatalogUtil {
             
             int listLength = catalogAttributes.getLength();
             String name="default", pathStr="default";
+            Catalog catalog = null;
             for(int i=0; i<listLength;++i)
             {
                 Node node = catalogAttributes.item(i);
@@ -162,14 +196,14 @@ public class CatalogUtil {
                             break;
                         case "path":
                             pathStr = node.getFirstChild().getNodeValue();
-                            
                             break;
                         case "items":
+                            catalog = new Catalog(name,pathStr);
+                            addItems(node,catalog);
                             break;
                     }
                 }
             }
-            Catalog catalog = new Catalog(name,pathStr);
             return catalog;
             
         } 

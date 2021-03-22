@@ -38,6 +38,7 @@ public class Main {
         Catalog catalog = CatalogUtil.loadWithBinary("e:/Catalogs/catalog1.ser");
         Catalog catalog2 = CatalogUtil.loadWithXML("e:/Catalogs/catalog1.xml");
         CatalogUtil.view(catalog.findByName("Airplane"));
+        CatalogUtil.view(catalog2.findByName("Haken #1"));
     }
     
 }
