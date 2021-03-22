@@ -23,6 +23,25 @@ public class PlayCommand extends Command{
 
     @Override
     public void execute(List<String> arguments) {
+        if(arguments.size() != this.numberOfArguments)
+            throw new InvalidCommandException(SYNTAX);
         
+        String catalogName = arguments.get(0);
+        String itemName = arguments.get(1);
+        
+        Catalog catalog = this.shell.findCatalogByName(catalogName);
+        if(catalog == null)
+            System.out.println("The catalog doesn't exist!");
+        else 
+        {
+            Item item = catalog.findByName(itemName);
+            if(item == null)
+                System.out.println("The item doesn't exist!");
+            else
+            {
+                CatalogUtil.view(item);
+                System.out.println("The command has completed successfully!");
+            }
+        }
     }
 }

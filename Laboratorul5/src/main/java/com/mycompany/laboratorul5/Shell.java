@@ -102,8 +102,28 @@ public class Shell {
                 }
                 break;
             case "load":
+                Command command4 = findCommandObj("load");
+                try
+                {
+                var subList = commandSyntax.subList(1, commandSyntax.size());
+                command4.execute(subList);
+                }
+                catch(InvalidCommandException e)
+                {
+                    System.err.println(e);
+                }
                 break;
             case "play":
+                Command command5 = findCommandObj("play");
+                try
+                {
+                var subList = commandSyntax.subList(1, commandSyntax.size());
+                command5.execute(subList);
+                }
+                catch(InvalidCommandException e)
+                {
+                    System.err.println(e);
+                }
                 break;
             case "report":
                 break;
