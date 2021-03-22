@@ -9,6 +9,7 @@ import java.util.*;
 import java.nio.file.Path;
     import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.FileAlreadyExistsException;
 /**
  *
  * @author Radu
@@ -28,6 +29,10 @@ public class Catalog implements Serializable {
             Path aux = Path.of(path);
             Files.createFile(aux);
         }
+        catch(FileAlreadyExistsException e)
+        {
+            
+        }
         catch(IOException e)
         {
             System.out.println("Unexpected error creating the catalog!");
@@ -37,6 +42,14 @@ public class Catalog implements Serializable {
 
     public List<Item> getItems() {
         return new ArrayList<>(items);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     

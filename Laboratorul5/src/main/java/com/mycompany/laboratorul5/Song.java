@@ -7,6 +7,8 @@ package com.mycompany.laboratorul5;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -16,7 +18,7 @@ public class Song extends Item{
     private String genre;
     private int rating;
     
-    public Song(String name, String path, String genre, int rating)
+    public Song(String genre, String name, String path, int rating)
     {
         this.name = name;
         try
@@ -35,6 +37,53 @@ public class Song extends Item{
         this.rating = rating;
         
     }
+    
+    @Override
+    public String getInstanceType()
+    {
+        return "song";
+    }
+    
+    @Override
+    public Map<String, String> getAttrMap()
+    {
+        Map<String, String> map= new TreeMap<>();
+        map.put("name", this.name);
+        map.put("path", this.pathStr);
+        map.put("genre", this.genre);
+        map.put("rating", String.valueOf(this.rating));
+        return map;
+    }
+
+    @Override
+    public boolean isSong()
+    {
+        return true;
+    }
+    
+    @Override
+    public boolean isMovie()
+    {
+        return false;
+    }
+    
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+    
+    
     
 
     @Override

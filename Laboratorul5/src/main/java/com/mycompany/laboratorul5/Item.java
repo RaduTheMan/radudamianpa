@@ -8,6 +8,7 @@ package com.mycompany.laboratorul5;
 import java.nio.file.Path;
 import java.io.File;
 import java.io.Serializable;
+import java.util.Map;
 /**
  *
  * @author Radu
@@ -27,6 +28,21 @@ public abstract class Item implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPathStr() {
+        return pathStr;
+    }
+
+    public void setPathStr(String pathStr) {
+        this.pathStr = pathStr;
+    }
+    
+    public abstract boolean isSong();
+    public abstract boolean isMovie();
+    public abstract Map<String,String> getAttrMap();
+    public abstract String getInstanceType();
+    
+    
     
     
 }

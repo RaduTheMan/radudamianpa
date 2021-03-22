@@ -21,20 +21,22 @@ public class Main {
     private void testCreateViewSave()
     {
         Catalog catalog = new Catalog("My entertainment hub","e:/Catalogs/catalog1.ser");
-        var song = new Song("Haken #1","e:/Muzica/Veil.mp3", "progressive metal",9);
-        var movie = new Movie("Airplane","e:/Filme/Airplane.1980.720p.BluRay.DTS.x264.RoSubbed-AMIABLE/Airplane.1980.720p.BluRay.DTS.x264.RoSubbed-AMIABLE.mkv", "comedy",1980);
+        var song = new Song("progressive metal","Haken #1", "e:/Muzica/Veil.mp3",9);
+        var movie = new Movie("comedy","Airplane", "e:/Filme/Airplane.1980.720p.BluRay.DTS.x264.RoSubbed-AMIABLE/Airplane.1980.720p.BluRay.DTS.x264.RoSubbed-AMIABLE.mkv",1980);
         catalog.add(song);
         catalog.add(movie);
         catalog.list();
         //CatalogUtil.view(song);
         //CatalogUtil.view(movie);
-        CatalogUtilBinary.save(catalog);
-        CatalogUtilBinary.view(song);
+        CatalogUtil.saveWithBinary(catalog);
+        CatalogUtil.saveWithXML(catalog);
+        //CatalogUtil.view(song);
     }
     
     private void testLoadView()
     {
-        Catalog catalog = CatalogUtilBinary.load("e:/Catalogs/catalog1.ser");
+        Catalog catalog = CatalogUtil.loadWithBinary("e:/Catalogs/catalog1.ser");
+        Catalog catalog2 = CatalogUtil.loadWithXML("e:/Catalogs/catalog1.xml");
         CatalogUtil.view(catalog.findByName("Airplane"));
     }
     
