@@ -23,6 +23,9 @@ public class ReportCommand extends Command{
 
     @Override
     public void execute(List<String> arguments) {
+        if(arguments.size() != this.numberOfArguments)
+            throw new InvalidCommandException(SYNTAX);
+        
         
     }
 }

@@ -126,6 +126,16 @@ public class Shell {
                 }
                 break;
             case "report":
+                Command command6 = findCommandObj("report");
+                try
+                {
+                var subList = commandSyntax.subList(1, commandSyntax.size());
+                command6.execute(subList);
+                }
+                catch(InvalidCommandException e)
+                {
+                    System.err.println(e);
+                }
                 break;
             case "save":
                 Command command7 = findCommandObj("save");
