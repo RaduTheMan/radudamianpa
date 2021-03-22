@@ -14,8 +14,9 @@ public class Main {
     public static void main(String[] args)
     {
         Main app = new Main();
-        app.testCreateViewSave();
-        app.testLoadView();
+        //app.testCreateViewSave();
+        //app.testLoadView();
+        app.testShell();
     }
     
     private void testCreateViewSave()
@@ -39,6 +40,12 @@ public class Main {
         Catalog catalog2 = CatalogUtil.loadWithXML("e:/Catalogs/catalog1.xml");
         CatalogUtil.view(catalog.findByName("Airplane"));
         CatalogUtil.view(catalog2.findByName("Haken #1"));
+    }
+    
+    private void testShell()
+    {
+        Shell shell = new Shell();
+        shell.run();
     }
     
 }

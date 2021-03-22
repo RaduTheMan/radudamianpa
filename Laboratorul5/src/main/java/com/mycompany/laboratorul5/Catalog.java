@@ -22,6 +22,9 @@ public class Catalog implements Serializable {
 
     public Catalog(String name, String path) {
         this.name = name;
+        if(!(path.endsWith(".xml") || path.endsWith(".ser")))
+            throw new InvalidMyPathException("Path doesn't lead to an xml or binary file!");
+            
         this.path = path;
         
         try

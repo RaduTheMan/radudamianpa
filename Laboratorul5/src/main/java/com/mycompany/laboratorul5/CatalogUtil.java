@@ -39,6 +39,9 @@ public class CatalogUtil {
     {
         try
         {
+            String pathStr = catalog.getPath();
+            String newPathStr = pathStr.replace(".xml", ".ser");    
+            catalog.setPath(newPathStr);
             FileOutputStream fos = new FileOutputStream(catalog.getPath());
             ObjectOutputStream out = new ObjectOutputStream(fos);
             out.writeObject(catalog);

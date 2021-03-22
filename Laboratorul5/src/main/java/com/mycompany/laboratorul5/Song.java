@@ -88,7 +88,7 @@ public class Song extends Item{
 
     @Override
     public String toString() {
-        return "Song:\n" + "\nname=" + name + "\npath=" + pathStr + "\ngenre=" + genre + ",\nrating=" + rating + '}';
+        return "Song:\n" + "\nname=" + name + "\npath=" + pathStr + "\ngenre=" + genre + "\nrating=" + rating + '}';
     }
     
     
