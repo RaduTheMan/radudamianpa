@@ -9,11 +9,10 @@ package com.mycompany.laboratorul5.exceptions;
  *
  * @author Radu
  */
-public class InvalidRatingException extends RuntimeException{
-    
-    public InvalidRatingException(int rating)
-    {
+public class InvalidRatingException extends RuntimeException {
+
+    public InvalidRatingException(int rating) {
         super("Invalid rating: " + rating);
     }
-    
+
 }

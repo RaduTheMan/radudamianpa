@@ -10,8 +10,8 @@ package com.mycompany.laboratorul5.exceptions;
  * @author Radu
  */
 public class InvalidMyPathException extends RuntimeException {
-    public InvalidMyPathException (String message)
-    {
+
+    public InvalidMyPathException(String message) {
         super(message);
     }
 }

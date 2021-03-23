@@ -15,40 +15,36 @@ import java.util.TreeMap;
  *
  * @author Radu
  */
-public class Song extends Item{
+public class Song extends Item {
+
     private String genre;
     private int rating;
-    
-    public Song(String genre, String name, String path, int rating)
-    {
+
+    public Song(String genre, String name, String path, int rating) {
         this.name = name;
-        try
-        {
+        try {
             Path.of(path);
             this.pathStr = path;
-            
-        }
-        catch(InvalidPathException e)
-        {
+
+        } catch (InvalidPathException e) {
             System.err.println(e);
         }
         this.genre = genre;
-        if(rating < 1 || rating > 10)
+        if (rating < 1 || rating > 10) {
             throw new InvalidRatingException(rating);
+        }
         this.rating = rating;
-        
+
     }
-    
+
     @Override
-    public String getInstanceType()
-    {
+    public String getInstanceType() {
         return "song";
     }
-    
+
     @Override
-    public Map<String, String> getAttrMap()
-    {
-        Map<String, String> map= new TreeMap<>();
+    public Map<String, String> getAttrMap() {
+        Map<String, String> map = new TreeMap<>();
         map.put("name", this.name);
         map.put("path", this.pathStr);
         map.put("genre", this.genre);
@@ -57,17 +53,15 @@ public class Song extends Item{
     }
 
     @Override
-    public boolean isSong()
-    {
+    public boolean isSong() {
         return true;
     }
-    
+
     @Override
-    public boolean isMovie()
-    {
+    public boolean isMovie() {
         return false;
     }
-    
+
     public String getGenre() {
         return genre;
     }
@@ -83,14 +77,10 @@ public class Song extends Item{
     public void setRating(int rating) {
         this.rating = rating;
     }
-    
-    
-    
 
     @Override
     public String toString() {
         return "Song:\n" + "\nname=" + name + "\npath=" + pathStr + "\ngenre=" + genre + "\nrating=" + rating + '}';
     }
-    
-    
+
 }

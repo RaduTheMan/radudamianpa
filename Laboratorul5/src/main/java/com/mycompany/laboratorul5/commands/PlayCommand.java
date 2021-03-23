@@ -15,34 +15,32 @@ import java.util.List;
  *
  * @author Radu
  */
-public class PlayCommand extends Command{
-    
+public class PlayCommand extends Command {
+
     private final String SYNTAX = "play <catalog -> name> <item -> name>";
-    
-    public PlayCommand(Shell shell)
-    {
-        super("play",2);
+
+    public PlayCommand(Shell shell) {
+        super("play", 2);
         this.shell = shell;
     }
 
     @Override
     public void execute(List<String> arguments) {
-        if(arguments.size() != this.numberOfArguments)
+        if (arguments.size() != this.numberOfArguments) {
             throw new InvalidCommandException(SYNTAX);
-        
+        }
+
         String catalogName = arguments.get(0);
         String itemName = arguments.get(1);
-        
+
         Catalog catalog = this.shell.findCatalogByName(catalogName);
-        if(catalog == null)
+        if (catalog == null) {
             System.out.println("The catalog doesn't exist!");
-        else 
-        {
+        } else {
             Item item = catalog.findByName(itemName);
-            if(item == null)
+            if (item == null) {
                 System.out.println("The item doesn't exist!");
-            else
-            {
+            } else {
                 CatalogUtil.view(item);
                 System.out.println("The command has completed successfully!");
             }

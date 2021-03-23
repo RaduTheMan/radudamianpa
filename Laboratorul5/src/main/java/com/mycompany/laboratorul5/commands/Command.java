@@ -12,20 +12,19 @@ import java.util.List;
  * @author Radu
  */
 public abstract class Command {
+
     protected final String NAME;
     protected Shell shell;
     protected final int numberOfArguments;
-    
-    public Command(String name, int numberOfArguments)
-    {
+
+    public Command(String name, int numberOfArguments) {
         this.NAME = name;
         this.numberOfArguments = numberOfArguments;
     }
-    
-    public String getName()
-    {
+
+    public String getName() {
         return this.NAME;
     }
-    
+
     public abstract void execute(List<String> arguments);
 }

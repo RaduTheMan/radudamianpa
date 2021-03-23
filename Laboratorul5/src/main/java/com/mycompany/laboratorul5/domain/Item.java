@@ -9,15 +9,17 @@ import java.nio.file.Path;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Map;
+
 /**
  *
  * @author Radu
  */
 public abstract class Item implements Serializable {
+
     protected String name;
     protected String pathStr;
-    public File getFile()
-    {
+
+    public File getFile() {
         return Path.of(pathStr).toFile();
     }
 
@@ -36,13 +38,13 @@ public abstract class Item implements Serializable {
     public void setPathStr(String pathStr) {
         this.pathStr = pathStr;
     }
-    
+
     public abstract boolean isSong();
+
     public abstract boolean isMovie();
-    public abstract Map<String,String> getAttrMap();
+
+    public abstract Map<String, String> getAttrMap();
+
     public abstract String getInstanceType();
-    
-    
-    
-    
+
 }

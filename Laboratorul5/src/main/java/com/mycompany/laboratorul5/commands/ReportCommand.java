@@ -14,55 +14,55 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Radu
  */
-public class ReportCommand extends Command{
-    
+public class ReportCommand extends Command {
+
     private final String SYNTAX = "report <catalog -> name>";
-    
-    public ReportCommand(Shell shell)
-    {
-       super("report",1);
-       this.shell = shell;
+
+    public ReportCommand(Shell shell) {
+        super("report", 1);
+        this.shell = shell;
     }
 
     @Override
     public void execute(List<String> arguments) {
-        if(arguments.size() != this.numberOfArguments)
+        if (arguments.size() != this.numberOfArguments) {
             throw new InvalidCommandException(SYNTAX);
-        
+        }
+
         String name = arguments.get(0);
         Catalog catalog = this.shell.findCatalogByName(name);
-        if(catalog == null)
+        if (catalog == null) {
             System.out.println("The catalog doesn't exist!");
-        else
-        {
-        
-        Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
-        try {
-            cfg.setDirectoryForTemplateLoading(new File("e:/Templates"));
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-        
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        cfg.setLogTemplateExceptions(false);
-        cfg.setWrapUncheckedExceptions(true);
-        cfg.setFallbackOnNullLoopVariable(false);
-        
-        try {
-            Template temp = cfg.getTemplate("test.ftlh");
-        } catch (MalformedTemplateNameException ex) {
-            System.err.println(ex);
-        } catch (ParseException ex) {
-            System.err.println(ex);
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-        
+        } else {
+
+            Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+            try {
+                cfg.setDirectoryForTemplateLoading(new File("e:/Templates"));
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+
+            cfg.setDefaultEncoding("UTF-8");
+            cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+            cfg.setLogTemplateExceptions(false);
+            cfg.setWrapUncheckedExceptions(true);
+            cfg.setFallbackOnNullLoopVariable(false);
+
+            try {
+                Template temp = cfg.getTemplate("test.ftlh");
+            } catch (MalformedTemplateNameException ex) {
+                System.err.println(ex);
+            } catch (ParseException ex) {
+                System.err.println(ex);
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+
         }
     }
 }

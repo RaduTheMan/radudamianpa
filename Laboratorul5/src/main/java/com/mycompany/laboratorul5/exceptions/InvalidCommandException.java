@@ -10,8 +10,8 @@ package com.mycompany.laboratorul5.exceptions;
  * @author Radu
  */
 public class InvalidCommandException extends RuntimeException {
-    public InvalidCommandException (String syntax)
-    {
+
+    public InvalidCommandException(String syntax) {
         super("Incorrect number of arguments!\nSyntax: " + syntax);
     }
 }
