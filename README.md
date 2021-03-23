@@ -115,3 +115,5 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
     </ul>
   </li>
 </ul>
+
+<p>Pentru partea de compulsory am extins modalitatea de salvare initiala a catalogului(format binar) prin utilizarea de fisiere XML. In clasa CatalogUtil am definit metodele statice <em>saveWithBinary(Catalog catalog)</em>, <em>saveWithXML(Catalog catalog)</em>, <em>loadWithBinary(String path)</em>, <em>loadWithXML(String path)</em> </p>
