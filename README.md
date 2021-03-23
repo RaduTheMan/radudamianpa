@@ -72,4 +72,46 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 
 <h2>Laboratorul 5</h2>
 
-<p><em>in progress...</em></p>
+<p> Organizarea codurilor sursa am facut-o in felul urmator: </p>
+
+<ul>
+  <li>
+    com.mycompany.laboratorul5.main 
+    <ul>
+      <li>Main.java</li>
+    </ul>
+  </li>
+  <li>
+    com.mycompany.laboratorul5.domain
+    <ul>
+      <li>Catalog.java</li>
+      <li>CatalogUtil.java</li>
+      <li>Item.java</li>
+      <li>Song.java</li>
+      <li>Movie.java</li>
+    </ul>
+  </li>
+  <li>
+    com.mycompany.laboratorul5.commands
+    <ul>
+      <li>Shell.java</li>
+      <li>Comand.java</li>
+      <li>AddCommand.java</li>
+      <li>CreateCommand.java</li>
+      <li>ListCommand.java</li>
+      <li>LoadCommand.java</li>
+      <li>PlayCommand.java</li>
+      <li>ReportCommand.java</li>
+      <li>SaveCommand.java</li>
+    </ul>
+  </li>
+  <li>
+    com.mycompany.laboratorul5.exceptions
+    <ul>
+      <li>InvalidCommandException.java</li>
+      <li>InvalidMyPathException.java</li>
+      <li>InvalidRatingException.java</li>
+      <li>InvalidYearException.java</li>
+    </ul>
+  </li>
+</ul>
