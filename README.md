@@ -117,3 +117,5 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 </ul>
 
 <p>Pentru partea de compulsory am extins modalitatea de salvare initiala a catalogului(format binar) prin utilizarea de fisiere XML. In clasa CatalogUtil am definit metodele statice <em>saveWithBinary(Catalog catalog)</em>, <em>saveWithXML(Catalog catalog)</em>, <em>loadWithBinary(String path)</em>, <em>loadWithXML(String path)</em> </p>
+
+<p>In cadrul partii de optional, in afara de clasele aferente fiecarei comenzi, am definit si o clasa <em>Shell</em>, care tine evidenta tuturor cataloagelor ce se pot forma intr-o sesiune de shell. Metoda principala a acestei clase este <em>run()</em>, unde se cere input de la tastatura linie cu linie, se verifica daca comenzile sunt corecte d.p.d.v sintactic si se utilizeaza clasele aferente comenzilor, fiecare din acestea avand o metoda <em>execute(List<String> arguments)</em> care este implementata in principiu utilizand implementarile de la partea de compulsory. </p>
