@@ -5,6 +5,7 @@
  */
 package com.mycompany.laboratorul6;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
@@ -29,12 +30,15 @@ public class DrawingPanel extends JPanel {
     
     private void createOffscreenImage()
     {
-        
+        image = new BufferedImage(W, H, BufferedImage.TYPE_INT_ARGB);
+        graphics = image.createGraphics();
+        graphics.setColor(Color.WHITE); //fill the image with white
+        graphics.fillRect(0, 0, W, H);
     }
     
     private void init()
     {
-        
+       
     }
     
 }
