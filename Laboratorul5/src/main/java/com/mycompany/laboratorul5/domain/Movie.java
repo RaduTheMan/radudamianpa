@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul5;
+package com.mycompany.laboratorul5.domain;
 
+import com.mycompany.laboratorul5.exceptions.InvalidYearException;
 import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -14,34 +14,25 @@ import java.util.TreeMap;
  *
  * @author Radu
  */
-public class Song extends Item{
+public class Movie extends Item{
     private String genre;
-    private int rating;
+    private int releaseYear;
     
-    public Song(String genre, String name, String path, int rating)
+    public Movie(String genre, String name, String path, int releaseYear)
     {
         this.name = name;
         try
         {
-            Path.of(path);
-            this.pathStr = path;
-            
+        this.pathStr = path;
         }
         catch(InvalidPathException e)
         {
             System.err.println(e);
         }
         this.genre = genre;
-        if(rating < 1 || rating > 10)
-            throw new InvalidRatingException(rating);
-        this.rating = rating;
-        
-    }
-    
-    @Override
-    public String getInstanceType()
-    {
-        return "song";
+        if(releaseYear < 0)
+            throw new InvalidYearException(releaseYear);
+        this.releaseYear = releaseYear;
     }
     
     @Override
@@ -51,22 +42,28 @@ public class Song extends Item{
         map.put("name", this.name);
         map.put("path", this.pathStr);
         map.put("genre", this.genre);
-        map.put("rating", String.valueOf(this.rating));
+        map.put("releaseYear", String.valueOf(this.releaseYear));
         return map;
     }
-
+    
+    @Override
+    public String getInstanceType()
+    {
+        return "movie";
+    }
+    
     @Override
     public boolean isSong()
     {
-        return true;
+        return false;
     }
     
     @Override
     public boolean isMovie()
     {
-        return false;
+        return true;
     }
-    
+
     public String getGenre() {
         return genre;
     }
@@ -75,20 +72,19 @@ public class Song extends Item{
         this.genre = genre;
     }
 
-    public int getRating() {
-        return rating;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
-    
     
     
 
     @Override
     public String toString() {
-        return "Song:\n" + "\nname=" + name + "\npath=" + pathStr + "\ngenre=" + genre + "\nrating=" + rating + '}';
+        return "Movie:\n" + "\nname=" + name + "\npath=" + pathStr + "\ngenre=" + genre + ",\nreleaseYear=" + releaseYear + '}';
     }
     
     

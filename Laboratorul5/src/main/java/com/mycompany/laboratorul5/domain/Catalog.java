@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul5;
+package com.mycompany.laboratorul5.domain;
+import com.mycompany.laboratorul5.exceptions.InvalidMyPathException;
 import java.nio.file.Files;
 import java.util.*;
 import java.nio.file.Path;

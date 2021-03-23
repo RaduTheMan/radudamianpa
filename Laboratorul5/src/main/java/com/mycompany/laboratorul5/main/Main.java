@@ -3,7 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul5;
+package com.mycompany.laboratorul5.main;
+
+import com.mycompany.laboratorul5.domain.Catalog;
+import com.mycompany.laboratorul5.domain.CatalogUtil;
+import com.mycompany.laboratorul5.domain.Movie;
+import com.mycompany.laboratorul5.domain.Song;
+import com.mycompany.laboratorul5.commands.Shell;
 
 /**
  *
