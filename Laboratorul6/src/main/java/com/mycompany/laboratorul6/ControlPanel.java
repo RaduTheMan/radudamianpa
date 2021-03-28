@@ -13,7 +13,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -65,14 +67,21 @@ public class ControlPanel extends JPanel{
     
     private void save(ActionEvent e)
     {
-        try
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Only .png files","png");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(filter);
+        if ( fileChooser.showSaveDialog(saveBtn) == JFileChooser.APPROVE_OPTION)
         {
-            ImageIO.write(frame.canvas.image,"PNG", new File("e:/test.png"));
+             try
+             {
+               ImageIO.write(frame.canvas.image,"PNG", fileChooser.getSelectedFile());
+             }
+             catch(IOException ex)
+             {
+               System.err.println(ex);
+             }
         }
-        catch(IOException ex)
-        {
-            System.err.println(ex);
-        }
+       
     }
     
     
