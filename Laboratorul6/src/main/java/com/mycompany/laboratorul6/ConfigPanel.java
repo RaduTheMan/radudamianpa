@@ -38,7 +38,7 @@ public class ConfigPanel extends JPanel {
 
         add(sidesLabel);
         add(sidesField);
-        add(colorCombo);
+        //add(colorCombo);
         
     }
     

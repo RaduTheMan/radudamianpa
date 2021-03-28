@@ -37,6 +37,7 @@ public class ControlPanel extends JPanel{
         //to do: add all buttons
         
         saveBtn.addActionListener(this::save);
+        add(saveBtn);
         //to do: configure listeners for all buttons
     }
     
