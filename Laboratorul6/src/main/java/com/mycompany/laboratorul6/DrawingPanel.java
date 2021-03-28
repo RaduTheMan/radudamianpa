@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import java.util.Random;
 
 /**
  *
@@ -50,17 +51,28 @@ public class DrawingPanel extends JPanel {
            @Override
            public void mousePressed(MouseEvent e)
            {
-               drawPoint(e.getX(),e.getY());
+               drawShape(e.getX(),e.getY());
                repaint();
            }
        }
        );
     }
     
-    private void drawPoint(int x, int y)
+    private void drawShape(int x, int y)
     {
-        graphics.setColor(Color.red);
-        graphics.drawOval(x, y, 10, 10);
+        String colorOption =(String) frame.configPanel.colorCombo.getSelectedItem();
+        int size = (int) frame.configPanel.sizeField.getValue();
+        if(colorOption.equals("Black"))
+          graphics.setColor(Color.black);
+        else
+        {
+           Random rand = new Random();
+           float r = rand.nextFloat();
+           float g = rand.nextFloat();
+           float b = rand.nextFloat();
+           graphics.setColor(new Color(r,g,b));
+        }
+        graphics.drawOval(x, y, size, size);
     }
     
     @Override

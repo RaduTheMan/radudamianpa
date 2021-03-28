@@ -18,8 +18,9 @@ import javax.swing.SpinnerNumberModel;
 public class ConfigPanel extends JPanel {
     final MainFrame frame;
     JLabel label;
-    JLabel sidesLabel;
-    JSpinner sidesField;
+    JLabel sizeLabel;
+    JSpinner sizeField;
+    JLabel colorLabel;
     JComboBox colorCombo;
     
     public ConfigPanel(MainFrame frame)
@@ -30,15 +31,19 @@ public class ConfigPanel extends JPanel {
     
     private void init()
     {
-        sidesLabel = new JLabel("Number of sides:");
-        sidesField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        sidesField.setValue(6);
+        sizeLabel = new JLabel("Size:");
+        sizeField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
+        sizeField.setValue(6);
+        String[] colorOptions = {"Random", "Black"};
         
         //to do; create the colorCombo, containing the values: Random and Black
-
-        add(sidesLabel);
-        add(sidesField);
-        //add(colorCombo);
+        colorLabel = new JLabel("Color:");
+        colorCombo = new JComboBox(colorOptions);
+        
+        add(sizeLabel);
+        add(sizeField);
+        add(colorLabel);
+        add(colorCombo);
         
     }
     
