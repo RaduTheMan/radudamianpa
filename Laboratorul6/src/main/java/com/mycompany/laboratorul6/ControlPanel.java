@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -45,6 +47,7 @@ public class ControlPanel extends JPanel{
         saveBtn.addActionListener(this::save);
         exitBtn.addActionListener(this::exit);
         resetBtn.addActionListener(this::reset);
+        loadBtn.addActionListener(this::load);
         add(saveBtn);
         add(loadBtn);
         add(resetBtn);
@@ -82,6 +85,26 @@ public class ControlPanel extends JPanel{
              }
         }
        
+    }
+    
+    private void load(ActionEvent e)
+    {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Only .png files","png");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(filter);
+        if ( fileChooser.showOpenDialog(loadBtn) == JFileChooser.APPROVE_OPTION)
+        {
+            try 
+            {
+              this.frame.canvas.image = ImageIO.read(fileChooser.getSelectedFile());
+              this.frame.canvas.graphics = this.frame.canvas.image.createGraphics();
+              this.frame.canvas.repaint();
+            } catch (IOException ex) 
+            {
+              System.err.println(ex);
+            }
+        }
+
     }
     
     

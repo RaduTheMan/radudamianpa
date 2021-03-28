@@ -34,6 +34,7 @@ public class DrawingPanel extends JPanel {
         init();
     }
     
+    
     private void createOffscreenImage()
     {
         image = new BufferedImage(W, H, BufferedImage.TYPE_INT_ARGB);
