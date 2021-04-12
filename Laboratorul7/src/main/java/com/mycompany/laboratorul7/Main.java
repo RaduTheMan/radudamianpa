@@ -12,9 +12,9 @@ package com.mycompany.laboratorul7;
 public class Main {
     public static void main(String[] args) {
         BotPlayer p1 = new BotPlayer("p1");
-        BotPlayer p2 = new BotPlayer("p2");
+        ManualPlayer p2 = new ManualPlayer("p2");
         BotPlayer p3 = new BotPlayer("p3");
-        Game x = new Game(3,4);
+        Game x = new Game(3,5);
         x.registerPlayer(p1);
         x.registerPlayer(p2);
         x.registerPlayer(p3);
