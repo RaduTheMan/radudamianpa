@@ -123,3 +123,7 @@ Am adaugat ulterior interfetei Visitable metodele cerute(2 default si una static
 <h2>Laboratorul 6</h2>
 
 In cadrul acestui laborator, am rezolvat partea de compulsory.
+
+<h2>Laboratorul 7</h2>
+
+in progress..
