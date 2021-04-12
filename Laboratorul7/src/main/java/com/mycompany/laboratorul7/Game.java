@@ -21,6 +21,8 @@ public class Game {
     private final int nrPlayers;
     private final int n;
     private final int MAX_VALUE = 10;
+    private int turn = 0;
+    
     public static int compareByToken(String a, String b)
     {
         int x1, x2, y1, y2;
@@ -60,6 +62,25 @@ public class Game {
                this.availableTokens.put(key, value);
            }
     }
+
+    public Map<String, Integer> getAvailableTokens() {
+        return availableTokens;
+    }
+
+    public int getNrPlayers() {
+        return nrPlayers;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+    
+    
+    
     public boolean registerPlayer(Player player)
     {
         if(players.size()<this.nrPlayers)
@@ -74,7 +95,11 @@ public class Game {
         if(players.size()==this.nrPlayers)
         {
             for(int i=0; i<this.nrPlayers;++i)
+            {
+                players.get(i).setGame(this);
+                players.get(i).setIdentifier(i);
                 new Thread(players.get(i)).start();
+            }
         }
     }
 }

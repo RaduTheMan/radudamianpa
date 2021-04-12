@@ -11,10 +11,10 @@ package com.mycompany.laboratorul7;
  */
 public class Main {
     public static void main(String[] args) {
-        Player p1 = new Player("p1");
-        Player p2 = new Player("p2");
-        Player p3 = new Player("p3");
-        Game x = new Game(3,6);
+        BotPlayer p1 = new BotPlayer("p1");
+        BotPlayer p2 = new BotPlayer("p2");
+        BotPlayer p3 = new BotPlayer("p3");
+        Game x = new Game(3,4);
         x.registerPlayer(p1);
         x.registerPlayer(p2);
         x.registerPlayer(p3);
