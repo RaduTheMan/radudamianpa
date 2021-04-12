@@ -7,8 +7,6 @@ package com.mycompany.laboratorul7;
 
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -44,19 +42,13 @@ public abstract class Player implements Runnable {
     public void run() {
         while(this.game.getAvailableTokens().size() > 0)
         {
-            synchronized(this)
+            synchronized(this.game)
             {
-              while(this.game.getTurn() != this.identifier)
-              {
-                  try {
-                      wait();
-                  } catch (InterruptedException ex) {
-                      System.out.println(ex);
-                  }
-              }
-              this.chooseToken();
-              this.game.setTurn((this.game.getTurn()+1)%this.game.getNrPlayers());
-              notifyAll();
+                if(this.game.getTurn() == this.identifier)
+                {
+                    this.chooseToken();
+                    this.game.setTurn((this.identifier+1)%this.game.getNrPlayers());
+                }
             }
         }
     }

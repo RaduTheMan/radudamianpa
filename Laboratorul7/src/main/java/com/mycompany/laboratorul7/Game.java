@@ -98,6 +98,9 @@ public class Game {
             {
                 players.get(i).setGame(this);
                 players.get(i).setIdentifier(i);
+            }
+            for(int i=0;i<this.nrPlayers;++i)
+            {
                 new Thread(players.get(i)).start();
             }
         }

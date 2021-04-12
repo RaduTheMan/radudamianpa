@@ -26,15 +26,18 @@ public class BotPlayer extends Player {
         var availableTokens = this.game.getAvailableTokens();
         int nrAvailableTokens = availableTokens.size();
         
+        if(nrAvailableTokens > 0)
+        {
         List<String> keyList = new ArrayList<>(availableTokens.keySet());
         index = Game.getRandomNumber(0, nrAvailableTokens);
         String randomKey = keyList.get(index);
         Integer value = availableTokens.get(randomKey);
         this.choosenTokens.put(randomKey, value);
         availableTokens.remove(randomKey);
-   
         System.out.println(this.name + ": I choose " + randomKey + " " + value);
         return true;
+        }
+        return false;
     }
     
 }
