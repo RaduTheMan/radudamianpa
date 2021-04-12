@@ -126,4 +126,14 @@ In cadrul acestui laborator, am rezolvat partea de compulsory.
 
 <h2>Laboratorul 7</h2>
 
-in progress..
+<p>Codurile sursa sunt urmatoarele:</p>
+ 
+<ul>
+  <li>Main.java</li>
+  <li>Game.java</li>
+  <li>Player.java</li>
+  <li>BotPlayer.java</li>
+  <li>ManualPlayer.java</li>
+</ul>
+
+<p></p>
