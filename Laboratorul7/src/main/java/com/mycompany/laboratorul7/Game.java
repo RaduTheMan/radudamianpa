@@ -26,6 +26,7 @@ public class Game {
     private int turn = 0;
     private static int cycleNumber = 0;
 
+    //metoda pentru a ordona cheile din cadrul mapei "availableTokens" (de tip TreeMap)
     public static int compareByToken(String a, String b) {
         int x1, x2, y1, y2;
         String[] x1_x2 = a.split(",");
@@ -58,7 +59,7 @@ public class Game {
         this.n = n;
         this.players = new ArrayList<>();
 
-        //initialise the board
+        //initializez tabela de joc
         this.availableTokens = new TreeMap<>(Game::compareByToken);
         for (int i = 1; i < n; ++i) {
             for (int j = i + 1; j <= n; ++j) {
@@ -85,6 +86,7 @@ public class Game {
         this.turn = turn;
     }
 
+    //metoda ce ma ajuta sa determin circuitele in graful neorientat reprezentat de jetoanele alese de un jucator
     private void dfs(int curNode, int prevNode, int[] color, int[] mark, int prev[], Map<Integer, List<Integer>> adjacencyList,
             List<List<Integer>> solution) {
         if (color[curNode] == 2) {
@@ -120,6 +122,8 @@ public class Game {
         color[curNode] = 2;
     }
 
+    //metoda prin care imi construiesc lista de adiacenta corespunzatoare grafului reprezentat prin jetoanele 
+    //alese de jucator si apelez metoda dfs(...)
     private List<List<Integer>> determineSequences(Map<String, Integer> choosenTokens) {
         Map<Integer, List<Integer>> adjacencyList = new TreeMap<>();
         for (String key : choosenTokens.keySet()) {
@@ -166,6 +170,7 @@ public class Game {
         return false;
     }
 
+    //incep jocul si stabilesc la finalul jocului clasamentul
     public void startGame() {
         if (players.size() == this.nrPlayers) {
             List<Thread> threads = new ArrayList<>();
@@ -175,12 +180,14 @@ public class Game {
                 threads.add(new Thread(players.get(i)));
                 threads.get(i).start();
             }
+            
             for (Thread thread : threads)
                 try {
                 thread.join();
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
+            //de aici incolo jocul s-a terminat
             System.out.println("Game is finished!");
             for (Player p : players) {
                 var sequences = this.determineSequences(p.getChoosenTokens());
