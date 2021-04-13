@@ -136,4 +136,13 @@ In cadrul acestui laborator, am rezolvat partea de compulsory.
   <li>ManualPlayer.java</li>
 </ul>
 
-<p></p>
+<p>Am considerat jetoanele ca fiind muchii ale unui graf complet. Pentru a reprezenta tabela de joc, am declarat un Map<String, Integer> </p>
+
+<p>Thread-urile corespunzatoare jucatorilor sunt pornite in cadrul clasei <em>Game</em> in metoda <em>startGame()</em>. Pentru a asigura faptul ca fiecare jucator
+  isi face mutarea doar cand este randul lui, am utilizat in cadrul metodei <em>run()</em>, suprascrisa din interfata <em>Runnable</em>, un synchronized block 
+  avand ca monitor instanta aferenta clasei <em>Game</em>, unde verific daca indicele jucatorului este egal cu cel al turei curente.</p>
+
+<p>Pentru a modela strategiile jucatorilor, am definit o clasa abstracta <em>Player</em> si clasele aferente care o extind pe aceasta: <em>BotPlayer</em>, <em>ManualPlayer</em>. Metoda abstracta <em>chooseToken()</em> indica modul in care fiecare tip de jucator isi alege jetonul.</p>
+
+<p>Pentru a implementa modalitatea prin care se decide clasamentul(implicit castigatorul), am considerat ca fiecare jucator sa aiba asignat un scor la finalul 
+jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot forma din jetoanele alese de fiecare jucator. Jucatorul cu scorul cel mai mare castiga. Pentru a determina circuitele </p>
