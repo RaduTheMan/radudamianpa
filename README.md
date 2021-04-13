@@ -136,7 +136,7 @@ In cadrul acestui laborator, am rezolvat partea de compulsory.
   <li>ManualPlayer.java</li>
 </ul>
 
-<p>Am considerat jetoanele ca fiind muchii ale unui graf complet. Pentru a reprezenta tabela de joc, am declarat un Map<String, Integer> </p>
+<p>Am considerat jetoanele ca fiind muchii ale unui graf complet. Pentru a reprezenta tabela de joc, am declarat un Map&lt;String, Integer&gt; in cadrul clasei <em>Game</em>, unde cheia reprezinta o muchie a unui graf complet sub forma unui String(de exemplu: "1,2" sau "2,4"), iar valoarea este practic cea a jetonului. </p>
 
 <p>Thread-urile corespunzatoare jucatorilor sunt pornite in cadrul clasei <em>Game</em> in metoda <em>startGame()</em>. Pentru a asigura faptul ca fiecare jucator
   isi face mutarea doar cand este randul lui, am utilizat in cadrul metodei <em>run()</em>, suprascrisa din interfata <em>Runnable</em>, un synchronized block 
@@ -145,4 +145,4 @@ In cadrul acestui laborator, am rezolvat partea de compulsory.
 <p>Pentru a modela strategiile jucatorilor, am definit o clasa abstracta <em>Player</em> si clasele aferente care o extind pe aceasta: <em>BotPlayer</em>, <em>ManualPlayer</em>. Metoda abstracta <em>chooseToken()</em> indica modul in care fiecare tip de jucator isi alege jetonul.</p>
 
 <p>Pentru a implementa modalitatea prin care se decide clasamentul(implicit castigatorul), am considerat ca fiecare jucator sa aiba asignat un scor la finalul 
-jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot forma din jetoanele alese de fiecare jucator. Jucatorul cu scorul cel mai mare castiga. Pentru a determina circuitele </p>
+jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot forma din jetoanele alese de fiecare jucator. Jucatorul cu scorul cel mai mare castiga. Pentru a determina circuitele unui graf neorientat, am utilizat algoritmul din acest <a href="https://www.geeksforgeeks.org/print-all-the-cycles-in-an-undirected-graph/">link</a> in cadrul metodelor <em>determineSequences(...)</em> si  <em>dfs(...)</em> din clasa <em>Game</em>. In final, voi sorta lista de jucatori din aceeasi clasa <em>Game</em> utilizand un comparator ca fiind metoda statica <em>compareByScore(...)</em> din clasa <em>Player</em>. De precizat ca implementarea pentru a afisa clasamentul se face in metoda <em>startGame()</em>.  </p>
