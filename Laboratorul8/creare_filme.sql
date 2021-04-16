@@ -1,8 +1,8 @@
-DROP TABLE movies
+DROP TABLE movies CASCADE CONSTRAINTS
 /
-DROP TABLE genres
+DROP TABLE genres CASCADE CONSTRAINTS
 /
-DROP TABLE movie_genre_assoc
+DROP TABLE movie_genre_assoc CASCADE CONSTRAINTS
 /
 
 
