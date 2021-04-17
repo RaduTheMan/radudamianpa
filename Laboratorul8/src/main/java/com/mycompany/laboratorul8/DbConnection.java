@@ -52,11 +52,7 @@ public class DbConnection {
     public Statement getStmt() {
         return stmt;
     }
-    
-    
-    
-    
-    
+  
     public static DbConnection getInstance()
     {
         if(singleInstance == null)
