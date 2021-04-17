@@ -13,12 +13,14 @@ import oracle.jdbc.pool.OracleDataSource;
  */
 public class Main  {
     public static void main(String[] args) throws SQLException {
-    OracleDataSource ods = new OracleDataSource();
-    ods.setURL("jdbc:oracle:thin:STUDENT/STUDENT@localhost:1521:xe");
-    Connection conn = ods.getConnection();
+    
+    //using the singleton
+    DbConnection connection = DbConnection.getInstance();
+    connection.createConnection();
+    connection.initialiseStatement();
 
-    //create statement object
-    Statement stmt = conn.createStatement();
+    //get statement object
+    Statement stmt = connection.getStmt();
     
     // run a querry:
     ResultSet rset = stmt.executeQuery ("select * from movies");
