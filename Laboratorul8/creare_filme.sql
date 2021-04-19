@@ -30,9 +30,9 @@ CREATE TABLE movie_genre_assoc(
   )
 /
 
-INSERT INTO movies VALUES (1, 'Airplane', TO_DATE('02/07/1980', 'dd/mm/yyyy'), INTERVAL '0 1:28:00' DAY TO SECOND, 6 );
-INSERT INTO movies VALUES (2, 'The Father', TO_DATE('26/02/2021', 'dd/mm/yyyy'), INTERVAL '0 1:37:00' DAY TO SECOND, 8);
-INSERT INTO movies VALUES (3, 'Pulp Fiction', TO_DATE('14/10/1994', 'dd/mm/yyyy'), INTERVAL '0 2:34:00' DAY TO SECOND, 9);
+INSERT INTO movies VALUES (1, 'Airplanee', TO_DATE('02/07/1980', 'dd/mm/yyyy'), INTERVAL '1:28' HOUR TO MINUTE, 6 );
+INSERT INTO movies VALUES (2, 'The Father', TO_DATE('26/02/2021', 'dd/mm/yyyy'), INTERVAL '1:37' HOUR TO MINUTE, 8);
+INSERT INTO movies VALUES (3, 'Pulp Fiction', TO_DATE('14/10/1994', 'dd/mm/yyyy'), INTERVAL '2:34' HOUR TO MINUTE, 9);
 
 INSERT INTO genres VALUES (1, 'Drama');
 INSERT INTO genres VALUES (2, 'Comedie');
@@ -41,3 +41,13 @@ INSERT INTO genres VALUES (3, 'Actiune');
 INSERT INTO movie_genre_assoc VALUES (1,2);
 INSERT INTO movie_genre_assoc VALUES (2,1);
 INSERT INTO movie_genre_assoc VALUES (3,3);
+
+UPDATE
+  movies
+SET
+  title = 'ceva',
+  release_date = TO_DATE('2018/12/10', 'yyyy/mm/dd'),
+  duration = INTERVAL '1:50' HOUR TO MINUTE,
+  score = 2
+WHERE
+  id_movie = 1;

@@ -23,6 +23,7 @@ public class GenreDaoImpl implements GenreDao {
         this.connection = connection;
         Statement stmt = connection.getStmt();
         ResultSet rset;
+        //get all genres from database
         try {
             rset = stmt.executeQuery(querryAllGenres);
             while (rset.next()) {

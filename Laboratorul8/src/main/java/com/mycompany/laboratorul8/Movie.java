@@ -53,7 +53,8 @@ public class Movie {
     }
 
     public void setDuration(Duration duration) {
-        this.duration = duration;
+        if( duration.toDaysPart() == 0 && duration.toSecondsPart() == 0 )
+            this.duration = duration;
     }
 
     public int getScore() {
@@ -61,7 +62,8 @@ public class Movie {
     }
 
     public void setScore(int score) {
-        this.score = score;
+        if(score >= 1 && score <=10)
+            this.score = score;
     }
 
     @Override

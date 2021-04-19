@@ -5,19 +5,28 @@
  */
 package com.mycompany.laboratorul8;
 import java.sql.*;
+import java.time.Duration;
 /**
  *
  * @author Radu
  */
 public class Main  {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
     
     //using the singleton
     DbConnection connection = DbConnection.getInstance();
 
     GenreDao genreDao = new GenreDaoImpl(connection);
-    genreDao.deleteGenre(new Genre(1,"Drama"));
+    MovieDao movieDao = new MovieDaoImpl(connection);
+    Movie someMovie = movieDao.getMovie(1);
+    someMovie.setTitle("Car");
+    someMovie.setScore(4);
+    someMovie.setDuration(Duration.parse("PT1H45M"));
+    movieDao.updateMovie(someMovie);
+    
+    genreDao.deleteGenre(genreDao.getGenre(1));
     
     }
+    
    
 }
