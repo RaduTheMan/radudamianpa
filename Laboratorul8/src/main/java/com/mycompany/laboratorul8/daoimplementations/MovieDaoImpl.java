@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.daoimplementations;
 
+import com.mycompany.laboratorul8.singleton.DbConnection;
+import com.mycompany.laboratorul8.domain.Movie;
+import com.mycompany.laboratorul8.daointerface.MovieDao;
 import java.sql.*;
 import java.time.Duration;
 import java.util.ArrayList;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.domain;
 
 import java.util.Objects;
 
@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Radu
  */
 public class Genre {
+
     private int id;
     private String name;
 
@@ -19,7 +20,7 @@ public class Genre {
         this.id = id;
         this.name = name;
     }
-  
+
     public int getId() {
         return id;
     }
@@ -52,8 +53,5 @@ public class Genre {
         }
         return true;
     }
-    
-    
-    
-    
+
 }

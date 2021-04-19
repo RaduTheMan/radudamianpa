@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.daointerface;
 
+import com.mycompany.laboratorul8.domain.Director;
 import java.util.List;
 
 /**
@@ -12,8 +13,12 @@ import java.util.List;
  * @author Radu
  */
 public interface DirectorDao {
+
     public List<Director> getAllDirectors();
+
     public Director getDirector(int id);
+
     public void updateDirector(Director director);
+
     public void deleteDirector(Director director);
 }

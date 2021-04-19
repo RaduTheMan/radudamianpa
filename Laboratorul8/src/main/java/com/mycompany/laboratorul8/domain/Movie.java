@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.domain;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -16,6 +14,7 @@ import java.util.Objects;
  * @author Radu
  */
 public class Movie {
+
     private int id;
     private String title;
     private Date releaseDate;
@@ -55,8 +54,9 @@ public class Movie {
     }
 
     public void setDuration(Duration duration) {
-        if( duration.toDaysPart() == 0 && duration.toSecondsPart() == 0 )
+        if (duration.toDaysPart() == 0 && duration.toSecondsPart() == 0) {
             this.duration = duration;
+        }
     }
 
     public int getScore() {
@@ -64,8 +64,9 @@ public class Movie {
     }
 
     public void setScore(int score) {
-        if(score >= 1 && score <=10)
+        if (score >= 1 && score <= 10) {
             this.score = score;
+        }
     }
 
     @Override
@@ -97,8 +98,5 @@ public class Movie {
         }
         return true;
     }
-    
-    
-    
-    
+
 }

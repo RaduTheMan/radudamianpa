@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.daoimplementations;
 
+import com.mycompany.laboratorul8.singleton.DbConnection;
+import com.mycompany.laboratorul8.domain.Director;
+import com.mycompany.laboratorul8.daointerface.DirectorDao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +17,12 @@ import java.util.List;
  * @author Radu
  */
 public class DirectorDaoImpl implements DirectorDao {
-    
+
     List<Director> directors = new ArrayList<>();
     DbConnection connection;
     private final String querryAllDirectors = "select * from directors";
 
-    public DirectorDaoImpl(DbConnection connection)
-    {
+    public DirectorDaoImpl(DbConnection connection) {
         this.connection = connection;
         Statement stmt = connection.getStmt();
         ResultSet rset;
@@ -31,33 +33,33 @@ public class DirectorDaoImpl implements DirectorDao {
                 int id = rset.getInt("id_director");
                 String firstName = rset.getString("first_name");
                 String lastName = rset.getString("last_name");
-                directors.add(new Director(id,firstName,lastName));
+                directors.add(new Director(id, firstName, lastName));
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
+
     @Override
     public List<Director> getAllDirectors() {
         return new ArrayList<>(directors);
-        
+
     }
 
     @Override
     public Director getDirector(int id) {
-        for(Director director : directors)
-            if(director.getId() == id)
+        for (Director director : directors) {
+            if (director.getId() == id) {
                 return director;
+            }
+        }
         return null;
     }
 
     @Override
     public void updateDirector(Director director) {
-        for(Director directorFromList : directors)
-        {
-            if(directorFromList.getId() == director.getId())
-            {
+        for (Director directorFromList : directors) {
+            if (directorFromList.getId() == director.getId()) {
                 int index = directors.indexOf(directorFromList);
                 directors.set(index, director);
 
@@ -94,5 +96,5 @@ public class DirectorDaoImpl implements DirectorDao {
 
         }
     }
-    
+
 }

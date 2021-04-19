@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.daoimplementations;
 
+import com.mycompany.laboratorul8.singleton.DbConnection;
+import com.mycompany.laboratorul8.domain.Actor;
+import com.mycompany.laboratorul8.daointerface.ActorDao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +16,13 @@ import java.util.List;
  *
  * @author Radu
  */
-public class ActorDaoImpl implements ActorDao{
+public class ActorDaoImpl implements ActorDao {
 
     List<Actor> actors = new ArrayList<>();
     DbConnection connection;
     private final String querryAllActors = "select * from actors";
-    
-    public ActorDaoImpl(DbConnection connection)
-    {
+
+    public ActorDaoImpl(DbConnection connection) {
         this.connection = connection;
         Statement stmt = connection.getStmt();
         ResultSet rset;
@@ -31,13 +33,13 @@ public class ActorDaoImpl implements ActorDao{
                 int id = rset.getInt("id_actor");
                 String firstName = rset.getString("first_name");
                 String lastName = rset.getString("last_name");
-                actors.add(new Actor(id,firstName,lastName));
+                actors.add(new Actor(id, firstName, lastName));
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
+
     @Override
     public List<Actor> getAllActors() {
         return new ArrayList<>(actors);
@@ -45,18 +47,18 @@ public class ActorDaoImpl implements ActorDao{
 
     @Override
     public Actor getActor(int id) {
-        for(Actor actor : actors)
-            if(actor.getId() == id)
+        for (Actor actor : actors) {
+            if (actor.getId() == id) {
                 return actor;
+            }
+        }
         return null;
     }
 
     @Override
     public void updateActor(Actor actor) {
-        for(Actor actorFromList : actors)
-        {
-            if(actorFromList.getId() == actor.getId())
-            {
+        for (Actor actorFromList : actors) {
+            if (actorFromList.getId() == actor.getId()) {
                 int index = actors.indexOf(actorFromList);
                 actors.set(index, actor);
 
@@ -93,5 +95,5 @@ public class ActorDaoImpl implements ActorDao{
 
         }
     }
-    
+
 }

@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.daoimplementations;
 
+import com.mycompany.laboratorul8.singleton.DbConnection;
+import com.mycompany.laboratorul8.domain.Genre;
+import com.mycompany.laboratorul8.daointerface.GenreDao;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -29,7 +32,7 @@ public class GenreDaoImpl implements GenreDao {
             while (rset.next()) {
                 int id = rset.getInt("id_genre");
                 String name = rset.getString("name");
-                genres.add(new Genre(id,name));
+                genres.add(new Genre(id, name));
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -58,7 +61,7 @@ public class GenreDaoImpl implements GenreDao {
             if (genreFromList.getId() == genre.getId()) {
                 int index = genres.indexOf(genreFromList);
                 genres.set(index, genre);
-                
+
                 //update in database
                 String dmlStatement = "UPDATE genres SET name = ? WHERE id_genre = ?";
                 try {
@@ -77,14 +80,14 @@ public class GenreDaoImpl implements GenreDao {
     @Override
     public void deleteGenre(Genre genre) {
         boolean isDeleted = genres.remove(genre);
-        if(isDeleted) //delete from the database
+        if (isDeleted) //delete from the database
         {
             String dmlStatement = "DELETE FROM genres WHERE id_genre = ?";
-            try{
+            try {
                 var pstmt = connection.getConnection().prepareStatement(dmlStatement);
                 pstmt.setInt(1, genre.getId());
                 pstmt.executeUpdate();
-            }catch(SQLException ex){
+            } catch (SQLException ex) {
                 System.out.println(ex);
             }
         }

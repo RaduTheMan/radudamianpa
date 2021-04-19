@@ -3,26 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.singleton;
 
 import oracle.jdbc.pool.OracleDataSource;
 import java.sql.*;
-import oracle.jdbc.*;
 
 /**
  *
  * @author Radu
  */
 public class DbConnection {
-    
+
     private static DbConnection singleInstance = null;
     private OracleDataSource ods;
     private Connection conn;
     private final String url = "jdbc:oracle:thin:STUDENT/STUDENT@localhost:1521:xe";
     private Statement stmt;
-    
-    private DbConnection()
-    {
+
+    private DbConnection() {
         try {
             ods = new OracleDataSource();
         } catch (SQLException ex) {
@@ -32,18 +30,16 @@ public class DbConnection {
         this.createConnection();
         this.initialiseStatement();
     }
-    
-    private void createConnection()
-    {
+
+    private void createConnection() {
         try {
             conn = ods.getConnection();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
-    private void initialiseStatement()
-    {
+
+    private void initialiseStatement() {
         try {
             stmt = conn.createStatement();
         } catch (SQLException ex) {
@@ -58,11 +54,11 @@ public class DbConnection {
     public Connection getConnection() {
         return conn;
     }
-  
-    public static DbConnection getInstance()
-    {
-        if(singleInstance == null)
+
+    public static DbConnection getInstance() {
+        if (singleInstance == null) {
             singleInstance = new DbConnection();
+        }
         return singleInstance;
     }
 }

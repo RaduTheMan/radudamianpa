@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul8;
+package com.mycompany.laboratorul8.domain;
 
 import java.util.Objects;
 
@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Radu
  */
 public abstract class Person {
+
     protected int id;
     protected String firstName;
     protected String lastName;
@@ -42,7 +43,6 @@ public abstract class Person {
         return id;
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -66,9 +66,5 @@ public abstract class Person {
         }
         return true;
     }
-    
-    
-    
-    
-    
+
 }
