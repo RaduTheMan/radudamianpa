@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.mycompany.laboratorul8;
-import java.sql.*;
 import java.time.Duration;
 /**
  *
