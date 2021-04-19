@@ -28,10 +28,12 @@ public class DbConnection {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        ods.setURL("jdbc:oracle:thin:STUDENT/STUDENT@localhost:1521:xe");
+        ods.setURL(url);
+        this.createConnection();
+        this.initialiseStatement();
     }
     
-    public void createConnection()
+    private void createConnection()
     {
         try {
             conn = ods.getConnection();
@@ -40,7 +42,7 @@ public class DbConnection {
         }
     }
     
-    public void initialiseStatement()
+    private void initialiseStatement()
     {
         try {
             stmt = conn.createStatement();
@@ -51,6 +53,10 @@ public class DbConnection {
 
     public Statement getStmt() {
         return stmt;
+    }
+
+    public Connection getConnection() {
+        return conn;
     }
   
     public static DbConnection getInstance()

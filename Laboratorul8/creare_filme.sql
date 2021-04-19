@@ -25,8 +25,8 @@ CREATE TABLE genres(
 CREATE TABLE movie_genre_assoc(
   id_movie NUMBER(4) NOT NULL,
   id_genre NUMBER(4) NOT NULL,
-  CONSTRAINT fk_id_movie FOREIGN KEY (id_movie) REFERENCES movies(id_movie),
-  CONSTRAINT fk_id_genre FOREIGN KEY (id_genre) REFERENCES genres(id_genre)
+  CONSTRAINT fk_id_movie FOREIGN KEY (id_movie) REFERENCES movies(id_movie) ON DELETE CASCADE,
+  CONSTRAINT fk_id_genre FOREIGN KEY (id_genre) REFERENCES genres(id_genre) ON DELETE CASCADE
   )
 /
 

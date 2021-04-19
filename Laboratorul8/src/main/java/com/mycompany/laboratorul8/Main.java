@@ -5,8 +5,6 @@
  */
 package com.mycompany.laboratorul8;
 import java.sql.*;
-import oracle.jdbc.*;
-import oracle.jdbc.pool.OracleDataSource;
 /**
  *
  * @author Radu
@@ -16,16 +14,10 @@ public class Main  {
     
     //using the singleton
     DbConnection connection = DbConnection.getInstance();
-    connection.createConnection();
-    connection.initialiseStatement();
 
-    //get statement object
-    Statement stmt = connection.getStmt();
+    GenreDao genreDao = new GenreDaoImpl(connection);
+    genreDao.deleteGenre(new Genre(1,"Drama"));
     
-    // run a querry:
-    ResultSet rset = stmt.executeQuery ("select * from movies");
-    while (rset.next())
-      System.out.println (rset.getString("title"));
     }
    
 }

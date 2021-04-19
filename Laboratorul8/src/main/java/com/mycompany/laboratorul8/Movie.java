@@ -7,6 +7,7 @@ package com.mycompany.laboratorul8;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -29,10 +30,6 @@ public class Movie {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -66,6 +63,38 @@ public class Movie {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Movie other = (Movie) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.score != other.score) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.releaseDate, other.releaseDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.duration, other.duration)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     
 }
