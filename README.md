@@ -149,4 +149,42 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 
 <h2>Laboratorul 8</h2>
 
-<p>in progress..</p>
+<p>Organizarea codurilor sursa am facut-o astfel:</p>
+
+<ul>
+  <li>com.mycompany.laboratorul8.daoimplementations
+    <ul>
+      <li>ActorDaoImpl.java</li>
+      <li>DirectorDaoImpl.java</li>
+      <li>GenreDaoImpl.java</li>
+      <li>MovieDaoImpl.kava</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul8.daointerface
+    <ul>
+      <li>ActorDao.java</li>
+      <li>DirectorDao.java</li>
+      <li>GenreDao.java</li>
+      <li>MovieDao.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul8.domain
+    <ul>
+      <li>Actor.java</li>
+      <li>Director.java</li>
+      <li>Genre.java</li>
+      <li>Movie.java</li>
+      <li>Person.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul8.main
+    <ul>
+      <li>Main.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul8.singleton
+    <ul>
+      <li>DbConnection.java</li>
+    </ul>
+  </li>
+</ul>
