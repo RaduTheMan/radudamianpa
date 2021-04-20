@@ -188,3 +188,16 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
     </ul>
   </li>
 </ul>
+
+<p>Toate interfetele DAO au aceleasi metode, care se diferentiaza prin clasele targetate(e.g. ActorDao, DirectorDao). In general, acestea au metodele:</p>
+
+<ul>
+  <li>getAllObjects()</li>
+  <ligetObject(int id)></li>
+  <li>updateOject(Object object)</li>
+  <li>deleteObject(Object object)</li>
+</ul>
+
+<p>unde Object poate fi Actor, Director, Genre sau Movie.</p>
+
+<p>Implementarile acestor metode sunt relativ asemanatoare, fiind diferentiate de clasele targetate si de tabele.</p>
