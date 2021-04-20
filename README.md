@@ -193,7 +193,7 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 
 <ul>
   <li>getAllObjects()</li>
-  <li>getObject(int id)></li>
+  <li>getObject(int id)</li>
   <li>updateOject(Object object)</li>
   <li>deleteObject(Object object)</li>
 </ul>
