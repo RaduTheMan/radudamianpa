@@ -201,3 +201,7 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 <p>unde Object poate fi Actor, Director, Genre sau Movie.</p>
 
 <p>Implementarile acestor metode sunt relativ asemanatoare(ce se regasesc in implementarile interfetelor, de exemplu in clasele ActorDaoImpl, MovieDaoImpl), fiind diferentiate de clasele targetate si de tabele.</p>
+
+<p>In cadrul bazei de date, pentru a gestiona actorii si directorii, am creat tabelele <em>actors</em>, <em>directors</em>, <em>actor_movie_assoc</em>, <em>director_movie_assoc</em>. Scriptul sql aferent este <em>creare_filme.sql</em></p>
+
+<p>Ultimele doua tabele mentionate evidentiaza asocierile intre actori si filme, respectiv intre directori si filme.</p>
