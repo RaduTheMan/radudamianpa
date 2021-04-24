@@ -5,7 +5,7 @@
  */
 package com.mycompany.laboratorul9.daoimplementations;
 
-import com.mycompany.laboratorul9.singleton.DbConnection;
+import com.mycompany.laboratorul9.singleton.jdbc.DbConnection;
 import com.mycompany.laboratorul9.domain.Genre;
 import com.mycompany.laboratorul9.daointerface.GenreDao;
 import java.util.ArrayList;
