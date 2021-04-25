@@ -5,13 +5,15 @@
  */
 package com.mycompany.laboratorul9.entityclasses;
 
+import com.mycompany.laboratorul9.DurationConverter;
 import java.io.Serializable;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,25 +29,22 @@ import javax.persistence.TemporalType;
 @Table(name = "MOVIES")
 @NamedQueries({
     @NamedQuery(name = "Movie.findAll", query = "SELECT m FROM Movie m"),
-    @NamedQuery(name = "Movie.findByIdMovie", query = "SELECT m FROM Movie m WHERE m.idMovie = :idMovie"),
-    @NamedQuery(name = "Movie.findByTitle", query = "SELECT m FROM Movie m WHERE m.title = :title"),
+    @NamedQuery(name = "Movie.findById", query = "SELECT m FROM Movie m WHERE m.id = :id"),
+    @NamedQuery(name = "Movie.findByName", query = "SELECT m FROM Movie m WHERE m.name = :name"),
     @NamedQuery(name = "Movie.findByReleaseDate", query = "SELECT m FROM Movie m WHERE m.releaseDate = :releaseDate"),
     @NamedQuery(name = "Movie.findByDuration", query = "SELECT m FROM Movie m WHERE m.duration = :duration"),
     @NamedQuery(name = "Movie.findByScore", query = "SELECT m FROM Movie m WHERE m.score = :score")})
-public class Movie implements Serializable {
+@AttributeOverride(name = "id", column = @Column(name = "ID_MOVIE"))
+@AttributeOverride(name = "name", column = @Column(name = "TITLE"))
+public class Movie extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_MOVIE")
-    private Short idMovie;
-    @Column(name = "TITLE")
-    private String title;
     @Column(name = "RELEASE_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date releaseDate;
     @Column(name = "DURATION")
-    private Serializable duration;
+    @Convert(converter = DurationConverter.class)
+    private Duration duration;
     @Column(name = "SCORE")
     private Short score;
     @ManyToMany(mappedBy = "movieList")
@@ -59,25 +58,9 @@ public class Movie implements Serializable {
     }
 
     public Movie(Short idMovie) {
-        this.idMovie = idMovie;
+        this.id = idMovie;
     }
-
-    public Short getIdMovie() {
-        return idMovie;
-    }
-
-    public void setIdMovie(Short idMovie) {
-        this.idMovie = idMovie;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    
     public Date getReleaseDate() {
         return releaseDate;
     }
@@ -86,11 +69,11 @@ public class Movie implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    public Serializable getDuration() {
+    public Duration getDuration() {
         return duration;
     }
 
-    public void setDuration(Serializable duration) {
+    public void setDuration(Duration duration) {
         this.duration = duration;
     }
 
@@ -129,7 +112,7 @@ public class Movie implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idMovie != null ? idMovie.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -140,7 +123,7 @@ public class Movie implements Serializable {
             return false;
         }
         Movie other = (Movie) object;
-        if ((this.idMovie == null && other.idMovie != null) || (this.idMovie != null && !this.idMovie.equals(other.idMovie))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -148,7 +131,7 @@ public class Movie implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.laboratorul9.entityclasses.Movie[ idMovie=" + idMovie + " ]";
+        return "com.mycompany.laboratorul9.entityclasses.Movie[ idMovie=" + id + " ]";
     }
     
 }

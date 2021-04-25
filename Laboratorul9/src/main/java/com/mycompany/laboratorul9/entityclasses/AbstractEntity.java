@@ -5,17 +5,21 @@
  */
 package com.mycompany.laboratorul9.entityclasses;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.MappedSuperclass;
 
 /**
  *
  * @author Radu
  */
+@MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
     
+    
+    @Id
+    @Basic(optional = false)
     protected Short id;
     
     protected String name;

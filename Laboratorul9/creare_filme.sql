@@ -39,15 +39,13 @@ CREATE TABLE movie_genre_assoc(
 
 CREATE TABLE actors(
   id_actor NUMBER(4) NOT NULL PRIMARY KEY,
-  first_name VARCHAR2(15),
-  last_name VARCHAR2(15)
+  name VARCHAR2(30)
 )
 /
 
 CREATE TABLE directors(
   id_director NUMBER(4) NOT NULL PRIMARY KEY,
-  first_name VARCHAR2(15),
-  last_name VARCHAR2(15)
+  name VARCHAR2(30)
 )
 /
 
@@ -79,15 +77,15 @@ INSERT INTO movie_genre_assoc VALUES (1,2);
 INSERT INTO movie_genre_assoc VALUES (2,1);
 INSERT INTO movie_genre_assoc VALUES (3,3);
 
-INSERT INTO actors VALUES(1, 'John', 'Travolta' );
-INSERT INTO actors VALUES(2, 'Leslie', 'Nielsen' );
-INSERT INTO actors VALUES(3, 'Robert', 'Hays' );
-INSERT INTO actors VALUES(4, 'Olivia', 'Colman' );
+INSERT INTO actors VALUES(1, 'John Travolta');
+INSERT INTO actors VALUES(2, 'Leslie Nielsen');
+INSERT INTO actors VALUES(3, 'Robert Hays');
+INSERT INTO actors VALUES(4, 'Olivia Colman');
 
-INSERT INTO directors VALUES(1, 'David', 'Zucker' );
-INSERT INTO directors VALUES(2, 'Jim', 'Abrahams' );
-INSERT INTO directors VALUES(3, 'Florian', 'Zeller' );
-INSERT INTO directors VALUES(4, 'Quentin', 'Tarantino' );
+INSERT INTO directors VALUES(1, 'David Zucker');
+INSERT INTO directors VALUES(2, 'Jim Abrahams');
+INSERT INTO directors VALUES(3, 'Florian Zeller');
+INSERT INTO directors VALUES(4, 'Quentin Tarantino');
 
 INSERT INTO actor_movie_assoc VALUES(1, 3);
 INSERT INTO actor_movie_assoc VALUES(2, 1);

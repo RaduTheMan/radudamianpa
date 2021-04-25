@@ -7,10 +7,9 @@ package com.mycompany.laboratorul9.entityclasses;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -26,55 +25,24 @@ import javax.persistence.Table;
 @Table(name = "ACTORS")
 @NamedQueries({
     @NamedQuery(name = "Actor.findAll", query = "SELECT a FROM Actor a"),
-    @NamedQuery(name = "Actor.findByIdActor", query = "SELECT a FROM Actor a WHERE a.idActor = :idActor"),
-    @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
-    @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName")})
-public class Actor implements Serializable {
+    @NamedQuery(name = "Actor.findById", query = "SELECT a FROM Actor a WHERE a.id = :id"),
+    @NamedQuery(name = "Actor.findByName", query = "SELECT a FROM Actor a WHERE a.name = :name")})
+@AttributeOverride(name = "id", column = @Column(name = "ID_ACTOR"))
+@AttributeOverride(name = "name", column = @Column(name = "NAME"))
+public class Actor extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_ACTOR")
-    private Short idActor;
-    @Column(name = "FIRST_NAME")
-    private String firstName;
-    @Column(name = "LAST_NAME")
-    private String lastName;
     @JoinTable(name = "ACTOR_MOVIE_ASSOC", joinColumns = {
         @JoinColumn(name = "ID_ACTOR", referencedColumnName = "ID_ACTOR")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_MOVIE", referencedColumnName = "ID_MOVIE")})
     @ManyToMany
     private List<Movie> movieList;
-
+   
     public Actor() {
     }
 
     public Actor(Short idActor) {
-        this.idActor = idActor;
-    }
-
-    public Short getIdActor() {
-        return idActor;
-    }
-
-    public void setIdActor(Short idActor) {
-        this.idActor = idActor;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.id = idActor;
     }
 
     public List<Movie> getMovieList() {
@@ -88,7 +56,7 @@ public class Actor implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idActor != null ? idActor.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -99,7 +67,7 @@ public class Actor implements Serializable {
             return false;
         }
         Actor other = (Actor) object;
-        if ((this.idActor == null && other.idActor != null) || (this.idActor != null && !this.idActor.equals(other.idActor))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -107,7 +75,7 @@ public class Actor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.laboratorul9.entityclasses.Actor[ idActor=" + idActor + " ]";
+        return "com.mycompany.laboratorul9.entityclasses.Actor[ idActor=" + id + " ]";
     }
     
 }

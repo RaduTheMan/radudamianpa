@@ -52,5 +52,10 @@
             <version>2.7.7</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.marschall</groupId>
+            <artifactId>threeten-jpa</artifactId>
+            <version>1.12</version>
+        </dependency>
     </dependencies>
 </project>

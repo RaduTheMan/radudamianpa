@@ -6,6 +6,7 @@
     <class>com.mycompany.laboratorul9.entityclasses.Actor</class>
     <class>com.mycompany.laboratorul9.entityclasses.Director</class>
     <class>com.mycompany.laboratorul9.entityclasses.Genre</class>
+    <class>com.mycompany.laboratorul9.DurationConverter</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
       <property name="javax.persistence.jdbc.user" value="STUDENT"/>
