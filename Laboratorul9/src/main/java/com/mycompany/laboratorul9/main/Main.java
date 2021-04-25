@@ -5,11 +5,13 @@
  */
 package com.mycompany.laboratorul9.main;
 
-import com.mycompany.laboratorul9.entityclasses.Actor;
-import com.mycompany.laboratorul9.entityclasses.Director;
-import com.mycompany.laboratorul9.entityclasses.Genre;
-import com.mycompany.laboratorul9.entityclasses.Movie;
-import com.mycompany.laboratorul9.singleton.jpa.EntityManagerSingleton;
+import com.mycompany.laboratorul9.jpa.repoclasses.ActorDaoImpl;
+import com.mycompany.laboratorul9.jpa.repoclasses.MovieDaoImpl;
+import com.mycompany.laboratorul9.jpa.entityclasses.Actor;
+import com.mycompany.laboratorul9.jpa.entityclasses.Director;
+import com.mycompany.laboratorul9.jpa.entityclasses.Genre;
+import com.mycompany.laboratorul9.jpa.entityclasses.Movie;
+import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import java.sql.Date;
 import java.time.Duration;
 
@@ -23,10 +25,11 @@ public class Main {
     public static void main(String[] args) {
 
       EntityManagerSingleton ems = EntityManagerSingleton.getInstance();
-      testCreateActor(ems);
-      testCreateDirector(ems);
-      testCreateGenre(ems);
-      testCreateMovie(ems);
+//      testCreateActor(ems);
+//      testCreateDirector(ems);
+//      testCreateGenre(ems);
+//      testCreateMovie(ems);
+      testMethodsFromRepositories(ems);
       ems.closeEntityManagerFactory();
       
         
@@ -85,6 +88,25 @@ public class Main {
         ems.closeEntityManager();
         System.out.println(movie);
    
+    }
+    
+    private static void testMethodsFromRepositories(EntityManagerSingleton ems)
+    {
+        
+        MovieDaoImpl movieFacade = new MovieDaoImpl(ems, Movie.class);
+        System.out.println(movieFacade.findById(2).getName());
+        System.out.println(movieFacade.findByName("Airplane").getActorList().size());
+        
+        Movie movie = new Movie((short)15);
+        movie.setName("Avatar");
+        movie.setScore((short)7);
+        movie.setReleaseDate(Date.valueOf("1997-03-10"));
+        movie.setDuration(Duration.parse("PT1H30M"));
+        
+        ActorDaoImpl actorFacade = new ActorDaoImpl(ems, Actor.class);
+        System.out.println(actorFacade.findById(3).getName());
+        
+        movieFacade.create(movie);
     }
     
 }

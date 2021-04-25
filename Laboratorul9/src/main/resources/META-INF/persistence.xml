@@ -2,11 +2,11 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="com.mycompany_Laboratorul9_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.mycompany.laboratorul9.entityclasses.Movie</class>
-    <class>com.mycompany.laboratorul9.entityclasses.Actor</class>
-    <class>com.mycompany.laboratorul9.entityclasses.Director</class>
-    <class>com.mycompany.laboratorul9.entityclasses.Genre</class>
-    <class>com.mycompany.laboratorul9.DurationConverter</class>
+    <class>com.mycompany.laboratorul9.jpa.entityclasses.Director</class>
+    <class>com.mycompany.laboratorul9.jpa.entityclasses.Genre</class>
+    <class>com.mycompany.laboratorul9.jpa.entityclasses.Movie</class>
+    <class>com.mycompany.laboratorul9.jpa.entityclasses.Actor</class>
+    <class>com.mycompany.laboratorul9.jpa.converters.DurationConverter</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
       <property name="javax.persistence.jdbc.user" value="STUDENT"/>
