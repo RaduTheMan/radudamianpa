@@ -6,9 +6,11 @@
 package com.mycompany.laboratorul9;
 
 import com.mycompany.laboratorul9.jpa.entityclasses.Actor;
+import com.mycompany.laboratorul9.jpa.entityclasses.Director;
 import com.mycompany.laboratorul9.jpa.entityclasses.Genre;
 import com.mycompany.laboratorul9.jpa.entityclasses.Movie;
 import com.mycompany.laboratorul9.jpa.repoclasses.ActorDaoImpl;
+import com.mycompany.laboratorul9.jpa.repoclasses.DirectorDaoImpl;
 import com.mycompany.laboratorul9.jpa.repoclasses.GenreDaoImpl;
 import com.mycompany.laboratorul9.jpa.repoclasses.MovieDaoImpl;
 import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
@@ -19,11 +21,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import javax.persistence.Query;
 
 /**
@@ -48,6 +48,8 @@ public class ImportData {
                 attributes.put(columns[i], i);
             for(int i=1; i<=MAX_MOVIES; ++i)
             {
+                
+                //preluare date
                 String[] values = r.get(i);
                 String title = values[attributes.get("title")];
                 String releaseDate = values[attributes.get("date_published")];
@@ -65,6 +67,8 @@ public class ImportData {
                 if(dateComponents.length !=3)
                     releaseDate = year + "-01-01";
                 
+                //creare si adaugare film
+                title = title.strip();
                 Movie movie = new Movie();
                 MovieDaoImpl movieFacade = new MovieDaoImpl(ems,Movie.class);
                 movie.setId(ems);
@@ -74,15 +78,21 @@ public class ImportData {
                 movie.setDuration(Duration.ofMinutes(Long.parseLong(duration)));
                 movieFacade.create(movie);
                 
+                //adaugare actori(maxim 5 per film)
                 String[] actorsListStr = actors.split(",");
                 ActorDaoImpl actorFacade = new ActorDaoImpl(ems, Actor.class);
                 int cntr = 0;
                 for(String actorStr : actorsListStr)
                 {
-                    Actor actor =  new Actor();
-                    actor.setId(ems);
-                    actor.setName(actorStr);
-                    actorFacade.create(actor);
+                    actorStr = actorStr.strip();
+                    Actor actor = actorFacade.findByName(actorStr);
+                    if(actor == null)
+                    {
+                        actor =  new Actor();
+                        actor.setId(ems);
+                        actor.setName(actorStr);
+                        actorFacade.create(actor);
+                    }
                     ems.createEntityManager();
                     ems.getEntityManager().getTransaction().begin();
                     Query q = ems.getEntityManager().createNativeQuery("INSERT INTO actor_movie_assoc VALUES(?, ?)");
@@ -96,6 +106,7 @@ public class ImportData {
                         break;
                 }
                 
+                //adaugare genuri
                 String[] genresListStr = genres.split(",");
                 GenreDaoImpl genreFacade = new GenreDaoImpl(ems,Genre.class);
                 for(String genreStr : genresListStr)
@@ -119,9 +130,32 @@ public class ImportData {
                     ems.closeEntityManager();
                 }
                 
+                //adaugare directori
+                String[] directorsListStr = directors.split(",");
+                DirectorDaoImpl directorFacade = new DirectorDaoImpl(ems, Director.class);
+                for(String directorStr : directorsListStr)
+                {
+                    directorStr = directorStr.strip();
+                    Director director = directorFacade.findByName(directorStr);
+                    if(director == null)
+                    {
+                        director = new Director();
+                        director.setId(ems);
+                        director.setName(directorStr);
+                        directorFacade.create(director);
+                    }
+                    ems.createEntityManager();
+                    ems.getEntityManager().getTransaction().begin();
+                    Query q = ems.getEntityManager().createNativeQuery("INSERT INTO director_movie_assoc VALUES(?, ?)");
+                    q.setParameter(1, director.getId());
+                    q.setParameter(2, movie.getId());
+                    q.executeUpdate();
+                    ems.getEntityManager().getTransaction().commit();
+                    ems.closeEntityManager();
+                }
+                
                 
             }
-//            r.forEach(x -> System.out.println(Arrays.toString(x)));
         } catch (FileNotFoundException ex ) {
             System.out.println(ex);
         } catch (IOException | CsvException ex) {
