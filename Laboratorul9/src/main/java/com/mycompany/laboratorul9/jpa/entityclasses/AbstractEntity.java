@@ -5,10 +5,12 @@
  */
 package com.mycompany.laboratorul9.jpa.entityclasses;
 
+import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import javax.persistence.Id;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,15 +22,15 @@ public abstract class AbstractEntity implements Serializable {
     
     @Id
     @Basic(optional = false)
-    protected Short id;
+    protected Long id;
     
     protected String name;
-
-    public short getId() {
+    
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

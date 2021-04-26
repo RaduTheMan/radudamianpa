@@ -5,18 +5,21 @@
  */
 package com.mycompany.laboratorul9.jpa.entityclasses;
 
+import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.AttributeOverride;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -31,6 +34,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Genre.findByName", query = "SELECT g FROM Genre g WHERE g.name = :name")})
 @AttributeOverride(name = "id", column = @Column(name = "ID_GENRE"))
 @AttributeOverride(name = "name", column = @Column(name = "NAME"))
+@SequenceGenerator(name = "some_generator", sequenceName = "genre_seq", allocationSize = 1)
 public class Genre extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,10 +44,19 @@ public class Genre extends AbstractEntity implements Serializable {
     @ManyToMany
     private List<Movie> movieList;
 
-    public Genre() {
+    public Genre() {     
+    }
+    
+    public void setId(EntityManagerSingleton ems)
+    {
+        ems.createEntityManager();
+        Query q = ems.getEntityManager().createNativeQuery("SELECT genre_seq.NEXTVAL FROM dual");
+        long solution = ((BigDecimal) q.getSingleResult()).longValue();
+        this.id = solution;
+        ems.closeEntityManager();
     }
 
-    public Genre(Short idGenre) {
+    public Genre(Long idGenre) {
         this.id = idGenre;
     }
 

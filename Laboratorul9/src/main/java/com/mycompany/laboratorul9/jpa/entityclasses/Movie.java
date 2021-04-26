@@ -6,7 +6,10 @@
 package com.mycompany.laboratorul9.jpa.entityclasses;
 
 import com.mycompany.laboratorul9.jpa.converters.DurationConverter;
+import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +23,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,9 +65,19 @@ public class Movie extends AbstractEntity implements Serializable {
 //    private Set<Charts> chartsSet;
 
     public Movie() {
+        
+    }
+    
+    public void setId(EntityManagerSingleton ems)
+    {
+        ems.createEntityManager();
+        Query q = ems.getEntityManager().createNativeQuery("SELECT movie_seq.NEXTVAL FROM dual");
+        long solution = ((BigDecimal) q.getSingleResult()).longValue();
+        this.id = solution;
+        ems.closeEntityManager();
     }
 
-    public Movie(Short idMovie) {
+    public Movie(Long idMovie) {
         this.id = idMovie;
     }
     

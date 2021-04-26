@@ -7,6 +7,7 @@ package com.mycompany.laboratorul9.jpa.repoclasses;
 
 import com.mycompany.laboratorul9.jpa.entityclasses.AbstractEntity;
 import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -43,8 +44,17 @@ public abstract class AbstractRepository<T extends AbstractEntity> {
         ems.createEntityManager();;
         Query q = ems.getEntityManager().createNamedQuery(entityName + ".findByName");
         q.setParameter("name", name);
-        T solution = (T) q.getSingleResult();
-        ems.closeEntityManager();
+        T solution;
+        try {
+        solution = (T) q.getSingleResult(); 
+        }
+        catch (NoResultException ex)
+        {
+            return null;
+        }
+        finally{
+         ems.closeEntityManager();
+        }
         return solution;
     }
     

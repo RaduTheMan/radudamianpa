@@ -5,6 +5,7 @@
  */
 package com.mycompany.laboratorul9.main;
 
+import com.mycompany.laboratorul9.ImportData;
 import com.mycompany.laboratorul9.jpa.repoclasses.ActorDaoImpl;
 import com.mycompany.laboratorul9.jpa.repoclasses.MovieDaoImpl;
 import com.mycompany.laboratorul9.jpa.entityclasses.Actor;
@@ -27,12 +28,13 @@ public class Main {
     public static void main(String[] args) {
 
       EntityManagerSingleton ems = EntityManagerSingleton.getInstance();
-//      testCreateActor(ems);
+      //testCreateActor(ems);
 //      testCreateDirector(ems);
 //      testCreateGenre(ems);
 //      testCreateMovie(ems);
 //      testCreateChart(ems);
-      testMethodsFromRepositories(ems);
+//      testMethodsFromRepositories(ems);
+      testImportData(ems);
       ems.closeEntityManagerFactory();
       
         
@@ -40,22 +42,21 @@ public class Main {
     
     private static void testCreateActor(EntityManagerSingleton ems)
     {
+      Actor actor = new Actor();
+      actor.setId(ems);
+      actor.setName("Radu Damian");
+      System.out.println(actor);
       ems.createEntityManager();
       ems.getEntityManager().getTransaction().begin();
-      Actor actor = new Actor();
-      actor.setId((short)20);
-      actor.setName("Radu Damian");
       ems.getEntityManager().persist(actor);
       ems.getEntityManager().getTransaction().commit();
-      ems.closeEntityManager();
-      System.out.println(actor);
     }
     
     private static void testCreateDirector(EntityManagerSingleton ems)
     {
       ems.createEntityManager();
       ems.getEntityManager().getTransaction().begin();
-      Director director = new Director((short)20);
+      Director director = new Director((long)20);
       director.setName("Ion Ion");
       ems.getEntityManager().persist(director);
       ems.getEntityManager().getTransaction().commit();
@@ -68,7 +69,7 @@ public class Main {
     {
         ems.createEntityManager();
         ems.getEntityManager().getTransaction().begin();
-        Genre genre = new Genre((short)17);
+        Genre genre = new Genre((long)17);
         genre.setName("Aventura");
         ems.getEntityManager().persist(genre);
         ems.getEntityManager().getTransaction().commit();
@@ -81,7 +82,7 @@ public class Main {
     {
         ems.createEntityManager();
         ems.getEntityManager().getTransaction().begin();
-        Movie movie = new Movie((short)15);
+        Movie movie = new Movie((long)15);
         movie.setName("Avatar");
         movie.setScore((short)7);
         movie.setReleaseDate(Date.valueOf("1997-03-10"));
@@ -97,7 +98,7 @@ public class Main {
     {
         ems.createEntityManager();
         ems.getEntityManager().getTransaction().begin();
-        Chart chart = new Chart((short)7);
+        Chart chart = new Chart((long)7);
         chart.setName("underrated movies");
         chart.setCreationDate(Date.valueOf("2012-03-12"));
         ems.getEntityManager().persist(chart);
@@ -131,6 +132,11 @@ public class Main {
             System.out.println(movie1.getName() + " " + movie1.getScore());
         }
         System.out.println(chartFacade.findById(1).getName());
+    }
+    
+    private static void testImportData(EntityManagerSingleton ems)
+    {
+        ImportData tool = new ImportData(ems);
     }
     
 }

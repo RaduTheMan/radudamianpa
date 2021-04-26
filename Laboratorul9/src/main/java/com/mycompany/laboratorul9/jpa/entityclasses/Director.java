@@ -5,7 +5,10 @@
  */
 package com.mycompany.laboratorul9.jpa.entityclasses;
 
+import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -15,6 +18,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -38,10 +43,19 @@ public class Director extends AbstractEntity implements Serializable {
     @ManyToMany
     private List<Movie> movieList;
 
-    public Director() {
+    public Director() {   
+    }
+    
+    public void setId(EntityManagerSingleton ems)
+    {
+        ems.createEntityManager();
+        Query q = ems.getEntityManager().createNativeQuery("SELECT director_seq.NEXTVAL FROM dual");
+        long solution = ((BigDecimal) q.getSingleResult()).longValue();
+        this.id = solution;
+        ems.closeEntityManager();
     }
 
-    public Director(Short idDirector) {
+    public Director(Long idDirector) {
         this.id = idDirector;
     }
 

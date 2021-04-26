@@ -5,7 +5,10 @@
  */
 package com.mycompany.laboratorul9.jpa.entityclasses;
 
+import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,6 +24,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OrderBy;
+import javax.persistence.Query;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,8 +58,17 @@ public class Chart extends AbstractEntity implements Serializable {
 
     public Chart() {
     }
+    
+    public void setId(EntityManagerSingleton ems)
+    {
+        ems.createEntityManager();
+        Query q = ems.getEntityManager().createNativeQuery("SELECT chart_seq.NEXTVAL FROM dual");
+        long solution = ((BigDecimal) q.getSingleResult()).longValue();
+        this.id = solution;
+        ems.closeEntityManager();
+    }
 
-    public Chart(Short idChart) {
+    public Chart(Long idChart) {
         this.id = idChart;
     }
 

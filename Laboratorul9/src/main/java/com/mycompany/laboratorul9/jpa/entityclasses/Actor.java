@@ -5,7 +5,10 @@
  */
 package com.mycompany.laboratorul9.jpa.entityclasses;
 
+import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -15,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 /**
@@ -40,8 +44,17 @@ public class Actor extends AbstractEntity implements Serializable {
    
     public Actor() {
     }
+    
+    public void setId(EntityManagerSingleton ems)
+    {
+        ems.createEntityManager();
+        Query q = ems.getEntityManager().createNativeQuery("SELECT actor_seq.NEXTVAL FROM dual");
+        long solution = ((BigDecimal) q.getSingleResult()).longValue();
+        this.id = solution;
+        ems.closeEntityManager();
+    }
 
-    public Actor(Short idActor) {
+    public Actor(Long idActor) {
         this.id = idActor;
     }
 
@@ -52,7 +65,7 @@ public class Actor extends AbstractEntity implements Serializable {
     public void setMovieList(List<Movie> movieList) {
         this.movieList = movieList;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
