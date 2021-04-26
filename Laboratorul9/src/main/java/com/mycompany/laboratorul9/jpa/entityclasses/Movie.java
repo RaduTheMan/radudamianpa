@@ -10,10 +10,13 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.AttributeOverride;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -53,6 +56,8 @@ public class Movie extends AbstractEntity implements Serializable {
     private List<Actor> actorList;
     @ManyToMany(mappedBy = "movieList")
     private List<Genre> genreList;
+//    @ManyToMany(mappedBy = "movieSet")
+//    private Set<Charts> chartsSet;
 
     public Movie() {
     }
@@ -68,7 +73,7 @@ public class Movie extends AbstractEntity implements Serializable {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
-
+    
     public Duration getDuration() {
         return duration;
     }
@@ -76,6 +81,7 @@ public class Movie extends AbstractEntity implements Serializable {
     public void setDuration(Duration duration) {
         this.duration = duration;
     }
+
 
     public Short getScore() {
         return score;
@@ -108,6 +114,14 @@ public class Movie extends AbstractEntity implements Serializable {
     public void setGenreList(List<Genre> genreList) {
         this.genreList = genreList;
     }
+//     public Set<Charts> getChartsSet() {
+//        return chartsSet;
+//    }
+//
+//    public void setChartsSet(Set<Charts> chartsSet) {
+//        this.chartsSet = chartsSet;
+//    }
+    
 
     @Override
     public int hashCode() {
@@ -133,5 +147,9 @@ public class Movie extends AbstractEntity implements Serializable {
     public String toString() {
         return "com.mycompany.laboratorul9.entityclasses.Movie[ idMovie=" + id + " ]";
     }
+
+
+   
+
     
 }

@@ -7,6 +7,7 @@
     <class>com.mycompany.laboratorul9.jpa.entityclasses.Movie</class>
     <class>com.mycompany.laboratorul9.jpa.entityclasses.Actor</class>
     <class>com.mycompany.laboratorul9.jpa.converters.DurationConverter</class>
+    <class>com.mycompany.laboratorul9.jpa.entityclasses.Chart</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
       <property name="javax.persistence.jdbc.user" value="STUDENT"/>
