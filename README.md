@@ -208,7 +208,7 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 
 <h2>Laboratorul 9</h2>
 
-Organizarea codurilor sursa am facut-o in felul urmator(sunt incluse si cele de la laboratorul anterior):
+<p>Organizarea codurilor sursa am facut-o in felul urmator(sunt incluse si cele de la laboratorul anterior):</p>
 <ul>
   <li>com.mycompany.laboratorul9.jdbc.daoimplementations
     <ul>
@@ -289,3 +289,17 @@ Organizarea codurilor sursa am facut-o in felul urmator(sunt incluse si cele de 
     </ul>
   </li>
 </ul>
+
+<p>Pentru rezolvarea partii de <strong>optional</strong>, suportul pentru <strong>chart-uri</strong> se regaseste prin identificarea entitatii <em>Chart</em> si a clasei
+  DAO aferente <em>ChartDaoImpl</em>(aceasta din urma reprezinta o extindere a clasei abstracte generice <em>AbstractRepository</em>). Pentru a asigura faptul ca
+  filmele sunt ordonate(in functie de scor), am pus urmatoarea adnotare in cadrul clasei <em>Chart</em> corespunzatoare campului <em>private List&lt;Movie&gt; movieList</em> : @OrderBy("score DESC"). </p>
+  
+<p>Pentru a crea clasa abstracta <strong>AbstractRepository</strong>, am creat initial clasa abstracta <em>AbstractEntity</em> care contine campurile comune fiecarei entitati(id si nume), iar entitatile aferente tabelelor din baza de date vor extinde aceasta clasa abstracta cu campurile si functionalitatile lor specifice.</p>
+
+<p>Clasa abstracta <em>AbstractRepository</em> contine in mod generic implementarile metodelor <em>findById(int id)</em>, <em>findByName(String name)</em> si <em>create(T entity)</em>, iar fiecare clasa repository ce extinde aceasta clasa abstracta va prelua implicit metodele mentionate anterior.</p>
+
+<p>Pentru rezolvarea partii de <strong>bonus</strong>, clasele aferente se gasesc in pachetul <em>com.mycompany.laboratorul9.problem</em>. Doua filme sunt considerate "inrudite"(adiacente) daca au cel putin un regizor in comun. Pentru a rezolva problema, am implementat un algoritm <em>Greedy</em> care verifica pentru fiecare muchie din graf(o muchie este reprezentata de un <em>Pair</em>) daca poate fi adaugat in cuplajul curent.</p>
+
+<p>Pentru a testa problema pe input-uri relativ mari, am importat 30 000 de filme din dataset-ul mentionat mai sus si le-am introdus in baza de date, impreuna cu actorii(maxim 5 per film), genurile si regizorii aferenti(si bineinteles, asocierile dintre acestea).</p>
+
+
