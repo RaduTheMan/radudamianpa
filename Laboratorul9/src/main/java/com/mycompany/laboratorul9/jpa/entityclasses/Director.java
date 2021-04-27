@@ -43,11 +43,10 @@ public class Director extends AbstractEntity implements Serializable {
     @ManyToMany
     private List<Movie> movieList;
 
-    public Director() {   
+    public Director() {
     }
-    
-    public void setId(EntityManagerSingleton ems)
-    {
+
+    public void setId(EntityManagerSingleton ems) {
         ems.createEntityManager();
         Query q = ems.getEntityManager().createNativeQuery("SELECT director_seq.NEXTVAL FROM dual");
         long solution = ((BigDecimal) q.getSingleResult()).longValue();
@@ -91,5 +90,5 @@ public class Director extends AbstractEntity implements Serializable {
     public String toString() {
         return this.name;
     }
-    
+
 }

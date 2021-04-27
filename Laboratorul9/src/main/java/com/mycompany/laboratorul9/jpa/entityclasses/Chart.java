@@ -58,9 +58,8 @@ public class Chart extends AbstractEntity implements Serializable {
 
     public Chart() {
     }
-    
-    public void setId(EntityManagerSingleton ems)
-    {
+
+    public void setId(EntityManagerSingleton ems) {
         ems.createEntityManager();
         Query q = ems.getEntityManager().createNativeQuery("SELECT chart_seq.NEXTVAL FROM dual");
         long solution = ((BigDecimal) q.getSingleResult()).longValue();
@@ -112,5 +111,5 @@ public class Chart extends AbstractEntity implements Serializable {
     public String toString() {
         return "com.mycompany.laboratorul9.jpa.entityclasses.Charts[ idChart=" + id + " ]";
     }
-    
+
 }

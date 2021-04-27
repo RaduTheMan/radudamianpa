@@ -41,12 +41,11 @@ public class Actor extends AbstractEntity implements Serializable {
         @JoinColumn(name = "ID_MOVIE", referencedColumnName = "ID_MOVIE")})
     @ManyToMany
     private List<Movie> movieList;
-   
+
     public Actor() {
     }
-    
-    public void setId(EntityManagerSingleton ems)
-    {
+
+    public void setId(EntityManagerSingleton ems) {
         ems.createEntityManager();
         Query q = ems.getEntityManager().createNativeQuery("SELECT actor_seq.NEXTVAL FROM dual");
         long solution = ((BigDecimal) q.getSingleResult()).longValue();
@@ -65,7 +64,7 @@ public class Actor extends AbstractEntity implements Serializable {
     public void setMovieList(List<Movie> movieList) {
         this.movieList = movieList;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -90,5 +89,5 @@ public class Actor extends AbstractEntity implements Serializable {
     public String toString() {
         return "com.mycompany.laboratorul9.entityclasses.Actor[ idActor=" + id + " ]";
     }
-    
+
 }

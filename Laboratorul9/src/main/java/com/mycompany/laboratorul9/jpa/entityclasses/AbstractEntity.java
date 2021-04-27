@@ -18,14 +18,13 @@ import javax.persistence.Query;
  */
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
-    
-    
+
     @Id
     @Basic(optional = false)
     protected Long id;
-    
+
     protected String name;
-    
+
     public Long getId() {
         return id;
     }
@@ -41,7 +40,5 @@ public abstract class AbstractEntity implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    
+
 }

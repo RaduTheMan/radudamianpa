@@ -44,11 +44,10 @@ public class Genre extends AbstractEntity implements Serializable {
     @ManyToMany
     private List<Movie> movieList;
 
-    public Genre() {     
+    public Genre() {
     }
-    
-    public void setId(EntityManagerSingleton ems)
-    {
+
+    public void setId(EntityManagerSingleton ems) {
         ems.createEntityManager();
         Query q = ems.getEntityManager().createNativeQuery("SELECT genre_seq.NEXTVAL FROM dual");
         long solution = ((BigDecimal) q.getSingleResult()).longValue();
@@ -92,5 +91,5 @@ public class Genre extends AbstractEntity implements Serializable {
     public String toString() {
         return "com.mycompany.laboratorul9.entityclasses.Genre[ idGenre=" + id + " ]";
     }
-    
+
 }
