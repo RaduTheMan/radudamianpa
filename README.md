@@ -205,3 +205,87 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 <p>In cadrul bazei de date, pentru a gestiona actorii si directorii, am creat tabelele <em>actors</em>, <em>directors</em>, <em>actor_movie_assoc</em>, <em>director_movie_assoc</em>. Scriptul sql aferent este <em>creare_filme.sql</em></p>
 
 <p>Ultimele doua tabele mentionate evidentiaza asocierile intre actori si filme, respectiv intre directori si filme.</p>
+
+<h2>Laboratorul 9</h2>
+
+Organizarea codurilor sursa am facut-o in felul urmator(sunt incluse si cele de la laboratorul anterior):
+<ul>
+  <li>com.mycompany.laboratorul9.jdbc.daoimplementations
+    <ul>
+      <li>ActorDaoImpl.java</li>
+      <li>DirectorDaoImpl.java</li> 
+      <li>GenreDaoImpl.java</li> 
+      <li>MovieDaoImpl.java</li> 
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.jdbc.daointerface
+    <ul>
+      <li>ActorDao.java</li>  
+      <li>DirectorDao.java</li> 
+      <li>GenreDao.java</li> 
+      <li>MovieDao.java</li> 
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.jdbc.domain
+    <ul>
+      <li>Actor.java</li>
+      <li>Director.java</li>
+      <li>Genre.java</li>
+      <li>Movie.java</li>
+      <li>Person.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.jdbc.singleton
+    <ul>
+      <li>DbConnection.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.jpa.converters
+     <ul>
+       <li>DurationConverter.java //converter folosit pentru a converti tipul de date Duration in tipul de date INTERVAL DAY TO SECOND</li>
+     </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.jpa.entityclasses
+    <ul>
+      <li>AbstractEntity.java</li>
+      <li>Actor.java</li>
+      <li>Chart.java</li>
+      <li>Director.java</li>
+      <li>Genre.java</li>
+      <li>Movie.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.jpa.repoclasses
+    <ul>
+      <li>AbstractRepository.java</li>
+      <li>ActorDaoImpl.java</li>
+      <li>ChartDaoImpl.java</li>
+      <li>DirectorDaoImpl.java</li>
+      <li>GenreDaoImpl.java</li>
+      <li>MovieDaoImpl.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.jpa.singleton
+    <ul>
+      <li>EntityManagerSingleton.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.main
+    <ul>
+      <li>Main.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.problem
+    <ul>
+      <li>Algorithm.java</li>
+      <li>GreedyAlgorithm.java</li>
+      <li>Pair.java</li>
+      <li>Solution.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.laboratorul9.tools
+    <ul>
+      <li>ImportData.java //tool folosit pentru a importa date din dataset-ul de filme IMDb de pe <a href="https://www.kaggle.com/stefanoleone992/imdb-extensive-dataset">kaggle</a></li>
+    </ul>
+  </li>
+</ul>
