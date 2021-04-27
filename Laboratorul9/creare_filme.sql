@@ -29,7 +29,7 @@ DROP SEQUENCE chart_seq
 
 
 CREATE TABLE movies(
-  id_movie NUMBER(5) NOT NULL PRIMARY KEY,
+  id_movie NUMBER(8) NOT NULL PRIMARY KEY,
   title VARCHAR2(200),
   release_date DATE,
   duration INTERVAL DAY TO SECOND,
@@ -39,57 +39,57 @@ CREATE TABLE movies(
 
 
 CREATE TABLE genres(
-  id_genre NUMBER(5) NOT NULL PRIMARY KEY,
+  id_genre NUMBER(8) NOT NULL PRIMARY KEY,
   name VARCHAR2(15)
   )
 /
 
 CREATE TABLE movie_genre_assoc(
-  id_movie NUMBER(5) NOT NULL,
-  id_genre NUMBER(5) NOT NULL,
+  id_movie NUMBER(8) NOT NULL,
+  id_genre NUMBER(8) NOT NULL,
   CONSTRAINT fk_id_movie FOREIGN KEY (id_movie) REFERENCES movies(id_movie) ON DELETE CASCADE,
   CONSTRAINT fk_id_genre FOREIGN KEY (id_genre) REFERENCES genres(id_genre) ON DELETE CASCADE
   )
 /
 
 CREATE TABLE actors(
-  id_actor NUMBER(5) NOT NULL PRIMARY KEY,
+  id_actor NUMBER(8) NOT NULL PRIMARY KEY,
   name VARCHAR2(100)
 )
 /
 
 CREATE TABLE directors(
-  id_director NUMBER(5) NOT NULL PRIMARY KEY,
+  id_director NUMBER(8) NOT NULL PRIMARY KEY,
   name VARCHAR2(100)
 )
 /
 
 CREATE TABLE charts(
-  id_chart NUMBER(5) NOT NULL PRIMARY KEY,
+  id_chart NUMBER(8) NOT NULL PRIMARY KEY,
   name VARCHAR2(30),
   creation_date DATE
 )
 /
 
 CREATE TABLE chart_movie_assoc(
-  id_chart NUMBER(5) NOT NULL, 
-  id_movie NUMBER(5) NOT NULL,
+  id_chart NUMBER(8) NOT NULL, 
+  id_movie NUMBER(8) NOT NULL,
   CONSTRAINT fk_id_chart FOREIGN KEY (id_chart) REFERENCES charts(id_chart) ON DELETE CASCADE,
   CONSTRAINT fk_id_movie4 FOREIGN KEY (id_movie) REFERENCES movies(id_movie) ON DELETE CASCADE
   )
 /
 
 CREATE TABLE actor_movie_assoc(
-  id_actor NUMBER(5) NOT NULL,
-  id_movie NUMBER(5) NOT NULL,
+  id_actor NUMBER(8) NOT NULL,
+  id_movie NUMBER(8) NOT NULL,
   CONSTRAINT fk_id_actor FOREIGN KEY (id_actor) REFERENCES actors(id_actor) ON DELETE CASCADE,
   CONSTRAINT fk_id_movie2 FOREIGN KEY (id_movie) REFERENCES movies(id_movie) ON DELETE CASCADE
 )
 /
 
 CREATE TABLE director_movie_assoc(
-  id_director NUMBER(5) NOT NULL,
-  id_movie NUMBER(5) NOT NULL,
+  id_director NUMBER(8) NOT NULL,
+  id_movie NUMBER(8) NOT NULL,
   CONSTRAINT fk_id_director FOREIGN KEY (id_director) REFERENCES directors(id_director) ON DELETE CASCADE,
   CONSTRAINT fk_id_movie3 FOREIGN KEY (id_movie) REFERENCES movies(id_movie) ON DELETE CASCADE
 )
