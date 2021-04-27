@@ -89,7 +89,7 @@ public class Director extends AbstractEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.laboratorul9.entityclasses.Director[ idDirector=" + id + " ]";
+        return this.name;
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package com.mycompany.laboratorul9.main;
 
+import com.mycompany.laboratorul9.Algorithm;
+import com.mycompany.laboratorul9.GreedyAlgorithm;
 import com.mycompany.laboratorul9.ImportData;
 import com.mycompany.laboratorul9.jpa.repoclasses.ActorDaoImpl;
 import com.mycompany.laboratorul9.jpa.repoclasses.MovieDaoImpl;
@@ -17,6 +19,8 @@ import com.mycompany.laboratorul9.jpa.repoclasses.ChartDaoImpl;
 import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 import java.sql.Date;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -34,10 +38,26 @@ public class Main {
 //      testCreateMovie(ems);
 //      testCreateChart(ems);
 //      testMethodsFromRepositories(ems);
-      testImportData(ems);
+//      testImportData(ems);
+      var input = getFirst_n_Movies(28000, ems);
+      Algorithm algorithm = new GreedyAlgorithm(input);
+      var solution = algorithm.solve();
+      System.out.println(solution);
       ems.closeEntityManagerFactory();
       
         
+    }
+    
+    private static List<Movie> getFirst_n_Movies(int n, EntityManagerSingleton ems )
+    {
+        MovieDaoImpl movieFacade = new MovieDaoImpl(ems, Movie.class);
+        List<Movie> solution = new ArrayList<>();
+        for(int i=1; i<=n; ++i)
+        {
+            Movie movie = movieFacade.findById(i);
+            solution.add(movie);
+        }
+        return solution;
     }
     
     private static void testCreateActor(EntityManagerSingleton ems)
