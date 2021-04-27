@@ -13,9 +13,9 @@ import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
  * @author Radu
  */
 public class GenreDaoImpl extends AbstractRepository<Genre> {
-    
+
     public GenreDaoImpl(EntityManagerSingleton ems, Class<Genre> entityClass) {
         super(ems, entityClass);
     }
-    
+
 }

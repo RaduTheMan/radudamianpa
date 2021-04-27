@@ -8,15 +8,13 @@ package com.mycompany.laboratorul9.jpa.repoclasses;
 import com.mycompany.laboratorul9.jpa.entityclasses.Actor;
 import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
 
-
-
 /**
  *
  * @author Radu
  */
-public class ActorDaoImpl extends AbstractRepository<Actor>  {
+public class ActorDaoImpl extends AbstractRepository<Actor> {
 
     public ActorDaoImpl(EntityManagerSingleton ems, Class<Actor> entityClass) {
         super(ems, entityClass);
-    } 
+    }
 }

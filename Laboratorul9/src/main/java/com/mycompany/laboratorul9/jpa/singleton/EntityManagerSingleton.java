@@ -14,42 +14,37 @@ import javax.persistence.Persistence;
  * @author Radu
  */
 public class EntityManagerSingleton {
-    
+
     private static EntityManagerSingleton instance = null;
     private EntityManagerFactory emf;
     private EntityManager em;
-    
-    private EntityManagerSingleton()
-    {
+
+    private EntityManagerSingleton() {
         emf = Persistence.createEntityManagerFactory("com.mycompany_Laboratorul9_jar_1.0-SNAPSHOTPU");
     }
-    
-    public void createEntityManager()
-    {
+
+    public void createEntityManager() {
         em = emf.createEntityManager();
     }
 
     public EntityManager getEntityManager() {
         return em;
     }
-    
-    public void closeEntityManager()
-    {
+
+    public void closeEntityManager() {
         em.close();
     }
-    
-    public void closeEntityManagerFactory()
-    {
+
+    public void closeEntityManagerFactory() {
         emf.close();
     }
-    
-    public static EntityManagerSingleton getInstance()
-    {
-        if(instance == null)
+
+    public static EntityManagerSingleton getInstance() {
+        if (instance == null) {
             instance = new EntityManagerSingleton();
-        
+        }
+
         return instance;
     }
-    
-    
+
 }

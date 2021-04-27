@@ -13,9 +13,9 @@ import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
  * @author Radu
  */
 public class ChartDaoImpl extends AbstractRepository<Chart> {
-    
+
     public ChartDaoImpl(EntityManagerSingleton ems, Class<Chart> entityClass) {
         super(ems, entityClass);
     }
-    
+
 }

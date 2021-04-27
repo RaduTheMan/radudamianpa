@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul9;
+package com.mycompany.laboratorul9.problem;
 
 import com.mycompany.laboratorul9.jpa.entityclasses.Director;
 import com.mycompany.laboratorul9.jpa.entityclasses.Movie;
@@ -16,6 +16,7 @@ import java.util.Set;
  * @author Radu
  */
 public class Pair {
+
     private Movie firstMovie;
     private Movie secondMovie;
 
@@ -23,10 +24,9 @@ public class Pair {
         this.firstMovie = firstMovie;
         this.secondMovie = secondMovie;
     }
-    
-    public Pair()
-    {
-        
+
+    public Pair() {
+
     }
 
     public Movie getFirstMovie() {
@@ -54,8 +54,5 @@ public class Pair {
         firstDirectorSet.retainAll(secondDirectorSet);
         return "Movies: (" + firstMovie.getName() + ", " + secondMovie.getName() + ") Director(s):" + firstDirectorSet + '\n';
     }
-    
-    
-    
-    
+
 }

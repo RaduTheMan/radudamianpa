@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboratorul9;
+package com.mycompany.laboratorul9.tools;
 
 import com.mycompany.laboratorul9.jpa.entityclasses.Actor;
 import com.mycompany.laboratorul9.jpa.entityclasses.Director;
@@ -35,7 +35,6 @@ public class ImportData {
     String moviesFile = "e:/imdb_dataset/IMDb movies.csv";
     final int MAX_MOVIES = 30000;
     final int MAX_ACTORS_PER_MOVIE = 5;
-    
 
     public ImportData(EntityManagerSingleton ems) {
 
@@ -44,11 +43,11 @@ public class ImportData {
             List<String[]> r = reader.readAll();
             String[] columns = r.get(0);
             Map<String, Integer> attributes = new HashMap<>();
-            for(int i=0; i< columns.length; ++i)
+            for (int i = 0; i < columns.length; ++i) {
                 attributes.put(columns[i], i);
-            for(int i=1; i<=MAX_MOVIES; ++i)
-            {
-                
+            }
+            for (int i = 1; i <= MAX_MOVIES; ++i) {
+
                 //preluare date
                 String[] values = r.get(i);
                 String title = values[attributes.get("title")];
@@ -59,36 +58,34 @@ public class ImportData {
                 String directors = values[attributes.get("director")];
                 String genres = values[attributes.get("genre")];
                 String year = values[attributes.get("year")];
-               
-                
+
                 float scoreFloat = Float.parseFloat(score);
-                short scoreShort = (short)Math.round(scoreFloat);
+                short scoreShort = (short) Math.round(scoreFloat);
                 String[] dateComponents = releaseDate.split("-");
-                if(dateComponents.length !=3)
+                if (dateComponents.length != 3) {
                     releaseDate = year + "-01-01";
-                
+                }
+
                 //creare si adaugare film
                 title = title.strip();
                 Movie movie = new Movie();
-                MovieDaoImpl movieFacade = new MovieDaoImpl(ems,Movie.class);
+                MovieDaoImpl movieFacade = new MovieDaoImpl(ems, Movie.class);
                 movie.setId(ems);
                 movie.setName(title);
                 movie.setReleaseDate(Date.valueOf(releaseDate));
                 movie.setScore(scoreShort);
                 movie.setDuration(Duration.ofMinutes(Long.parseLong(duration)));
                 movieFacade.create(movie);
-                
+
                 //adaugare actori(maxim 5 per film)
                 String[] actorsListStr = actors.split(",");
                 ActorDaoImpl actorFacade = new ActorDaoImpl(ems, Actor.class);
                 int cntr = 0;
-                for(String actorStr : actorsListStr)
-                {
+                for (String actorStr : actorsListStr) {
                     actorStr = actorStr.strip();
                     Actor actor = actorFacade.findByName(actorStr);
-                    if(actor == null)
-                    {
-                        actor =  new Actor();
+                    if (actor == null) {
+                        actor = new Actor();
                         actor.setId(ems);
                         actor.setName(actorStr);
                         actorFacade.create(actor);
@@ -102,19 +99,18 @@ public class ImportData {
                     ems.getEntityManager().getTransaction().commit();
                     ems.closeEntityManager();
                     cntr++;
-                    if(cntr > this.MAX_ACTORS_PER_MOVIE)
+                    if (cntr > this.MAX_ACTORS_PER_MOVIE) {
                         break;
+                    }
                 }
-                
+
                 //adaugare genuri
                 String[] genresListStr = genres.split(",");
-                GenreDaoImpl genreFacade = new GenreDaoImpl(ems,Genre.class);
-                for(String genreStr : genresListStr)
-                {
+                GenreDaoImpl genreFacade = new GenreDaoImpl(ems, Genre.class);
+                for (String genreStr : genresListStr) {
                     genreStr = genreStr.strip();
                     Genre genre = genreFacade.findByName(genreStr);
-                    if(genre == null)
-                    {
+                    if (genre == null) {
                         genre = new Genre();
                         genre.setId(ems);
                         genre.setName(genreStr);
@@ -129,16 +125,14 @@ public class ImportData {
                     ems.getEntityManager().getTransaction().commit();
                     ems.closeEntityManager();
                 }
-                
+
                 //adaugare directori
                 String[] directorsListStr = directors.split(",");
                 DirectorDaoImpl directorFacade = new DirectorDaoImpl(ems, Director.class);
-                for(String directorStr : directorsListStr)
-                {
+                for (String directorStr : directorsListStr) {
                     directorStr = directorStr.strip();
                     Director director = directorFacade.findByName(directorStr);
-                    if(director == null)
-                    {
+                    if (director == null) {
                         director = new Director();
                         director.setId(ems);
                         director.setName(directorStr);
@@ -153,10 +147,9 @@ public class ImportData {
                     ems.getEntityManager().getTransaction().commit();
                     ems.closeEntityManager();
                 }
-                
-                
+
             }
-        } catch (FileNotFoundException ex ) {
+        } catch (FileNotFoundException ex) {
             System.out.println(ex);
         } catch (IOException | CsvException ex) {
             System.out.println(ex);

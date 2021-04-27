@@ -65,11 +65,10 @@ public class Movie extends AbstractEntity implements Serializable {
 //    private Set<Charts> chartsSet;
 
     public Movie() {
-        
+
     }
-    
-    public void setId(EntityManagerSingleton ems)
-    {
+
+    public void setId(EntityManagerSingleton ems) {
         ems.createEntityManager();
         Query q = ems.getEntityManager().createNativeQuery("SELECT movie_seq.NEXTVAL FROM dual");
         long solution = ((BigDecimal) q.getSingleResult()).longValue();
@@ -80,7 +79,7 @@ public class Movie extends AbstractEntity implements Serializable {
     public Movie(Long idMovie) {
         this.id = idMovie;
     }
-    
+
     public Date getReleaseDate() {
         return releaseDate;
     }
@@ -88,7 +87,7 @@ public class Movie extends AbstractEntity implements Serializable {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
-    
+
     public Duration getDuration() {
         return duration;
     }
@@ -96,7 +95,6 @@ public class Movie extends AbstractEntity implements Serializable {
     public void setDuration(Duration duration) {
         this.duration = duration;
     }
-
 
     public Short getScore() {
         return score;
@@ -136,7 +134,6 @@ public class Movie extends AbstractEntity implements Serializable {
 //    public void setChartsSet(Set<Charts> chartsSet) {
 //        this.chartsSet = chartsSet;
 //    }
-    
 
     @Override
     public int hashCode() {
@@ -163,8 +160,4 @@ public class Movie extends AbstractEntity implements Serializable {
         return "com.mycompany.laboratorul9.entityclasses.Movie[ idMovie=" + id + " ]";
     }
 
-
-   
-
-    
 }

@@ -17,7 +17,5 @@ public class MovieDaoImpl extends AbstractRepository<Movie> {
     public MovieDaoImpl(EntityManagerSingleton ems, Class<Movie> entityClass) {
         super(ems, entityClass);
     }
-    
-    
-    
+
 }

@@ -17,10 +17,9 @@ import oracle.sql.INTERVALDS;
  */
 @Converter
 public class DurationConverter implements AttributeConverter<Duration, INTERVALDS> {
-    
+
     @Override
-    public INTERVALDS convertToDatabaseColumn(Duration attribute)
-    {
+    public INTERVALDS convertToDatabaseColumn(Duration attribute) {
         long hours = attribute.toHoursPart();
         long minutes = attribute.toMinutesPart();
         INTERVALDS solution = new INTERVALDS("0 " + hours + ":" + minutes + ":0.0");
@@ -33,5 +32,5 @@ public class DurationConverter implements AttributeConverter<Duration, INTERVALD
         int minutes = toUnsignedInt(duration.getBytes()[5]) - 60;
         return Duration.parse("PT" + hours + "H" + minutes + "M");
     }
-    
+
 }

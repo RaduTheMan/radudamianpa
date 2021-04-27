@@ -13,9 +13,9 @@ import com.mycompany.laboratorul9.jpa.singleton.EntityManagerSingleton;
  * @author Radu
  */
 public class DirectorDaoImpl extends AbstractRepository<Director> {
-    
+
     public DirectorDaoImpl(EntityManagerSingleton ems, Class<Director> entityClass) {
         super(ems, entityClass);
     }
-    
+
 }
