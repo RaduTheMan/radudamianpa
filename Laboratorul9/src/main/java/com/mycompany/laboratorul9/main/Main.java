@@ -38,7 +38,7 @@ public class Main {
 //      testCreateChart(ems);
 //      testMethodsFromRepositories(ems);
 //      testImportData(ems);
-        var input = getFirst_n_Movies(30, ems);
+        var input = getFirst_n_Movies(100, ems);
         Algorithm algorithm = new GreedyAlgorithm(input);
         var solution = algorithm.solve();
         System.out.println(solution);
