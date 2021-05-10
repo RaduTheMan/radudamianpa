@@ -6,7 +6,9 @@
 package com.mycompany.server;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 /**
  *
@@ -23,9 +25,18 @@ public class FriendCommand extends Command {
 
     @Override
     public String execute() {
-        if(this.parameters.size() >= 1)
+        if(this.parameters.size() >= 2)
         {
-            Person user = new Person(this.parameters.get(0));
+            Person user = new Person(this.parameters.get(this.parameters.size()-1));
+            Set<Person> friends = new HashSet<>();
+            for(int i=0;i<this.parameters.size() - 1; ++i)
+            {
+                Person person = new Person(this.parameters.get(i));
+                if(!socialNetwork.existsUser(person))
+                    return "Friends weren't added! At least one of them doesn't exist!";
+                friends.add(person);
+            }
+            this.socialNetwork.addFriendstoUser(user, friends);
             return "Friends added successfully!";
         }
         return "Parameters not initialised!";
@@ -37,7 +48,7 @@ public class FriendCommand extends Command {
         String[] components = request.split(" ");
         if(!components[0].equals(this.NAME))
             return false;
-        if(components.length - 1 == 0)
+        if(components.length - 2 == 0)
             return false;
         this.parameters = new LinkedList<>(Arrays.asList(components));
         this.parameters.remove(0);

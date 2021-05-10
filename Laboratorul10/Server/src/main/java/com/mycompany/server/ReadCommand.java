@@ -11,13 +11,20 @@ package com.mycompany.server;
  */
 public class ReadCommand extends Command {
 
-    public ReadCommand() {
-        super("read", 0);
+    private SocialNetwork socialNetwork;
+    
+    public ReadCommand(SocialNetwork socialNetwork) {
+        super("read", 1);
+        this.socialNetwork = socialNetwork;
+        
     }
 
     @Override
     public String execute() {
-        return null;
+        Person person = new Person(this.parameters.get(0));
+        var messages = socialNetwork.getMessagesFromUser(person);
+        return messages.toString();
+        
     }
     
 }

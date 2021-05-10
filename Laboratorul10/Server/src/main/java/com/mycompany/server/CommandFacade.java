@@ -18,10 +18,10 @@ public class CommandFacade {
     public CommandFacade(SocialNetwork socialNetwork)
     {
         commands.add(new RegisterCommand(socialNetwork));
-        commands.add(new LoginCommand());
+        commands.add(new LoginCommand(socialNetwork));
         commands.add(new FriendCommand(socialNetwork));
-        commands.add(new SendCommand());
-        commands.add(new ReadCommand());
+        commands.add(new SendCommand(socialNetwork));
+        commands.add(new ReadCommand(socialNetwork));
     }
 
     public List<Command> getCommands() {
