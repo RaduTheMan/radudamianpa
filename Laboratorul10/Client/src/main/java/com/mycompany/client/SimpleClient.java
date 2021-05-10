@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 /**
  *
@@ -18,24 +19,41 @@ import java.net.UnknownHostException;
  */
 public class SimpleClient {
 
+    
+    private static String getRefinedRequest(String request)
+    {
+        String solution = request.toLowerCase().strip().replaceAll(" +", " ");
+        return solution;
+    }
+    
     public static void main(String[] args) throws IOException {
         String serverAddress = "127.0.0.1";
         int PORT = 8100;
+        Scanner scanner = new Scanner(System.in);
+        while(true)
+        {
         try (
                 Socket socket = new Socket(serverAddress, PORT);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
             //send a request to the server
-            String request = "ceva";
+            
+            String request = scanner.nextLine();
+            
+            request = getRefinedRequest(request);
+            
             out.println(request);
 
             //wait a response from the server
             String response = in.readLine();
+            String feedback = in.readLine();
             System.out.println(response);
+            System.out.println(feedback);
 
         } catch (UnknownHostException ex) {
             System.err.println("No server listening..." + ex);
+        }
         }
 
     }

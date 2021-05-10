@@ -18,9 +18,11 @@ import java.net.Socket;
 public class ClientThread extends Thread {
 
     private Socket socket = null;
+    private CommandFacade facade;
 
-    public ClientThread(Socket socket) {
+    public ClientThread(Socket socket, CommandFacade facade) {
         this.socket = socket;
+        this.facade = facade;
     }
 
     @Override
@@ -28,9 +30,24 @@ public class ClientThread extends Thread {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String request = in.readLine();
+            String raspuns = null;
+            String feedback = null;
+            var availableCommands = facade.getCommands();
+            
+            for(var command : availableCommands)
+            {
+                if(command.setParametersFromRequest(request))
+                {
+                    feedback = command.execute();
+                    raspuns = "Command recognised: " + request + "\r\n" + feedback;
+                    break;
+                }
+            }
+            
+            if(raspuns == null)
+                raspuns = "Command error - invalid syntax or unrecognised command: " + request;  
 
             PrintWriter out = new PrintWriter(socket.getOutputStream());
-            String raspuns = "Hello " + request + "!";
             out.println(raspuns);
             out.flush();
         } catch (IOException ex) {

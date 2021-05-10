@@ -22,18 +22,19 @@ public class SimpleServer {
     
     public SimpleServer() throws IOException {
         ServerSocket serverSocket = null;
+        SocialNetwork socialNetwork = new SocialNetwork();
+        CommandFacade facade = new CommandFacade(socialNetwork);
+        
         try{
             serverSocket = new ServerSocket(PORT);
             boolean running = true;
+            ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
             while(running)
             {
                 System.out.println("Waiting for a client...");
                 Socket socket = serverSocket.accept();
-                //execute client request in a thread from the thread pool(TO DO)
-//                new ClientThread(socket).start();
-                ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
-                
-                pool.execute(new ClientThread(socket));
+      
+                pool.execute(new ClientThread(socket, facade));
             }
             
         } catch (IOException ex) {
