@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.server;
+package com.mycompany.server.commands;
 
+import com.mycompany.server.commands.Command;
+import com.mycompany.server.domain.Person;
+import com.mycompany.server.domain.Person;
+import com.mycompany.server.domain.SocialNetwork;
+import com.mycompany.server.domain.SocialNetwork;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;

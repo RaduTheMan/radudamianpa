@@ -5,6 +5,7 @@
  */
 package com.mycompany.server;
 
+import com.mycompany.server.commands.CommandFacade;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

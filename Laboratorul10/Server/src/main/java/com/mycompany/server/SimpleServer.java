@@ -5,6 +5,8 @@
  */
 package com.mycompany.server;
 
+import com.mycompany.server.domain.SocialNetwork;
+import com.mycompany.server.commands.CommandFacade;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

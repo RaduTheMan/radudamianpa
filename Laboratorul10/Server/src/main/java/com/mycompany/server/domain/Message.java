@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.server;
+package com.mycompany.server.domain;
 
 /**
  *
  * @author Radu
  */
-class Message {
+public class Message {
     private String content;
 
     public Message(String content) {

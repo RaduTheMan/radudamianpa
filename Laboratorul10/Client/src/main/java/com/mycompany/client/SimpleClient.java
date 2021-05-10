@@ -52,6 +52,11 @@ public class SimpleClient {
                 System.out.println("You're not logged in!");
                 break;
             }
+            else if (request.startsWith("quit"))
+            {
+                isActive = false;
+                break;
+            }
                 
             
             out.println(request);
