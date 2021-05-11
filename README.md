@@ -302,4 +302,44 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 
 <p>Pentru a testa problema pe input-uri relativ mari, am importat 30 000 de filme din dataset-ul mentionat mai sus si le-am introdus in baza de date, impreuna cu actorii(maxim 5 per film), genurile si regizorii aferenti(si bineinteles, asocierile dintre acestea).</p>
 
+<h2>Laboratorul 10</h2>
+<p>Organizarea codurilor sursa am facut-o in felul urmator:</p>
+<p>Pentru client:</p>
+<ul>
+  <li>com.mycompany.client
+    <ul>
+      <li>SimpleClient.java</li>
+    </ul>
+  </li>
+</ul>
+<p>Pentru server:</p>
+<ul>
+  <li>com.mycompany.server
+    <ul>
+      <li>ClientThread.java</li>
+      <li>SimpleServer.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.server.commands
+    <ul>
+      <li>Command.java</li>
+      <li>CommandFacade.java</li>
+      <li>FriendCommand.java</li>
+      <li>LoginCommand.java</li>
+      <li>ReadCommand.java</li>
+      <li>RegisterCommand.java</li>
+      <li>SendCommand.java</li>
+    </ul>
+  </li>
+  <li>com.mycompany.server.domain
+    <ul>
+      <li>Message.java</li>
+      <li>Person.java</li>
+      <li>SocialNetwork.java</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In primul rand, in ceea ce priveste gestionarea thread-urilor catre clienti, am ales sa utilizez un pool de thread-uri ce se regaseste in clasa <em>SimpleServer</em>.</p>
+<p>In cadrul partii de <strong>optional</strong>, am implementat comenzile ce se regasesc in pachetul <em>com.mycompany.server.commands</em></p>
 
