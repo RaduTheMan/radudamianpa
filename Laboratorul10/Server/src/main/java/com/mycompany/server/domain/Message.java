@@ -10,6 +10,7 @@ package com.mycompany.server.domain;
  * @author Radu
  */
 public class Message {
+
     private String content;
 
     public Message(String content) {
@@ -28,7 +29,5 @@ public class Message {
     public String toString() {
         return content;
     }
-    
-    
-    
+
 }

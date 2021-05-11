@@ -5,9 +5,6 @@
  */
 package com.mycompany.server.commands;
 
-import com.mycompany.server.commands.Command;
-import com.mycompany.server.commands.SendCommand;
-import com.mycompany.server.domain.SocialNetwork;
 import com.mycompany.server.domain.SocialNetwork;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +14,10 @@ import java.util.List;
  * @author Radu
  */
 public class CommandFacade {
+
     List<Command> commands = new ArrayList<>();
-    
-    public CommandFacade(SocialNetwork socialNetwork)
-    {
+
+    public CommandFacade(SocialNetwork socialNetwork) {
         commands.add(new RegisterCommand(socialNetwork));
         commands.add(new LoginCommand(socialNetwork));
         commands.add(new FriendCommand(socialNetwork));
@@ -31,6 +28,5 @@ public class CommandFacade {
     public List<Command> getCommands() {
         return new ArrayList<>(commands);
     }
-    
-    
+
 }

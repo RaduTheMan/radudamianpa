@@ -19,60 +19,51 @@ import java.util.Scanner;
  */
 public class SimpleClient {
 
-    
-    private static String getRefinedRequest(String request)
-    {
+    private static String getRefinedRequest(String request) {
         String solution = request.toLowerCase().strip().replaceAll(" +", " ");
         return solution;
     }
-    
+
     public static void main(String[] args) throws IOException {
         String serverAddress = "127.0.0.1";
         int PORT = 8100;
         Scanner scanner = new Scanner(System.in);
         boolean isActive = true;
         String loggedUser = null;
-        while(isActive)
-        {
-        try (
-                Socket socket = new Socket(serverAddress, PORT);
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+        while (isActive) {
+            try (
+                     Socket socket = new Socket(serverAddress, PORT);  PrintWriter out = new PrintWriter(socket.getOutputStream(), true);  BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
-            //send a request to the server
-            
-            String request = scanner.nextLine();
-            
-            request = getRefinedRequest(request);
-            
-            if(request.startsWith("friend") || request.startsWith("send") || request.startsWith("read") && loggedUser != null)
-                request = request + " " + loggedUser;
-            else if(request.startsWith("friend") || request.startsWith("send") || request.startsWith("read") && loggedUser == null)
-            {
-                System.out.println("You're not logged in!");
-                break;
+                //send a request to the server
+                String request = scanner.nextLine();
+
+                request = getRefinedRequest(request);
+
+                if (request.startsWith("friend") || request.startsWith("send") || request.startsWith("read") && loggedUser != null) {
+                    request = request + " " + loggedUser;
+                } else if (request.startsWith("friend") || request.startsWith("send") || request.startsWith("read") && loggedUser == null) {
+                    System.out.println("You're not logged in!");
+                    break;
+                } else if (request.startsWith("quit")) {
+                    isActive = false;
+                    break;
+                }
+
+                out.println(request);
+
+                //wait a response from the server
+                String response = in.readLine();
+                String feedback = in.readLine();
+                System.out.println(response);
+                System.out.println(feedback);
+
+                if (request.startsWith("login")) {
+                    loggedUser = feedback;
+                }
+
+            } catch (UnknownHostException ex) {
+                System.err.println("No server listening..." + ex);
             }
-            else if (request.startsWith("quit"))
-            {
-                isActive = false;
-                break;
-            }
-                
-            
-            out.println(request);
-
-            //wait a response from the server
-            String response = in.readLine();
-            String feedback = in.readLine();
-            System.out.println(response);
-            System.out.println(feedback);
-            
-            if(request.startsWith("login"))
-                loggedUser = feedback;
-
-        } catch (UnknownHostException ex) {
-            System.err.println("No server listening..." + ex);
-        }
         }
 
     }

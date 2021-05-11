@@ -5,10 +5,7 @@
  */
 package com.mycompany.server.commands;
 
-import com.mycompany.server.commands.Command;
 import com.mycompany.server.domain.Person;
-import com.mycompany.server.domain.Person;
-import com.mycompany.server.domain.SocialNetwork;
 import com.mycompany.server.domain.SocialNetwork;
 
 /**
@@ -18,11 +15,11 @@ import com.mycompany.server.domain.SocialNetwork;
 public class ReadCommand extends Command {
 
     private SocialNetwork socialNetwork;
-    
+
     public ReadCommand(SocialNetwork socialNetwork) {
         super("read", 1);
         this.socialNetwork = socialNetwork;
-        
+
     }
 
     @Override
@@ -30,7 +27,7 @@ public class ReadCommand extends Command {
         Person person = new Person(this.parameters.get(0));
         var messages = socialNetwork.getMessagesFromUser(person);
         return messages.toString();
-        
+
     }
-    
+
 }

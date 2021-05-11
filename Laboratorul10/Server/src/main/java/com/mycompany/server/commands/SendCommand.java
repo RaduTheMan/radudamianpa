@@ -18,7 +18,7 @@ import java.util.List;
 public class SendCommand extends Command {
 
     private SocialNetwork socialNetwork;
-    
+
     public SendCommand(SocialNetwork socialNetwork) {
         super("send", 2);
         this.socialNetwork = socialNetwork;
@@ -30,23 +30,19 @@ public class SendCommand extends Command {
         Person user = new Person(this.parameters.get(1));
         var friends = socialNetwork.getFriendsFromUser(user);
         var messages = socialNetwork.getMessagesRef();
-        for(var friend : friends)
-        {
-            if(messages.containsKey(friend))
-            {
+        for (var friend : friends) {
+            if (messages.containsKey(friend)) {
                 var currentMessages = messages.get(friend);
                 currentMessages.add(message);
                 messages.put(friend, currentMessages);
-            } 
-            else
-            {
+            } else {
                 List<Message> listMessages = new ArrayList<>();
                 listMessages.add(message);
                 messages.put(friend, listMessages);
-                
+
             }
         }
         return "Messages sent successfully";
     }
-    
+
 }

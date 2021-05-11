@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Radu
  */
 public class Person {
+
     private String name;
 
     public Person(String name) {
@@ -52,10 +53,5 @@ public class Person {
     public String toString() {
         return name;
     }
-    
-    
-    
-    
-    
-    
+
 }

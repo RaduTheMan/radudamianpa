@@ -15,6 +15,7 @@ import java.util.List;
  * @author Radu
  */
 public abstract class Command {
+
     protected final String NAME;
     protected List<String> parameters = new ArrayList<>();
     protected final int numberOfParameters;
@@ -23,18 +24,20 @@ public abstract class Command {
         this.NAME = NAME;
         this.numberOfParameters = numberOfParameters;
     }
-    
+
     public abstract String execute();
-    public boolean setParametersFromRequest(String request)
-    {
+
+    public boolean setParametersFromRequest(String request) {
         String[] components = request.split(" ");
-        if(!components[0].equals(this.NAME))
+        if (!components[0].equals(this.NAME)) {
             return false;
-        if(components.length - 1 != this.numberOfParameters )
+        }
+        if (components.length - 1 != this.numberOfParameters) {
             return false;
+        }
         this.parameters = new LinkedList<>(Arrays.asList(components));
         this.parameters.remove(0);
         return true;
     }
-    
+
 }

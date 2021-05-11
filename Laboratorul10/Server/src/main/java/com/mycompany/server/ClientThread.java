@@ -34,19 +34,18 @@ public class ClientThread extends Thread {
             String raspuns = null;
             String feedback = null;
             var availableCommands = facade.getCommands();
-            
-            for(var command : availableCommands)
-            {
-                if(command.setParametersFromRequest(request))
-                {
+
+            for (var command : availableCommands) {
+                if (command.setParametersFromRequest(request)) {
                     feedback = command.execute();
                     raspuns = "Command recognised: " + request + "\r\n" + feedback;
                     break;
                 }
             }
-            
-            if(raspuns == null)
-                raspuns = "Command error - invalid syntax or unrecognised command: " + request;  
+
+            if (raspuns == null) {
+                raspuns = "Command error - invalid syntax or unrecognised command: " + request;
+            }
 
             PrintWriter out = new PrintWriter(socket.getOutputStream());
             out.println(raspuns);
@@ -60,7 +59,7 @@ public class ClientThread extends Thread {
             } catch (IOException ex) {
                 System.err.println(ex);
             }
-            
+
         }
     }
 

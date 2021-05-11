@@ -5,10 +5,7 @@
  */
 package com.mycompany.server.commands;
 
-import com.mycompany.server.commands.Command;
 import com.mycompany.server.domain.Person;
-import com.mycompany.server.domain.Person;
-import com.mycompany.server.domain.SocialNetwork;
 import com.mycompany.server.domain.SocialNetwork;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,7 +19,7 @@ import java.util.Set;
 public class FriendCommand extends Command {
 
     private SocialNetwork socialNetwork;
-    
+
     public FriendCommand(SocialNetwork socialNetwork) {
         super("friend", 1);
         this.socialNetwork = socialNetwork;
@@ -30,15 +27,14 @@ public class FriendCommand extends Command {
 
     @Override
     public String execute() {
-        if(this.parameters.size() >= 2)
-        {
-            Person user = new Person(this.parameters.get(this.parameters.size()-1));
+        if (this.parameters.size() >= 2) {
+            Person user = new Person(this.parameters.get(this.parameters.size() - 1));
             Set<Person> friends = new HashSet<>();
-            for(int i=0;i<this.parameters.size() - 1; ++i)
-            {
+            for (int i = 0; i < this.parameters.size() - 1; ++i) {
                 Person person = new Person(this.parameters.get(i));
-                if(!socialNetwork.existsUser(person))
+                if (!socialNetwork.existsUser(person)) {
                     return "Friends weren't added! At least one of them doesn't exist!";
+                }
                 friends.add(person);
             }
             this.socialNetwork.addFriendstoUser(user, friends);
@@ -46,18 +42,19 @@ public class FriendCommand extends Command {
         }
         return "Parameters not initialised!";
     }
-    
+
     @Override
-    public boolean setParametersFromRequest(String request)
-    {
+    public boolean setParametersFromRequest(String request) {
         String[] components = request.split(" ");
-        if(!components[0].equals(this.NAME))
+        if (!components[0].equals(this.NAME)) {
             return false;
-        if(components.length - 2 == 0)
+        }
+        if (components.length - 2 == 0) {
             return false;
+        }
         this.parameters = new LinkedList<>(Arrays.asList(components));
         this.parameters.remove(0);
         return true;
     }
-    
+
 }

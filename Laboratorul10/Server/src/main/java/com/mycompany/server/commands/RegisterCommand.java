@@ -5,10 +5,7 @@
  */
 package com.mycompany.server.commands;
 
-import com.mycompany.server.commands.Command;
 import com.mycompany.server.domain.Person;
-import com.mycompany.server.domain.Person;
-import com.mycompany.server.domain.SocialNetwork;
 import com.mycompany.server.domain.SocialNetwork;
 
 /**
@@ -18,23 +15,23 @@ import com.mycompany.server.domain.SocialNetwork;
 public class RegisterCommand extends Command {
 
     private SocialNetwork socialNetwork;
-    
+
     public RegisterCommand(SocialNetwork socialNetwork) {
         super("register", 1);
         this.socialNetwork = socialNetwork;
     }
-    
+
     @Override
     public String execute() {
-        if(this.parameters.size() == this.numberOfParameters)
-        {
+        if (this.parameters.size() == this.numberOfParameters) {
             Person user = new Person(this.parameters.get(0));
             boolean hasModified = socialNetwork.registerUser(user);
-            if(hasModified)
+            if (hasModified) {
                 return "Registration completed successfully!";
+            }
             return "User already exists!";
         }
         return "Parameters not initialised!";
     }
-    
+
 }
