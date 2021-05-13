@@ -3,8 +3,11 @@ DROP TABLE persons
 
 CREATE TABLE persons(
   id NUMBER(8) NOT NULL PRIMARY KEY,
-  name VARCHAR2(100)
+  name VARCHAR2(100) NOT NULL UNIQUE
  )
+/
+
+DROP SEQUENCE person_seq
 /
 
 CREATE SEQUENCE person_seq
