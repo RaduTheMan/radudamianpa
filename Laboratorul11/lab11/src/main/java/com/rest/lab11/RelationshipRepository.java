@@ -5,16 +5,19 @@
  */
 package com.rest.lab11;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Radu
  */
-public interface PersonRepository extends CrudRepository<Person, Long>{
+public interface RelationshipRepository extends CrudRepository<Relationship, Long>{
     
-    public Person findByName(String name);
+    public Relationship findById(long id);
     
-    public Person findById(long id);
+    public List<Relationship> findByPerson1(Person person1);
+    
+    public List<Relationship> findByPerson2(Person person2);
     
 }
