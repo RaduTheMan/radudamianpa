@@ -54,10 +54,10 @@ public class Relationship {
         return person2;
     }
 
-    @Override
-    public String toString() {
-        return "Relationship{" + "id=" + id + ", person1=" + person1 + ", person2=" + person2 + "}";
-    }
+//    @Override
+//    public String toString() {
+//        return "Relationship{" + "id=" + id + ", person1=" + person1 + ", person2=" + person2 + "}";
+//    }
     
     
     

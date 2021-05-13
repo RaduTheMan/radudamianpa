@@ -41,6 +41,13 @@ public class PersonController {
         return solution;
     }
     
+    @GetMapping("/{id}")
+    public List<Person> getFriends(@PathVariable long id)
+    {
+        Person person = personRepository.findById(id);
+        return person.getFriends();
+    }
+    
     @PostMapping
     public long createPerson(@RequestParam String name)
     {
