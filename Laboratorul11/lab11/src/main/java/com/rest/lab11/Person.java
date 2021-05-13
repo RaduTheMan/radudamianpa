@@ -47,6 +47,12 @@ public class Person {
     @JsonIgnore
     private List<Person> friendsLeft;
     
+    public static int compareByNrFriends(Person a, Person b)
+    {
+        Integer aux = a.getFriends().size();
+        return aux.compareTo(b.getFriends().size());
+    }
+    
     protected Person() {}
     
     public Person(String name)
@@ -71,6 +77,11 @@ public class Person {
         List<Person> friends = new ArrayList<>(friendsLeft);
         friends.addAll(friendsRight);
         return friends;
+    }
+    
+    public int getNrFriends()
+    {
+        return this.getFriends().size();
     }
     
 

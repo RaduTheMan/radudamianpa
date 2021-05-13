@@ -6,6 +6,8 @@
 package com.rest.lab11;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,6 +41,27 @@ public class PersonController {
            solution.add(p);
         }
         return solution;
+    }
+    
+    @GetMapping("/popular")
+    public List<Person> gePopular_k(@RequestParam int k, @RequestParam String type)
+    {
+        
+        List<Person> persons = new ArrayList<>();
+        var iterator = personRepository.findAll();
+        for (Person p : iterator)
+        {
+            persons.add(p);
+        }
+        if(k>persons.size())
+          return null;
+        if(type.equals("MOST"))
+          Collections.sort(persons, Collections.reverseOrder(Person::compareByNrFriends));
+        else if(type.equals("LEAST"))
+          Collections.sort(persons, Person::compareByNrFriends);
+        else
+            return null;
+        return persons.subList(0, k);
     }
     
     @GetMapping("/{id}")
