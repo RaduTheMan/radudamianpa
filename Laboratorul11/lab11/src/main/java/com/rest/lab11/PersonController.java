@@ -8,8 +8,11 @@ package com.rest.lab11;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +47,27 @@ public class PersonController {
         Person person = new Person(name);
         personRepository.save(person);
         return person.getId();
+    }
+    
+    @PutMapping("/{id}")
+    public boolean updatePerson(@PathVariable long id, @RequestParam String name)
+    {
+        Person person = personRepository.findById(id);
+        if(person == null)
+            return false;
+        person.setName(name);
+        personRepository.save(person);
+        return true;
+    }
+    
+    @DeleteMapping("/{id}")
+    public boolean deletePerson(@PathVariable long id)
+    {
+        Person person = personRepository.findById(id);
+        if(person == null)
+            return false;
+        personRepository.delete(person);
+        return true;
     }
     
     
