@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -21,7 +25,16 @@ public class SocialNetwork {
     private Set<Person> users = new HashSet<>();
     private Map<Person, Set<Person>> friendshipRelations = new HashMap<>();
     private Map<Person, List<Message>> messages = new HashMap<>();
-
+    private RestTemplate restTemplateObj = this.restTemplate();
+    
+    public RestTemplate restTemplate()
+    {
+        var factory = new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(3000);
+        factory.setReadTimeout(3000);
+        return new RestTemplate(factory);
+    }
+    
     public boolean registerUser(Person user) {
         return users.add(user);
     }
@@ -49,6 +62,10 @@ public class SocialNetwork {
     }
 
     public Set<Person> getUsers() {
+        //testing get rest method
+        final String uri = "http://localhost:8080/persons";
+        String result = restTemplateObj.getForObject(uri, String.class);
+        System.out.println("LOOK HERE(get persons): " + result);
         return new HashSet<>(users);
     }
 

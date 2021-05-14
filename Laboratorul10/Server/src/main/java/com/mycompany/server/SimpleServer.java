@@ -12,15 +12,24 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  *
  * @author Radu
  */
+@SpringBootApplication
 public class SimpleServer {
 
     public static final int PORT = 8100;
     public static final int MAX_T = 4;
+    
+    
+    public static void main(String[] args) throws IOException  {
+        SpringApplication.run(SimpleServer.class, args);
+        SimpleServer server = new SimpleServer();
+    }
 
     public SimpleServer() throws IOException {
         ServerSocket serverSocket = null;
@@ -47,8 +56,6 @@ public class SimpleServer {
             serverSocket.close();
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        SimpleServer server = new SimpleServer();
-    }
+    
+    
 }
