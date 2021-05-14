@@ -46,7 +46,7 @@ public class PersonController {
     }
     
     @GetMapping("/popular")
-    public List<Person> gePopular_k(@RequestParam int k, @RequestParam String type)
+    public ResponseEntity<List<Person>> gePopular_k(@RequestParam int k, @RequestParam String type)
     {
         
         List<Person> persons = new ArrayList<>();
@@ -56,21 +56,23 @@ public class PersonController {
             persons.add(p);
         }
         if(k>persons.size())
-          return null;
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         if(type.equals("MOST"))
           Collections.sort(persons, Collections.reverseOrder(Person::compareByNrFriends));
         else if(type.equals("LEAST"))
           Collections.sort(persons, Person::compareByNrFriends);
         else
-            return null;
-        return persons.subList(0, k);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(persons.subList(0, k), HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
-    public List<Person> getFriends(@PathVariable long id)
+    public ResponseEntity<List<Person>> getFriends(@PathVariable long id)
     {
         Person person = personRepository.findById(id);
-        return person.getFriends();
+        if(person == null)
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(person.getFriends(),HttpStatus.OK);
     }
     
     @PostMapping
