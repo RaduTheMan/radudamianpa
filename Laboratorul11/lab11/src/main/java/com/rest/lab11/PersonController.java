@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,32 +74,36 @@ public class PersonController {
     }
     
     @PostMapping
-    public long createPerson(@RequestParam String name)
+    public ResponseEntity<String> createPerson(@RequestParam String name)
     {
+        if(personRepository.findByName(name) != null)
+            return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.valueOf(403));
         Person person = new Person(name);
         personRepository.save(person);
-        return person.getId();
+        return new ResponseEntity<>("Person with name " + name + " added successfully in the database.", HttpStatus.CREATED);
     }
     
     @PutMapping("/{id}")
-    public boolean updatePerson(@PathVariable long id, @RequestParam String name)
+    public ResponseEntity<String> updatePerson(@PathVariable long id, @RequestParam String name)
     {
         Person person = personRepository.findById(id);
         if(person == null)
-            return false;
+            return new ResponseEntity<>("Person with id " + id + " was not found in the database.", HttpStatus.NOT_FOUND);
         person.setName(name);
+        if(personRepository.findByName(name) != null)
+            return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.valueOf(409));
         personRepository.save(person);
-        return true;
+        return new ResponseEntity<>("Person with id " + id + " was updated successfully.", HttpStatus.OK);
     }
     
     @DeleteMapping("/{id}")
-    public boolean deletePerson(@PathVariable long id)
+    public ResponseEntity<String> deletePerson(@PathVariable long id)
     {
         Person person = personRepository.findById(id);
         if(person == null)
-            return false;
+            return new ResponseEntity<>("Person with id " + id + " was not found in the database.", HttpStatus.NOT_FOUND);
         personRepository.delete(person);
-        return true;
+        return new ResponseEntity<>("Person with id " + id + " was deleted successfully.", HttpStatus.OK);
     }
     
     

@@ -8,6 +8,8 @@ package com.rest.lab11;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,21 +44,21 @@ public class RelationshipController {
     }
     
     @PostMapping
-    public long createRelationship(@RequestParam String name1, @RequestParam String name2)
+    public ResponseEntity<String> createRelationship(@RequestParam String name1, @RequestParam String name2)
     {
         Person person1 = personRepository.findByName(name1);
         Person person2 = personRepository.findByName(name2);
         if(person1 == null || person2 == null)
-            return 0;
+            return new ResponseEntity<>("Either person '" + name1 + "' or person '" + name2 + "' (or both) don't exist in the database", HttpStatus.NOT_FOUND);
         if(person2.getId() == person1.getId())
-            return 0;
+            return new ResponseEntity<>("A person can't be friends with themselves.", HttpStatus.FORBIDDEN);
         Relationship relationship = null;
         if(person2.getId() > person1.getId())
             relationship = new Relationship(person1, person2);
         else
             relationship = new Relationship(person2, person1);
         relationshipRepository.save(relationship);
-        return relationship.getId();
+        return new ResponseEntity<>("Friendship between " + name1 + " and " + name2 + "added successfully.", HttpStatus.CREATED );
     }
     
 }
