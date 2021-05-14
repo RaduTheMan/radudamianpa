@@ -71,7 +71,7 @@ public class PersonController {
     {
         Person person = personRepository.findById(id);
         if(person == null)
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            throw new PersonNotFoundException(id);
         return new ResponseEntity<>(person.getFriends(),HttpStatus.OK);
     }
     
@@ -79,7 +79,7 @@ public class PersonController {
     public ResponseEntity<String> createPerson(@RequestParam String name)
     {
         if(personRepository.findByName(name) != null)
-            return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.valueOf(403));
+            return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.FORBIDDEN);
         Person person = new Person(name);
         personRepository.save(person);
         return new ResponseEntity<>("Person with name " + name + " added successfully in the database.", HttpStatus.CREATED);
@@ -90,10 +90,10 @@ public class PersonController {
     {
         Person person = personRepository.findById(id);
         if(person == null)
-            return new ResponseEntity<>("Person with id " + id + " was not found in the database.", HttpStatus.NOT_FOUND);
+            throw new PersonNotFoundException(id);
         person.setName(name);
         if(personRepository.findByName(name) != null)
-            return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.valueOf(409));
+            return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.CONFLICT);
         personRepository.save(person);
         return new ResponseEntity<>("Person with id " + id + " was updated successfully.", HttpStatus.OK);
     }
@@ -103,7 +103,7 @@ public class PersonController {
     {
         Person person = personRepository.findById(id);
         if(person == null)
-            return new ResponseEntity<>("Person with id " + id + " was not found in the database.", HttpStatus.NOT_FOUND);
+            throw new PersonNotFoundException(id);
         personRepository.delete(person);
         return new ResponseEntity<>("Person with id " + id + " was deleted successfully.", HttpStatus.OK);
     }
