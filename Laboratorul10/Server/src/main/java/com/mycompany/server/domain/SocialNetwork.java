@@ -5,14 +5,13 @@
  */
 package com.mycompany.server.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -60,12 +59,45 @@ public class SocialNetwork {
     public List<Message> getMessagesFromUser(Person user) {
         return messages.get(user);
     }
+    
+    public Set<Person> initialiseUsersFromDb()
+    {
+        final String uri = "http://localhost:8080/persons";
+        String result = restTemplateObj.getForObject(uri, String.class);
+        JSONArray array = new JSONArray(result);  
+        for(int i=0;i<array.length();++i)
+        {
+            JSONObject object = array.getJSONObject(i);
+            Person p = new Person(object.getString("name"));
+            this.registerUser(p);
+        }
+        return new HashSet<>(users);
+    }
+    public Map<Person, Set<Person>> initialiseRelationsFromDb()
+    {
+        final String uri = "http://localhost:8080/relationships";
+        String result = restTemplateObj.getForObject(uri, String.class);
+        JSONArray array = new JSONArray(result);  
+        for(int i=0;i<array.length();++i)
+        {
+            JSONObject object = array.getJSONObject(i);
+            String name1 = object.getJSONObject("person1").getString("name");
+            String name2 = object.getJSONObject("person2").getString("name");
+            Person p1 = new Person(name1);
+            Person p2 = new Person(name2);
+            Set<Person> aux = new HashSet<>();
+            aux.add(p2);
+            this.addFriendstoUser(p1, new HashSet<>(aux));
+            aux.remove(p2); aux.add(p1);
+            this.addFriendstoUser(p2, new HashSet<>(aux));
+            
+        }
+        return new HashMap<>(friendshipRelations);
+    }
 
     public Set<Person> getUsers() {
         //testing get rest method
         final String uri = "http://localhost:8080/persons";
-        String result = restTemplateObj.getForObject(uri, String.class);
-        System.out.println("LOOK HERE(get persons): " + result);
         return new HashSet<>(users);
     }
 

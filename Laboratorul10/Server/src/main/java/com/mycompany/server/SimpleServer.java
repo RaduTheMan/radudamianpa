@@ -35,6 +35,8 @@ public class SimpleServer {
         ServerSocket serverSocket = null;
         SocialNetwork socialNetwork = new SocialNetwork();
         CommandFacade facade = new CommandFacade(socialNetwork);
+        socialNetwork.initialiseUsersFromDb();
+        socialNetwork.initialiseRelationsFromDb();
 
         try {
             serverSocket = new ServerSocket(PORT);

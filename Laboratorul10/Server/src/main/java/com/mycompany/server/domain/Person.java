@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author Radu
  */
 public class Person {
-
+    
     private String name;
 
     public Person(String name) {
