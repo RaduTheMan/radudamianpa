@@ -54,9 +54,28 @@ public class RelationshipController {
             return new ResponseEntity<>("A person can't be friends with themselves.", HttpStatus.FORBIDDEN);
         Relationship relationship = null;
         if(person2.getId() > person1.getId())
+        {
+            var relationships = relationshipRepository.findByPerson1(person1);
+            for (var relationshipObj : relationships)
+            {
+                if(relationshipObj.getPerson2().getName().equals(person2.getName())) {
+                    return new ResponseEntity<>("This relationship already exists.", HttpStatus.FORBIDDEN);
+                }
+            }
+              
             relationship = new Relationship(person1, person2);
+        }
         else
+        {
+            var relationships = relationshipRepository.findByPerson1(person2);
+            for (var relationshipObj : relationships)
+            {
+                if(relationshipObj.getPerson2().getName().equals(person1.getName())) {
+                    return new ResponseEntity<>("This relationship already exists.", HttpStatus.FORBIDDEN);
+                }
+            }
             relationship = new Relationship(person2, person1);
+        }
         relationshipRepository.save(relationship);
         return new ResponseEntity<>("Friendship between " + name1 + " and " + name2 + "added successfully.", HttpStatus.CREATED );
     }
