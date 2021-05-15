@@ -20,7 +20,12 @@ import java.util.Scanner;
 public class SimpleClient {
 
     private static String getRefinedRequest(String request) {
-        String solution = request.toLowerCase().strip().replaceAll(" +", " ");
+        String solution = request.strip().replaceAll(" +", " ");
+        String firstWord =  solution.split(" ", 2)[0];
+        System.out.println(firstWord);
+        String firstWordOld = firstWord;
+        firstWord = firstWord.toLowerCase();
+        solution = solution.replace(firstWordOld, firstWord);
         return solution;
     }
 

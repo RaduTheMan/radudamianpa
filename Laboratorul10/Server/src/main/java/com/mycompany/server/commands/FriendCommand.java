@@ -38,6 +38,12 @@ public class FriendCommand extends Command {
                 friends.add(person);
             }
             this.socialNetwork.addFriendstoUser(user, friends);
+            Set<Person> aux = new HashSet<>();
+            aux.add(user);
+            for(Person p : friends)
+            {
+                this.socialNetwork.addFriendstoUser(p, new HashSet<>(aux));   
+            }
             return "Friends added successfully!";
         }
         return "Parameters not initialised!";
