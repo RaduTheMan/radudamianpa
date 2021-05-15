@@ -35,6 +35,18 @@ public class SocialNetwork {
     }
     
     public boolean registerUser(Person user) {
+        String uri = "http://localhost:8080/persons/?name=";
+        uri = uri + user.getName();
+        if(!users.contains(user))
+        {
+            try{
+            String result = restTemplateObj.postForObject(uri, null, String.class);
+            }
+            catch(Exception ex)
+            {
+//                System.out.println(ex);
+            }
+        }
         return users.add(user);
     }
 
@@ -49,6 +61,22 @@ public class SocialNetwork {
             friendshipRelations.put(user, currentFriends);
         } else {
             friendshipRelations.put(user, friends);
+        }
+        String uri = "http://localhost:8080/relationships/?name1=xx&name2=yy";
+        for(Person friend : friends)
+        {
+            uri = uri.replace("xx", user.getName());
+            uri = uri.replace("yy", friend.getName());
+            try{
+            String result = restTemplateObj.postForObject(uri, null, String.class);
+            }
+            catch(Exception ex)
+            {
+//            System.out.println(ex);
+            }
+            
+            uri = "http://localhost:8080/relationships/?name1=xx&name2=yy";
+            
         }
     }
 
@@ -96,8 +124,6 @@ public class SocialNetwork {
     }
 
     public Set<Person> getUsers() {
-        //testing get rest method
-        final String uri = "http://localhost:8080/persons";
         return new HashSet<>(users);
     }
 
