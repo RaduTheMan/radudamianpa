@@ -5,23 +5,23 @@
  */
 package com.rest.lab11;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author Radu
  */
 public class Solution {
-    List<Person> importantPersons;
+    Set<Person> importantPersons;
     
-    public Solution(List<Person> importantPersons)
+    public Solution(Set<Person> importantPersons)
     {
         this.importantPersons = importantPersons;
     }
 
-    public List<Person> getImportantPersons() {
-        return new ArrayList<>(importantPersons);
+    public Set<Person> getImportantPersons() {
+        return new HashSet<>(importantPersons);
     }
     
     

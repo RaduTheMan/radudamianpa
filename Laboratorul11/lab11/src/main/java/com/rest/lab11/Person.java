@@ -89,10 +89,10 @@ public class Person {
     
     
 
-//    @Override
-//    public String toString() {
-//        return "Person{" + "idddd=" + id + ", name=" + name + "}";
-//    }
+    @Override
+    public String toString() {
+        return "Person{" + "idddd=" + id + ", name=" + name + "}";
+    }
 
     @Override
     public int hashCode() {
