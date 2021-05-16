@@ -46,7 +46,7 @@ public class PersonController {
     }
     
     @GetMapping("/popular")
-    public ResponseEntity<List<Person>> gePopular_k(@RequestParam int k, @RequestParam String type)
+    public ResponseEntity<List<Person>> getPopular_k(@RequestParam int k, @RequestParam String type)
     {
         
         List<Person> persons = new ArrayList<>();
@@ -73,6 +73,17 @@ public class PersonController {
         if(person == null)
             throw new PersonNotFoundException(id);
         return new ResponseEntity<>(person.getFriends(),HttpStatus.OK);
+    }
+    
+    @GetMapping("/important")
+    public ResponseEntity<Solution> getImportantPersons()
+    {
+        List<Person> persons = this.getPersons();
+        Algorithm algorithm = new LinearAlgorithm(persons);
+        Solution solution = algorithm.solve();
+        if(solution == null)
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(solution, HttpStatus.OK);
     }
     
     @PostMapping
