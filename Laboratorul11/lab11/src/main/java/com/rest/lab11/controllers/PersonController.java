@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rest.lab11;
+package com.rest.lab11.controllers;
 
+import com.rest.lab11.problem.Algorithm;
+import com.rest.lab11.problem.LinearAlgorithm;
+import com.rest.lab11.entities.Person;
+import com.rest.lab11.exceptions.PersonNotFoundException;
+import com.rest.lab11.repositories.PersonRepository;
+import com.rest.lab11.problem.Solution;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

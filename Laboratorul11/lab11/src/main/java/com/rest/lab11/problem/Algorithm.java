@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rest.lab11;
+package com.rest.lab11.problem;
 
+import com.rest.lab11.entities.Person;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;

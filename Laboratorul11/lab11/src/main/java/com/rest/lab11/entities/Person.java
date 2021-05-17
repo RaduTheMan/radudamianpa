@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rest.lab11;
+package com.rest.lab11.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;

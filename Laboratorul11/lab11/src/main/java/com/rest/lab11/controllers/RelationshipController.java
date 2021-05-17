@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rest.lab11;
+package com.rest.lab11.controllers;
 
+import com.rest.lab11.entities.Person;
+import com.rest.lab11.repositories.PersonRepository;
+import com.rest.lab11.entities.Relationship;
+import com.rest.lab11.repositories.RelationshipRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
