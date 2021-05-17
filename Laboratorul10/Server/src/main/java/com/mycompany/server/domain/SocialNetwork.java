@@ -5,7 +5,6 @@
  */
 package com.mycompany.server.domain;
 
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,54 +47,26 @@ public class SocialNetwork {
     @Value("${trust.store.password}")
     private String trustStorePassword;
 
-    
-    private void myRestTemplate(RestTemplateBuilder builder)
-    {
-//        SSLContext sslContext = new SSLContextBuilder()
-//        .loadTrustMaterial(new URL(trustStoreUrl), trustStorePassword.toCharArray())
-//        .build();
-//        
-//        
-//         SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext);
-//         HttpClient httpClient = HttpClients.custom()
-//        .setSSLSocketFactory(socketFactory)
-//        .build();
-//         
-//         HttpComponentsClientHttpRequestFactory factory = 
-//         new HttpComponentsClientHttpRequestFactory(httpClient);
-//         
-//         this.restTemplateObj = new RestTemplate(factory);
-        
-        
-       
-//old factory for http protocol
-//        var factory = new SimpleClientHttpRequestFactory();
-//        factory.setConnectTimeout(3000);
-//        factory.setReadTimeout(3000);
-//        this.restTemplateObj = new RestTemplate(factory);
-        
-            this.restTemplateObj = builder
-            .setConnectTimeout(Duration.ofMillis(3000))
-            .setReadTimeout(Duration.ofMillis(3000))
-            .basicAuthentication("user", "password")
-            .build();
+    private void myRestTemplate(RestTemplateBuilder builder) {
+
+        this.restTemplateObj = builder
+                .setConnectTimeout(Duration.ofMillis(3000))
+                .setReadTimeout(Duration.ofMillis(3000))
+                .basicAuthentication("user", "password")
+                .build();
     }
-    
-    public SocialNetwork()
-    {
+
+    public SocialNetwork() {
         this.myRestTemplate(new RestTemplateBuilder());
     }
-    
+
     public boolean registerUser(Person user) {
         String uri = "http://localhost:8080/persons/?name=";
         uri = uri + user.getName();
-        if(!users.contains(user))
-        {
-            try{
-            String result = restTemplateObj.postForObject(uri, null, String.class);
-            }
-            catch(Exception ex)
-            {
+        if (!users.contains(user)) {
+            try {
+                String result = restTemplateObj.postForObject(uri, null, String.class);
+            } catch (Exception ex) {
 //                System.out.println(ex);
             }
         }
@@ -115,20 +86,17 @@ public class SocialNetwork {
             friendshipRelations.put(user, friends);
         }
         String uri = "http://localhost:8080/relationships/?name1=xx&name2=yy";
-        for(Person friend : friends)
-        {
+        for (Person friend : friends) {
             uri = uri.replace("xx", user.getName());
             uri = uri.replace("yy", friend.getName());
-            try{
-            String result = restTemplateObj.postForObject(uri, null, String.class);
-            }
-            catch(Exception ex)
-            {
+            try {
+                String result = restTemplateObj.postForObject(uri, null, String.class);
+            } catch (Exception ex) {
 //            System.out.println(ex);
             }
-            
+
             uri = "http://localhost:8080/relationships/?name1=xx&name2=yy";
-            
+
         }
     }
 
@@ -139,28 +107,25 @@ public class SocialNetwork {
     public List<Message> getMessagesFromUser(Person user) {
         return messages.get(user);
     }
-    
-    public Set<Person> initialiseUsersFromDb()
-    {
+
+    public Set<Person> initialiseUsersFromDb() {
         final String uri = "http://localhost:8080/persons";
         String result = restTemplateObj.getForObject(uri, String.class);
         System.out.println(result);
-        JSONArray array = new JSONArray(result);  
-        for(int i=0;i<array.length();++i)
-        {
+        JSONArray array = new JSONArray(result);
+        for (int i = 0; i < array.length(); ++i) {
             JSONObject object = array.getJSONObject(i);
             Person p = new Person(object.getString("name"));
             this.registerUser(p);
         }
         return new HashSet<>(users);
     }
-    public Map<Person, Set<Person>> initialiseRelationsFromDb()
-    {
+
+    public Map<Person, Set<Person>> initialiseRelationsFromDb() {
         final String uri = "http://localhost:8080/relationships";
         String result = restTemplateObj.getForObject(uri, String.class);
-        JSONArray array = new JSONArray(result);  
-        for(int i=0;i<array.length();++i)
-        {
+        JSONArray array = new JSONArray(result);
+        for (int i = 0; i < array.length(); ++i) {
             JSONObject object = array.getJSONObject(i);
             String name1 = object.getJSONObject("person1").getString("name");
             String name2 = object.getJSONObject("person2").getString("name");
@@ -169,9 +134,10 @@ public class SocialNetwork {
             Set<Person> aux = new HashSet<>();
             aux.add(p2);
             this.addFriendstoUser(p1, new HashSet<>(aux));
-            aux.remove(p2); aux.add(p1);
+            aux.remove(p2);
+            aux.add(p1);
             this.addFriendstoUser(p2, new HashSet<>(aux));
-            
+
         }
         return new HashMap<>(friendshipRelations);
     }

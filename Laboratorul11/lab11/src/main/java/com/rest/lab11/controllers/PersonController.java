@@ -34,96 +34,94 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/persons")
 public class PersonController {
-    
+
     @Autowired
     private PersonRepository personRepository;
-    
+
     @GetMapping
-    public List<Person> getPersons()
-    {
+    public List<Person> getPersons() {
         List<Person> solution = new ArrayList<>();
         var iterator = personRepository.findAll();
-       
-        for(Person p : iterator)
-        {
-           solution.add(p);
+
+        for (Person p : iterator) {
+            solution.add(p);
         }
         return solution;
     }
-    
+
     @GetMapping("/popular")
-    public ResponseEntity<List<Person>> getPopular_k(@RequestParam int k, @RequestParam String type)
-    {
-        
+    public ResponseEntity<List<Person>> getPopular_k(@RequestParam int k, @RequestParam String type) {
+
         List<Person> persons = new ArrayList<>();
         var iterator = personRepository.findAll();
-        for (Person p : iterator)
-        {
+        for (Person p : iterator) {
             persons.add(p);
         }
-        if(k>persons.size())
+        if (k > persons.size()) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        if(type.equals("MOST"))
-          Collections.sort(persons, Collections.reverseOrder(Person::compareByNrFriends));
-        else if(type.equals("LEAST"))
-          Collections.sort(persons, Person::compareByNrFriends);
-        else
+        }
+        if (type.equals("MOST")) {
+            Collections.sort(persons, Collections.reverseOrder(Person::compareByNrFriends));
+        } else if (type.equals("LEAST")) {
+            Collections.sort(persons, Person::compareByNrFriends);
+        } else {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(persons.subList(0, k), HttpStatus.OK);
     }
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<List<Person>> getFriends(@PathVariable long id)
-    {
+    public ResponseEntity<List<Person>> getFriends(@PathVariable long id) {
         Person person = personRepository.findById(id);
-        if(person == null)
+        if (person == null) {
             throw new PersonNotFoundException(id);
-        return new ResponseEntity<>(person.getFriends(),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(person.getFriends(), HttpStatus.OK);
     }
-    
+
     @GetMapping("/important")
-    public ResponseEntity<Solution> getImportantPersons()
-    {
+    public ResponseEntity<Solution> getImportantPersons() {
         List<Person> persons = this.getPersons();
         Algorithm algorithm = new LinearAlgorithm(persons);
         Solution solution = algorithm.solve();
-        if(solution == null)
+        if (solution == null) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         return new ResponseEntity<>(solution, HttpStatus.OK);
     }
-    
+
     @PostMapping
-    public ResponseEntity<String> createPerson(@RequestParam String name)
-    {
-        if(personRepository.findByName(name) != null)
+    public ResponseEntity<String> createPerson(@RequestParam String name) {
+        if (personRepository.findByName(name) != null) {
             return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.FORBIDDEN);
+        }
         Person person = new Person(name);
         personRepository.save(person);
         return new ResponseEntity<>("Person with name " + name + " added successfully in the database.", HttpStatus.CREATED);
     }
-    
+
     @PutMapping("/{id}")
-    public ResponseEntity<String> updatePerson(@PathVariable long id, @RequestParam String name)
-    {
+    public ResponseEntity<String> updatePerson(@PathVariable long id, @RequestParam String name) {
         Person person = personRepository.findById(id);
-        if(person == null)
+        if (person == null) {
             throw new PersonNotFoundException(id);
+        }
         person.setName(name);
-        if(personRepository.findByName(name) != null)
+        if (personRepository.findByName(name) != null) {
             return new ResponseEntity<>("Person with name " + name + " already exists", HttpStatus.CONFLICT);
+        }
         personRepository.save(person);
         return new ResponseEntity<>("Person with id " + id + " was updated successfully.", HttpStatus.OK);
     }
-    
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePerson(@PathVariable long id)
-    {
+    public ResponseEntity<String> deletePerson(@PathVariable long id) {
         Person person = personRepository.findById(id);
-        if(person == null)
+        if (person == null) {
             throw new PersonNotFoundException(id);
+        }
         personRepository.delete(person);
         return new ResponseEntity<>("Person with id " + id + " was deleted successfully.", HttpStatus.OK);
     }
-    
-    
+
 }

@@ -12,10 +12,10 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Radu
  */
-public interface PersonRepository extends CrudRepository<Person, Long>{
-    
+public interface PersonRepository extends CrudRepository<Person, Long> {
+
     public Person findByName(String name);
-    
+
     public Person findById(long id);
-    
+
 }

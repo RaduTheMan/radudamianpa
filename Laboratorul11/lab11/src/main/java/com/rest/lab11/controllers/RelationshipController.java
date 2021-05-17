@@ -27,61 +27,55 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/relationships")
 public class RelationshipController {
-    
+
     @Autowired
     private RelationshipRepository relationshipRepository;
-    
+
     @Autowired
     private PersonRepository personRepository;
-    
+
     @GetMapping
-    public List<Relationship> getRelationships()
-    {
+    public List<Relationship> getRelationships() {
         List<Relationship> solution = new ArrayList<>();
         var iterator = relationshipRepository.findAll();
-       
-        for(Relationship r : iterator)
-        {
-           solution.add(r);
+
+        for (Relationship r : iterator) {
+            solution.add(r);
         }
         return solution;
     }
-    
+
     @PostMapping
-    public ResponseEntity<String> createRelationship(@RequestParam String name1, @RequestParam String name2)
-    {
+    public ResponseEntity<String> createRelationship(@RequestParam String name1, @RequestParam String name2) {
         Person person1 = personRepository.findByName(name1);
         Person person2 = personRepository.findByName(name2);
-        if(person1 == null || person2 == null)
+        if (person1 == null || person2 == null) {
             return new ResponseEntity<>("Either person '" + name1 + "' or person '" + name2 + "' (or both) don't exist in the database", HttpStatus.NOT_FOUND);
-        if(person2.getId() == person1.getId())
+        }
+        if (person2.getId() == person1.getId()) {
             return new ResponseEntity<>("A person can't be friends with themselves.", HttpStatus.FORBIDDEN);
+        }
         Relationship relationship = null;
-        if(person2.getId() > person1.getId())
-        {
+        if (person2.getId() > person1.getId()) {
             var relationships = relationshipRepository.findByPerson1(person1);
-            for (var relationshipObj : relationships)
-            {
-                if(relationshipObj.getPerson2().getName().equals(person2.getName())) {
+            for (var relationshipObj : relationships) {
+                if (relationshipObj.getPerson2().getName().equals(person2.getName())) {
                     return new ResponseEntity<>("This relationship already exists.", HttpStatus.FORBIDDEN);
                 }
             }
-              
+
             relationship = new Relationship(person1, person2);
-        }
-        else
-        {
+        } else {
             var relationships = relationshipRepository.findByPerson1(person2);
-            for (var relationshipObj : relationships)
-            {
-                if(relationshipObj.getPerson2().getName().equals(person1.getName())) {
+            for (var relationshipObj : relationships) {
+                if (relationshipObj.getPerson2().getName().equals(person1.getName())) {
                     return new ResponseEntity<>("This relationship already exists.", HttpStatus.FORBIDDEN);
                 }
             }
             relationship = new Relationship(person2, person1);
         }
         relationshipRepository.save(relationship);
-        return new ResponseEntity<>("Friendship between " + name1 + " and " + name2 + "added successfully.", HttpStatus.CREATED );
+        return new ResponseEntity<>("Friendship between " + name1 + " and " + name2 + "added successfully.", HttpStatus.CREATED);
     }
-    
+
 }

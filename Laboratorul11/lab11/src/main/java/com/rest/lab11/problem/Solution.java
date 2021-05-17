@@ -14,23 +14,20 @@ import java.util.Set;
  * @author Radu
  */
 public class Solution {
+
     Set<Person> importantPersons;
-    
-    public Solution(Set<Person> importantPersons)
-    {
+
+    public Solution(Set<Person> importantPersons) {
         this.importantPersons = importantPersons;
     }
 
     public Set<Person> getImportantPersons() {
         return new HashSet<>(importantPersons);
     }
-    
-    
 
     @Override
     public String toString() {
         return "Solution{" + "importantPersons=" + importantPersons + '}';
     }
-    
-    
+
 }

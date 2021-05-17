@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class ControllerExceptionHandler {
-    
-      @ExceptionHandler(PersonNotFoundException.class)
-      @ResponseStatus(value = HttpStatus.NOT_FOUND)
-      public ErrorMsg personNotFoundException(PersonNotFoundException ex)
-      {
-          return new ErrorMsg(ex.getMessage(), HttpStatus.NOT_FOUND.value());
-      }
-    
+
+    @ExceptionHandler(PersonNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ErrorMsg personNotFoundException(PersonNotFoundException ex) {
+        return new ErrorMsg(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+    }
+
 }

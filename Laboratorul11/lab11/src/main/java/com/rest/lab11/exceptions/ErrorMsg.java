@@ -10,6 +10,7 @@ package com.rest.lab11.exceptions;
  * @author Radu
  */
 public class ErrorMsg {
+
     private String message;
     private int statusCode;
 
@@ -25,6 +26,5 @@ public class ErrorMsg {
     public int getStatusCode() {
         return statusCode;
     }
-    
-    
+
 }

@@ -27,37 +27,39 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "PERSONS")
 public class Person {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "person_generator")
-    @SequenceGenerator(name="person_generator", sequenceName = "person_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_generator")
+    @SequenceGenerator(name = "person_generator", sequenceName = "person_seq", allocationSize = 1)
     private Long id;
     private String name;
-    
+
     //TO DO: write correct annotation
-    
     @ManyToMany
-    @JoinTable(name = "RELATIONSHIPS", joinColumns = {@JoinColumn(name="ID_PERSON1", referencedColumnName="ID")}, 
-            inverseJoinColumns = {@JoinColumn(name="ID_PERSON2", referencedColumnName="ID")} )
+    @JoinTable(name = "RELATIONSHIPS", joinColumns = {
+        @JoinColumn(name = "ID_PERSON1", referencedColumnName = "ID")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_PERSON2", referencedColumnName = "ID")})
     @JsonIgnore
     private List<Person> friendsRight;
-    
+
     @ManyToMany
-    @JoinTable(name = "RELATIONSHIPS", joinColumns = {@JoinColumn(name="ID_PERSON2", referencedColumnName="ID")}, 
-            inverseJoinColumns = {@JoinColumn(name="ID_PERSON1", referencedColumnName="ID")} )
+    @JoinTable(name = "RELATIONSHIPS", joinColumns = {
+        @JoinColumn(name = "ID_PERSON2", referencedColumnName = "ID")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_PERSON1", referencedColumnName = "ID")})
     @JsonIgnore
     private List<Person> friendsLeft;
-    
-    public static int compareByNrFriends(Person a, Person b)
-    {
+
+    public static int compareByNrFriends(Person a, Person b) {
         Integer aux = a.getFriends().size();
         return aux.compareTo(b.getFriends().size());
     }
-    
-    protected Person() {}
-    
-    public Person(String name)
-    {
+
+    protected Person() {
+    }
+
+    public Person(String name) {
         this.name = name;
     }
 
@@ -79,15 +81,10 @@ public class Person {
         friends.addAll(friendsRight);
         return friends;
     }
-    
-    public int getNrFriends()
-    {
+
+    public int getNrFriends() {
         return this.getFriends().size();
     }
-    
-    
-    
-    
 
     @Override
     public String toString() {
@@ -118,8 +115,5 @@ public class Person {
         }
         return true;
     }
-    
-    
-    
-    
+
 }

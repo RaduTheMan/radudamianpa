@@ -14,12 +14,12 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Radu
  */
-public interface RelationshipRepository extends CrudRepository<Relationship, Long>{
-    
+public interface RelationshipRepository extends CrudRepository<Relationship, Long> {
+
     public Relationship findById(long id);
-    
+
     public List<Relationship> findByPerson1(Person person1);
-    
+
     public List<Relationship> findByPerson2(Person person2);
-    
+
 }

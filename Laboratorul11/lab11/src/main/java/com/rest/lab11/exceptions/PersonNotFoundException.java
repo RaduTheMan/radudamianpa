@@ -10,8 +10,8 @@ package com.rest.lab11.exceptions;
  * @author Radu
  */
 public class PersonNotFoundException extends RuntimeException {
-    public PersonNotFoundException(long id)
-    {
-        super("Person with id " + id + " was not found in the database." );
+
+    public PersonNotFoundException(long id) {
+        super("Person with id " + id + " was not found in the database.");
     }
 }

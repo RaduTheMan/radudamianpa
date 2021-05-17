@@ -31,9 +31,8 @@ public class SimpleServer {
 
     public static final int PORT = 8100;
     public static final int MAX_T = 4;
-    
-    
-    public static void main(String[] args) throws IOException  {
+
+    public static void main(String[] args) throws IOException {
         SpringApplication.run(SimpleServer.class, args);
         SimpleServer server = new SimpleServer();
     }
@@ -65,6 +64,5 @@ public class SimpleServer {
             serverSocket.close();
         }
     }
-    
-    
+
 }

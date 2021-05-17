@@ -17,55 +17,47 @@ import java.util.Set;
  * @author Radu
  */
 public abstract class Algorithm {
+
     protected Map<Person, List<Person>> graph;
     protected Set<Person> visited = new HashSet<>();
-    
-    public Algorithm(Map<Person, List<Person>> graph)
-    {
+
+    public Algorithm(Map<Person, List<Person>> graph) {
         this.graph = graph;
     }
-    
-    public Algorithm(List<Person> persons)
-    {
+
+    public Algorithm(List<Person> persons) {
         this.graph = this.buildGraph(persons);
     }
-    
-    private Map<Person, List<Person>> buildGraph(List<Person> persons)
-    {
+
+    private Map<Person, List<Person>> buildGraph(List<Person> persons) {
         Map<Person, List<Person>> solution = new HashMap<>();
-        for(Person p : persons)
-        {
+        for (Person p : persons) {
             solution.put(p, p.getFriends());
         }
         return solution;
-        
+
     }
-    
-    protected void dfs(Person currentNode)
-    {
+
+    protected void dfs(Person currentNode) {
         this.visited.add(currentNode);
-        for(Person neighbour : currentNode.getFriends())
-        {
-            if(!visited.contains(neighbour))
+        for (Person neighbour : currentNode.getFriends()) {
+            if (!visited.contains(neighbour)) {
                 dfs(neighbour);
-        }      
+            }
+        }
     }
-    
-    protected boolean isConnected()
-    {
-        Person startingNode = (Person)graph.keySet().toArray()[0];
+
+    protected boolean isConnected() {
+        Person startingNode = (Person) graph.keySet().toArray()[0];
         dfs(startingNode);
-        if(visited.size() != graph.keySet().size())
-        {
+        if (visited.size() != graph.keySet().size()) {
             visited = new HashSet<>();
-           return false;
+            return false;
         }
         visited = new HashSet<>();
         return true;
     }
-    
-    
-    
+
     public abstract Solution solve();
-    
+
 }
