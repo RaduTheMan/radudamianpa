@@ -5,14 +5,32 @@
  */
 package com.mycompany.server.domain;
 
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.net.ssl.SSLContext;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.http.client.HttpClient;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.HttpClients;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -24,14 +42,48 @@ public class SocialNetwork {
     private Set<Person> users = new HashSet<>();
     private Map<Person, Set<Person>> friendshipRelations = new HashMap<>();
     private Map<Person, List<Message>> messages = new HashMap<>();
-    private RestTemplate restTemplateObj = this.restTemplate();
+    private RestTemplate restTemplateObj;
+    @Value("${trust.store}")
+    private String trustStoreUrl;
+    @Value("${trust.store.password}")
+    private String trustStorePassword;
+
     
-    public RestTemplate restTemplate()
+    private void myRestTemplate(RestTemplateBuilder builder)
     {
-        var factory = new SimpleClientHttpRequestFactory();
-        factory.setConnectTimeout(3000);
-        factory.setReadTimeout(3000);
-        return new RestTemplate(factory);
+//        SSLContext sslContext = new SSLContextBuilder()
+//        .loadTrustMaterial(new URL(trustStoreUrl), trustStorePassword.toCharArray())
+//        .build();
+//        
+//        
+//         SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext);
+//         HttpClient httpClient = HttpClients.custom()
+//        .setSSLSocketFactory(socketFactory)
+//        .build();
+//         
+//         HttpComponentsClientHttpRequestFactory factory = 
+//         new HttpComponentsClientHttpRequestFactory(httpClient);
+//         
+//         this.restTemplateObj = new RestTemplate(factory);
+        
+        
+       
+//old factory for http protocol
+//        var factory = new SimpleClientHttpRequestFactory();
+//        factory.setConnectTimeout(3000);
+//        factory.setReadTimeout(3000);
+//        this.restTemplateObj = new RestTemplate(factory);
+        
+            this.restTemplateObj = builder
+            .setConnectTimeout(Duration.ofMillis(3000))
+            .setReadTimeout(Duration.ofMillis(3000))
+            .basicAuthentication("user", "password")
+            .build();
+    }
+    
+    public SocialNetwork()
+    {
+        this.myRestTemplate(new RestTemplateBuilder());
     }
     
     public boolean registerUser(Person user) {
@@ -92,6 +144,7 @@ public class SocialNetwork {
     {
         final String uri = "http://localhost:8080/persons";
         String result = restTemplateObj.getForObject(uri, String.class);
+        System.out.println(result);
         JSONArray array = new JSONArray(result);  
         for(int i=0;i<array.length();++i)
         {

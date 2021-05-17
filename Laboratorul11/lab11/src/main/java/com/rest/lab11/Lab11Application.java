@@ -45,7 +45,7 @@ public class Lab11Application {
             connector.setScheme("http");
             connector.setPort(8080);
             connector.setSecure(true);
-//            connector.setRedirectPort(8443);
+            connector.setRedirectPort(8443);
             return connector;
         }
 
