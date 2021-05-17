@@ -343,3 +343,7 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 <p>In primul rand, in ceea ce priveste gestionarea thread-urilor catre clienti, am ales sa utilizez un pool de thread-uri ce se regaseste in clasa <em>SimpleServer</em>.</p>
 <p>In cadrul partii de <strong>optional</strong>, am implementat comenzile ce se regasesc in pachetul <em>com.mycompany.server.commands</em></p>
 
+<h2>Laboratorul 11</h2>
+
+<p>Readme-ul pentru acest laborator se gaseste in folderul corespunzator proiectului.</p>
+
