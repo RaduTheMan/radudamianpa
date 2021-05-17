@@ -1,1 +1,41 @@
+<p>Structurea proiectului este urmatoarea:</p>
 
+<ul>
+  <li>com.rest.lab11
+    <ul>
+      <li>Lab11Application.java</li>
+    </ul>
+  </li>
+  <li>com.rest.lab11.configs
+    <ul>
+      <li>SpringFoxConfig.java</li>
+    </ul>
+  </li>
+  <li>com.rest.lab11.controllers
+    <ul>
+      <li>PersonController.java</li>
+      <li>RelationshipController.java</li>
+    </ul>
+  </li>
+  <li>com.rest.lab11.entities
+     <ul>
+      <li>Person.java</li>
+      <li>Relationship.java</li>
+    </ul>
+  </li>
+  <li>com.rest.lab11.exceptions
+     <ul>
+      <li>ControllerExceptionHandler.java</li>
+      <li>ErrorMsg.java</li>
+      <li>PersonNotFoundException.java</li>
+    </ul>
+  </li>
+  <li>com.rest.lab11.problem
+    <ul>
+      <li>Algorithm.java</li>
+      <li>LinearAlgorithm.java</li>
+      <li>Solution.java</li>
+    </ul>
+  </li>
+  <li>com.rest.lab11.repositories</li>
+</ul>
