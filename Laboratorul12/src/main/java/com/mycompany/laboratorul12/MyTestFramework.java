@@ -8,12 +8,15 @@ package com.mycompany.laboratorul12;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 import java.util.regex.Pattern;
 
@@ -22,6 +25,8 @@ import java.util.regex.Pattern;
  * @author Radu
  */
 public class MyTestFramework {
+    
+    public static final String PATH_TO_JAR_COMMAND = "C:\\Program Files\\Java\\jdk-11.0.10\\bin\\jar.exe";
     
     private void redirectStdInput(String inputFile)
     {
@@ -102,19 +107,52 @@ public class MyTestFramework {
         {
             String classStr = scanner.nextLine();
             System.out.println("Full path: " + classStr);
-            var classObj = tryToLoadClass(classStr);
-            if(classObj != null)
+            if(classStr.endsWith(".class"))
             {
-                for (Method m : classObj.getMethods())
+                var classObj = tryToLoadClass(classStr);
+                if(classObj != null)
                 {
-                    if(m.isAnnotationPresent(Test.class))
-                    try {
-                        m.invoke(null);
-                    } catch (Throwable ex) {
-                        System.err.println(ex.getCause());
+                    for (Method m : classObj.getMethods())
+                    {
+                        if(m.isAnnotationPresent(Test.class))
+                        try {
+                            m.invoke(null);
+                        } catch (Throwable ex) {
+                            System.err.println(ex.getCause());
+                        }
                     }
                 }
             }
+            else if(classStr.endsWith(".jar"))
+            {
+              ProcessBuilder command = new ProcessBuilder(PATH_TO_JAR_COMMAND, "tf", classStr);
+                try {
+                    Process p = command.start();
+                    p.waitFor();
+                    InputStream in = p.getInputStream();
+                    String content = new String (in.readAllBytes());
+                    String[] tokens = content.split("\r\n");
+                    
+                    for(String token : tokens)
+                    {
+                        if(token.endsWith(".class"))
+                        {
+                            token = token.replace(".class", "");
+                            token = token.replace("/", ".");
+                            var classObj = isClass(classStr,token);
+                            if(classObj != null)
+                                System.out.println(classObj.getName() + "YES");
+                            
+                        }
+                    }
+                    
+                } catch (IOException | InterruptedException ex) {
+                    System.err.println(ex);
+                }
+              
+            }
+            else
+                System.out.printf("ERROR: this path '%s' is not a .jar or .class file\n",classStr);
         }
         
     }

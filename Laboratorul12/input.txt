@@ -1,1 +1,2 @@
 E:\theproject\target\classes\com\mycompany\theproject\MyProgram.class
+E:\theproject\target\theproject-1.0-SNAPSHOT.jar
