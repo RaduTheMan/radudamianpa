@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
@@ -141,7 +142,11 @@ public class MyTestFramework {
                             token = token.replace("/", ".");
                             var classObj = isClass(classStr,token);
                             if(classObj != null)
-                                System.out.println(classObj.getName() + "YES");
+                            {
+                               Report report = new Report(classObj);
+                                System.out.println(report);
+                            }
+                            
                             
                         }
                     }
