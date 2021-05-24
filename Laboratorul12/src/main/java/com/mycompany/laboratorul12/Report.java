@@ -18,12 +18,14 @@ public class Report {
     private String superClassName;
     private List<List<String>> constructorsParameters = new ArrayList<>();
     private List<String> fieldsStr = new ArrayList<>();
+    private List<String> methodsStr = new ArrayList<>();
     public Report(Class<?> classObj)
     {
         obtainTitle(classObj);
         obtainSuperClass(classObj);
         obtainConstructors(classObj);
         obtainFields(classObj);
+        obtainMethods(classObj);
     }
     
     private void obtainTitle(Class<?> classObj)
@@ -80,7 +82,7 @@ public class Report {
     
     private void obtainFields(Class<?> classObj)
     {
-        var fields = classObj.getFields();
+        var fields = classObj.getDeclaredFields();
         for(var field : fields)
         {
             String modifierStr = Modifier.toString(field.getModifiers());
@@ -98,6 +100,33 @@ public class Report {
             stringBuilder.append(fieldStr + "\n");
         }
     }
+    
+    private void obtainMethods(Class<?> classObj)
+    {
+        var methods = classObj.getDeclaredMethods();
+        for(var method : methods)
+        {
+            String modifierStr = Modifier.toString(method.getModifiers());
+            StringBuilder stringBuilder = new StringBuilder(modifierStr + " " + method.getReturnType().getSimpleName() + " " + method.getName() + "( ");
+            var types = method.getParameterTypes();
+            for(var type : types)
+            {
+                stringBuilder.append(type.getSimpleName()).append(", ");
+            }
+            stringBuilder.append(" )");
+            methodsStr.add(stringBuilder.toString());
+            
+        }
+    }
+    
+    private void appendMethods(StringBuilder stringBuilder)
+    {
+        stringBuilder.append("Methods: \n");
+        for(var methodStr : methodsStr)
+        {
+            stringBuilder.append(methodStr + "\n");
+        }
+    }
 
     @Override
     public String toString() {
@@ -105,6 +134,7 @@ public class Report {
         appendTitleAndSuperClass(stringBuilder);
         appendConstructors(stringBuilder);
         appendFields(stringBuilder);
+        appendMethods(stringBuilder);
         return stringBuilder.toString();
     }
     
