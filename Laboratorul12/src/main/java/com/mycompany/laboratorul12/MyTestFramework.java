@@ -29,8 +29,6 @@ import java.util.regex.Pattern;
  */
 public class MyTestFramework {
 
-    public static final String PATH_TO_JAR_COMMAND = "C:\\Program Files\\Java\\jdk-11.0.10\\bin\\jar.exe";
-
     public static final List<String> ACCEPTED_TYPES = Arrays.asList(new String[]{"int", "String"});
 
     private void redirectStdInput(String inputFile) {
@@ -43,6 +41,8 @@ public class MyTestFramework {
         }
     }
 
+    //se verifica concret pentru un CLASSPATH si un package daca se poate obtine
+    //o clasa incarcata in memorie
     private Class<?> isClass(String classPath, String sufix) {
         Class<?> classObj = null;
         File path = new File(classPath);
@@ -64,8 +64,10 @@ public class MyTestFramework {
         return null;
     }
 
+    //se verifica toate variantele posibile de CLASSPATH-uri si de package-uri pentru a incarca
+    //o clasa in memorie, pornind de la un prefix si sufix initial
     private Class<?> determineClass(StringBuilder prefix, StringBuilder sufix, String slash) {
-        String[] tokens = prefix.toString().split(Pattern.quote(slash));
+        String[] tokens = prefix.toString().split(Pattern.quote(slash)); 
         var classObj = isClass(prefix.toString(), sufix.toString());
         if (classObj != null) {
             return classObj;
@@ -83,6 +85,7 @@ public class MyTestFramework {
         return null;
     }
 
+    //metoda ce primeste calea catre un fisier potential .class
     private Class<?> tryToLoadClass(String classStr) {
         //find last index of slash
         String slash = "\\";
@@ -95,11 +98,12 @@ public class MyTestFramework {
             return null;
         }
 
-        //determine the prefixe and sufixe(if classStr points to a class file)
+        
         String className = classStr.substring(index + 1);
         if (!className.endsWith(".class")) {
             return null;
         }
+        //determinarea prefixului si a sufixului initial
         StringBuilder prefix = new StringBuilder(classStr.substring(0, index));
         className = className.replace(".class", "");
         StringBuilder sufix = new StringBuilder(className);
@@ -111,6 +115,8 @@ public class MyTestFramework {
 
     }
 
+    //incercarea de a instantia un obiect dintr-o clasa incarcata in memorie,
+    //parcurgandu-se constructorii
     private Object instantiateObject(Class<?> classObj) {
         var constructors = classObj.getConstructors();
         for (var constructor : constructors) {
@@ -145,6 +151,8 @@ public class MyTestFramework {
 
     }
 
+    //incercarea de a se invoca metode publice(statice sau nu)
+    //cu o constrangere impusa
     private void invokeTestMethods(Class<?> classObj) {
         Object myInstance = instantiateObject(classObj);
         var methods = classObj.getMethods();
@@ -178,6 +186,7 @@ public class MyTestFramework {
         }
     }
 
+    //inceperea testului, parcurgandu-se continutul fisierului de input
     public void beginTest(String inputFile) {
         redirectStdInput(inputFile);
         Scanner scanner = new Scanner(System.in);
