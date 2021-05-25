@@ -20,6 +20,8 @@
 <p>In esenta, programul functioneaza in felul urmator: in clasa MyTestFramework exista metoda <em>beginTest(String inputFile)</em> care primeste o cale catre un fisier
 de input ce contine pe fiecare linie cai ori catre fisiere .class, ori catre fisiere .jar, iar input-ul standard de la tastatura este redirectat catre acest fisier(daca exista). Acest fisier se gaseste in root-ul proiectului.</p>
 
+<p>De precizat faptul ca in folder-ul <em>dummyProject</em> se regaseste un proiect folosit pentru a testa functionalitatile in cadrul acestui laborator.</p>
+
 <p>Partea de <strong>compulsory</strong> se realizeaza atunci cand de la input se primeste o cale catre un fisier .class . In cadrul metodei <em>tryToLoadClass(String classStr)</em> se verifica daca poate fi incarcata in memorie clasa indicata de cale, verificandu-se cu ajutorul unui <em>MyClassLoader</em> toate variantele posibile de CLASSPATH-uri si de package-uri ale clasei. In caz afirmativ, se va returna un obiect de tipul <em>Class&lt;?&gt;</em> ce nu va fi <em>null</em>. Dupa accea se vor incarca sa se invoce toate metodele adnotate cu @Test fara niciun parametru.</p>
 
 <p>In cadrul partii de <strong>optional</strong>, explorarea unui fisier .jar se face cu ajutorul clasei <em>MyJarUtil</em>, unde se va executa cu ajutorul unui <em>ProcessBuilder</em>  comanda "jar -tf 'cale_catre_fisier_jar'", iar continutul furnizat va fi filtrat, returnandu-se o lista cu String-uri ce contin numai package-uri catre fisiere .class . De mentionat faptul ca acest procedeu depinde de sistemul de operare(in cazul de fata Windows), deoarece variabila PATH_TO_JAR_COMMAND retine calea catre executabilul <em>jar.exe</em>  </p>
