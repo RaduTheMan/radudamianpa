@@ -347,3 +347,7 @@ jocului, si anume suma valorilor jetoanelor din toate circuitele care se pot for
 
 <p>Readme-ul pentru acest laborator se gaseste in folderul corespunzator proiectului.</p>
 
+<h2>Laboratorul 12</h2>
+
+<p>Readme-ul pentru acest laborator se gaseste in folderul corespunzator proiectului.</p>
+
