@@ -5,6 +5,8 @@
  */
 package com.mycompany.laboratorul12;
 
+import com.mycompany.laboratorul12.utils.MyJarUtil;
+import com.mycompany.laboratorul12.utils.MyRandomUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
