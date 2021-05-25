@@ -10,8 +10,9 @@ package com.mycompany.laboratorul12;
  * @author Radu
  */
 public class Main {
-    
+
     public static final String INPUTFILE = "./input.txt";
+
     public static void main(String[] args) {
         MyTestFramework framework = new MyTestFramework();
         framework.beginTest(INPUTFILE);

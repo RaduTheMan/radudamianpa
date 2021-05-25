@@ -20,7 +20,7 @@ public class MyClassLoader extends URLClassLoader {
 
     @Override
     public void addURL(URL url) {
-        super.addURL(url); 
+        super.addURL(url);
     }
 
 }

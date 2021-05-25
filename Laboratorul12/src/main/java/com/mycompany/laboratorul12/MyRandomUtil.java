@@ -18,13 +18,12 @@ public class MyRandomUtil {
     public static String generateStringValue(int maxLength) {
         StringBuilder solution = new StringBuilder();
         int solutionLength = generateIntegerValue(1, maxLength);
-        for(int i=0; i<solutionLength; ++i)
-        {
-            int asciiCode = generateIntegerValue((int)'a',(int)'z');
-            solution.append((char)asciiCode);
+        for (int i = 0; i < solutionLength; ++i) {
+            int asciiCode = generateIntegerValue((int) 'a', (int) 'z');
+            solution.append((char) asciiCode);
         }
         return solution.toString();
-           
+
     }
 
 }
